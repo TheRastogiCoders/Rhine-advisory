@@ -1,0 +1,251 @@
+import React, { useState } from 'react'
+import '../styles/services.css'
+
+const Services = () => {
+  const [expandedService, setExpandedService] = useState(null)
+
+  const toggleService = (index) => {
+    setExpandedService(expandedService === index ? null : index)
+  }
+
+  const services = [
+    {
+      title: "Mergers & Acquisitions (M&A) Advisory",
+      summary: "End-to-end advisory across buy-side, sell-side, and complex strategic transactions.",
+      description:
+        "Rhine Advisory provides comprehensive M&A advisory services to corporates, sponsors, and investors across industries and geographies, with a strong focus on strategic alignment, valuation discipline, and execution certainty.",
+      subsections: [
+        {
+          title: "Buy-Side Advisory",
+          description: "We support acquirers through the full investment lifecycle:",
+          items: [
+            "Target identification and proprietary deal sourcing",
+            "Strategic and commercial assessment",
+            "Valuation, synergy analysis, and transaction modeling",
+            "Deal structuring and financing evaluation",
+            "Due diligence coordination",
+            "Negotiation support and closing assistance"
+          ],
+          note:
+            "Our focus extends beyond deal completion to long-term value creation and downside protection."
+        },
+        {
+          title: "Sell-Side Advisory",
+          description: "We help shareholders and promoters maximize value by:",
+          items: [
+            "Preparing businesses for sale and deal readiness",
+            "Developing compelling equity stories and information memoranda",
+            "Identifying and managing strategic and financial buyers",
+            "Running competitive and confidential processes",
+            "Supporting valuation negotiations and transaction execution"
+          ],
+          note:
+            "We position assets to attract the right buyers at the right valuation — not just the fastest exit."
+        }
+      ]
+    },
+    {
+      title: "SPAC Advisory Services",
+      summary: "Independent advisory across SPAC formation, target evaluation, and de-SPAC execution.",
+      description:
+        "We advise SPAC sponsors, target companies, and PIPE investors across the full SPAC lifecycle, from strategic assessment to public market execution.",
+      subsections: [
+        {
+          title: "SPAC Sponsors",
+          items: [
+            "Target sourcing and strategic evaluation",
+            "Valuation and transaction structuring",
+            "Financial modeling and investor analysis",
+            "Due diligence coordination",
+            "De-SPAC execution support"
+          ]
+        },
+        {
+          title: "Target Companies",
+          items: [
+            "SPAC readiness assessment",
+            "Business plan and financial forecast development",
+            "Valuation support and negotiation",
+            "Public market positioning",
+            "Post-transaction transition support"
+          ]
+        }
+      ]
+    },
+    {
+      title: "Transaction Advisory Services",
+      summary: "Independent diligence and execution support at critical transaction decision points.",
+      description:
+        "We provide financial and commercial diligence, risk assessment, and execution support to enable informed decision-making in high-stakes environments.",
+      subsections: [
+        {
+          title: "Buy-Side Advisory",
+          items: [
+            "Quality of earnings analysis",
+            "Working capital and cash flow assessment",
+            "Commercial diligence",
+            "Synergy validation",
+            "Deal risk identification"
+          ]
+        },
+        {
+          title: "Sell-Side Advisory",
+          items: [
+            "Pre-deal financial cleanup",
+            "Earnings normalization",
+            "Deal readiness assessments",
+            "Buyer diligence management",
+            "SPA support"
+          ]
+        }
+      ]
+    },
+    {
+      title: "Investment Solutions & Advisory",
+      summary: "Capital allocation, portfolio strategy, and investment evaluation.",
+      description:
+        "We work with investors to design and execute capital allocation strategies aligned with risk, return, and liquidity objectives.",
+      subsections: [
+        {
+          title: "Private Equity & Venture Capital",
+          items: [
+            "Investment screening and evaluation",
+            "Market and competitive analysis",
+            "Portfolio performance assessment",
+            "Exit planning and value maximization"
+          ]
+        },
+        {
+          title: "Family Offices & Strategic Investors",
+          items: [
+            "Direct investment evaluation",
+            "Portfolio diversification",
+            "Capital structuring",
+            "Governance frameworks"
+          ]
+        }
+      ]
+    },
+    {
+      title: "Valuation & Financial Modeling",
+      summary: "Decision-oriented valuation and modeling.",
+      description:
+        "Our valuation and modeling capabilities support strategic, transaction, and investment decisions across the deal lifecycle.",
+      subsections: [
+        {
+          title: "Valuation",
+          items: [
+            "DCF and comparable analysis",
+            "Precedent transaction analysis",
+            "LBO modeling",
+            "Fairness opinions"
+          ]
+        },
+        {
+          title: "Financial Modeling",
+          items: [
+            "Integrated operating models",
+            "Transaction models",
+            "Scenario and sensitivity analysis",
+            "Investor-ready outputs"
+          ]
+        }
+      ]
+    }
+  ]
+
+  return (
+    <div className="services">
+      {/* ================= PAGE HEADER ================= */}
+      <section className="page-header">
+        <div className="container">
+          <h1>OUR SERVICES</h1>
+          <p className="page-subtitle">
+            Independent advisory across transactions, capital events, and investment decisions
+          </p>
+        </div>
+      </section>
+
+      {/* ================= CORE SERVICES ================= */}
+      <section className="section services-section">
+        <div className="container">
+          {services.map((service, index) => (
+            <div key={index} className="service-card">
+              <div
+                className="service-header"
+                onClick={() => toggleService(index)}
+              >
+                <div>
+                  <h2>{service.title}</h2>
+                  <p className="service-summary">{service.summary}</p>
+                </div>
+                <span className="toggle-icon">
+                  {expandedService === index ? '−' : '+'}
+                </span>
+              </div>
+
+              {expandedService === index && (
+                <div className="service-content">
+                  <p className="service-description">{service.description}</p>
+
+                  {service.subsections.map((sub, i) => (
+                    <div key={i} className="subsection">
+                      <h3>{sub.title}</h3>
+                      <ul className="service-list">
+                        {sub.items.map((item, j) => (
+                          <li key={j}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ================= HOW WE WORK ================= */}
+      <section className="section how-we-work">
+        <div className="container">
+          <h2 className="section-title">HOW WE WORK</h2>
+          <div className="why-grid">
+            <div className="why-item">Senior-led execution with direct partner involvement</div>
+            <div className="why-item">Independent advice free from product or financing bias</div>
+            <div className="why-item">Disciplined, execution-focused transaction mindset</div>
+            <div className="why-item">Confidential, precise, and outcome-driven approach</div>
+          </div>
+        </div>
+      </section>
+
+      {/* ================= SECTOR COVERAGE ================= */}
+      <section className="section sector-coverage">
+        <div className="container">
+          <h2 className="section-title">SECTOR EXPERIENCE</h2>
+          <div className="serve-grid">
+            <div className="serve-item">Technology & Digital</div>
+            <div className="serve-item">Financial Services</div>
+            <div className="serve-item">Consumer & Retail</div>
+            <div className="serve-item">Healthcare & Life Sciences</div>
+            <div className="serve-item">Industrial & Manufacturing</div>
+            <div className="serve-item">Energy & Infrastructure</div>
+          </div>
+        </div>
+      </section>
+
+      {/* ================= CTA ================= */}
+      <section className="section cta-section">
+        <div className="container">
+          <h2>Discuss Your Transaction</h2>
+          <p>
+            Engage with Rhine Advisory to evaluate, structure, and execute
+            complex transactions with confidence.
+          </p>
+          <a href="/contact" className="btn btn-primary">Contact Our Team</a>
+        </div>
+      </section>
+    </div>
+  )
+}
+
+export default Services

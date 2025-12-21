@@ -1,0 +1,168 @@
+/* Raise Funds Page Styles */
+.raise-funds .hero {
+  background: linear-gradient(135deg, #b1122d 0%, #8f0f24 100%);
+  color: #ffffff;
+  padding: 6rem 0 4rem;
+  text-align: center;
+}
+
+.raise-funds .hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.raise-funds .hero p {
+  font-size: 1.25rem;
+  max-width: 800px;
+  margin: 0 auto;
+  opacity: 0.95;
+}
+
+/* Funding Options Section */
+.funding-options {
+  padding: 5rem 0;
+  background-color: #fff3f4;
+}
+
+.funding-options h2 {
+  text-align: center;
+  color: #b1122d;
+  margin-bottom: 3rem;
+  font-size: 2.2rem;
+}
+
+.funding-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.funding-card {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 2.5rem;
+  box-shadow: 0 6px 12px rgba(177, 18, 45, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.funding-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 40px rgba(177, 18, 45, 0.25);
+}
+
+.funding-card h3 {
+  color: #8f0f24;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  position: relative;
+  padding-bottom: 0.75rem;
+}
+
+.funding-card h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: #b1122d;
+}
+
+.funding-card p {
+  color: #4b1d24;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.funding-card ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.funding-card li {
+  padding: 0.5rem 0;
+  color: #6b1f2b;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.funding-card li::before {
+  content: '•';
+  color: #b1122d;
+  font-weight: bold;
+  font-size: 1.5rem;
+  line-height: 0;
+}
+
+/* CTA Section */
+.cta-section {
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, #8f0f24 0%, #b1122d 100%);
+  color: #ffffff;
+  text-align: center;
+}
+
+.cta-section h2 {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+}
+
+.cta-section p {
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  font-size: 1.1rem;
+  opacity: 0.95;
+  line-height: 1.7;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary {
+  background: #b1122d;
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background: #8f0f24;
+  transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .raise-funds .hero h1 {
+    font-size: 2.5rem;
+  }
+  
+  .raise-funds .hero p {
+    font-size: 1.1rem;
+    padding: 0 1rem;
+  }
+  
+  .funding-cards {
+    grid-template-columns: 1fr;
+    padding: 0 1rem;
+  }
+  
+  .funding-card {
+    padding: 1.5rem;
+  }
+  
+  .cta-section h2 {
+    font-size: 1.8rem;
+  }
+}

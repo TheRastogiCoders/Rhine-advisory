@@ -1,0 +1,171 @@
+/* Careers Page Styles */
+.careers .hero {
+  background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
+  color: white;
+  padding: 6rem 0 4rem;
+  text-align: center;
+}
+
+.careers .hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.careers .hero p {
+  font-size: 1.25rem;
+  max-width: 800px;
+  margin: 0 auto;
+  opacity: 0.9;
+}
+
+/* Why Join Us Section */
+.why-join-us {
+  padding: 5rem 0;
+  background-color: #f8fafc;
+}
+
+.why-join-us h2 {
+  text-align: center;
+  margin-bottom: 3rem;
+  color: #1a365d;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.benefit-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+}
+
+.benefit-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.benefit-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.benefit-card h3 {
+  color: #2c5282;
+  margin-bottom: 1rem;
+}
+
+/* Job Openings Section */
+.job-openings {
+  padding: 5rem 0;
+}
+
+.job-openings h2 {
+  text-align: center;
+  color: #1a365d;
+  margin-bottom: 3rem;
+}
+
+.jobs-list {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.job-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 1.5rem 2rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.job-card:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transform: translateX(5px);
+}
+
+.job-info h3 {
+  color: #2c5282;
+  margin-bottom: 0.5rem;
+}
+
+.job-meta {
+  display: flex;
+  gap: 1rem;
+  color: #4a5568;
+  font-size: 0.9rem;
+}
+
+.job-meta span {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.job-meta .location::before {
+  content: '📍';
+}
+
+.job-meta .type::before {
+  content: '🕒';
+}
+
+.job-meta .department::before {
+  content: '🏢';
+}
+
+/* CTA Section */
+.cta-section {
+  padding: 4rem 0;
+  background: linear-gradient(135deg, #2c5282 0%, #1a365d 100%);
+  color: white;
+  text-align: center;
+}
+
+.cta-section h2 {
+  margin-bottom: 1rem;
+}
+
+.cta-section p {
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  opacity: 0.9;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .job-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .job-meta {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .benefit-card {
+    padding: 1.5rem 1rem;
+  }
+  
+  .careers .hero h1 {
+    font-size: 2.5rem;
+  }
+  
+  .careers .hero p {
+    font-size: 1.1rem;
+    padding: 0 1rem;
+  }
+}

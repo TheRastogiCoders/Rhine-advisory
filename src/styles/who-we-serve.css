@@ -1,0 +1,102 @@
+/* Who We Serve Page Styles */
+.who-we-serve .hero {
+  background: linear-gradient(135deg, #b1122d 0%, #8f0f24 100%);
+  color: #ffffff;
+  padding: 6rem 0 4rem;
+  text-align: center;
+}
+
+.who-we-serve .hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.who-we-serve .hero p {
+  font-size: 1.25rem;
+  max-width: 800px;
+  margin: 0 auto;
+  opacity: 0.95;
+}
+
+/* Client Categories Section */
+.client-categories {
+  padding: 5rem 0;
+  background-color: #fff3f4;
+}
+
+.client-categories .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.client-category {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 2.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 6px 12px rgba(177, 18, 45, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.client-category:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 40px rgba(177, 18, 45, 0.25);
+}
+
+.client-category h2 {
+  color: #b1122d;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+}
+
+.client-category p {
+  color: #4b1d24;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.client-category ul {
+  list-style-type: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.client-category li {
+  background: #fde8eb;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  color: #6b1f2b;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.client-category li::before {
+  content: '✓';
+  color: #b1122d;
+  font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .who-we-serve .hero h1 {
+    font-size: 2.5rem;
+  }
+  
+  .who-we-serve .hero p {
+    font-size: 1.1rem;
+    padding: 0 1rem;
+  }
+  
+  .client-category {
+    padding: 1.5rem;
+  }
+  
+  .client-category ul {
+    grid-template-columns: 1fr;
+  }
+}
