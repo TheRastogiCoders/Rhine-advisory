@@ -112,6 +112,43 @@ const About = () => {
           </div>
         </div>
       </section>
+
+      {/* ================= TEAM SECTION ================= */}
+      <section className="section team-section">
+        <div className="container">
+          <div className="section-header">
+            <h2 className="section-title">Our Team</h2>
+            <p className="section-subtitle">Meet the driving force behind Rhine Advisory</p>
+          </div>
+          <div className="team-card">
+            <div className="team-content">
+              <div className="team-image">
+                <img src="/team-member.jpg" alt="Vasu Rastogi" />
+                <div className="social-links">
+                  <a href="#" className="social-icon" aria-label="LinkedIn">
+                    <i className="fab fa-linkedin"></i>
+                  </a>
+                  <a href="#" className="social-icon" aria-label="Email">
+                    <i className="fas fa-envelope"></i>
+                  </a>
+                </div>
+              </div>
+              <div className="team-info">
+                <h3>X-X-X</h3>
+                <p className="position">Sole Proprietor</p>
+                <p className="bio">
+                  Strategic advisor with expertise in business development and financial consulting, helping businesses navigate challenges and achieve sustainable growth.
+                </p>
+                <div className="expertise">
+                  <span>Strategic Advisory</span>
+                  <span>Business Development</span>
+                  <span>Financial Consulting</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
