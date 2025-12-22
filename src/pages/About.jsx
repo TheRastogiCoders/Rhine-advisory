@@ -135,7 +135,7 @@ const About = () => {
               </div>
               <div className="team-info">
                 <h3>X-X-X</h3>
-                <p className="position">Sole Proprietor</p>
+                <p className="position"></p>
                 <p className="bio">
                   Strategic advisor with expertise in business development and financial consulting, helping businesses navigate challenges and achieve sustainable growth.
                 </p>

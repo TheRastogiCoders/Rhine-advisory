@@ -1,12 +1,8 @@
 /* ================= FOOTER ================= */
 .footer {
-  background: linear-gradient(
-    135deg,
-    var(--dark-red),
-    var(--primary-red)
-  );
+  background: var(--primary-red);
   color: var(--white);
-  padding: 70px 0 30px;
+  padding: 80px 0 30px;
   margin-top: 40px;
 }
 

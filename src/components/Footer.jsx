@@ -54,7 +54,7 @@ const Footer = () => {
 
       {/* ===== COPYRIGHT ===== */}
       <div className="footer-bottom">
-        <p>&copy; {new Date().getFullYear()} Rhine Advisory. All rights reserved.</p>
+        <p>&copy; 2021 Rhine Advisory. All rights reserved.</p>
       </div>
     </footer>
   )
