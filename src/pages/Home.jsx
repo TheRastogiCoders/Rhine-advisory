@@ -126,16 +126,60 @@ const Home = () => {
       </section>
 
       {/* ================= CALL TO ACTION ================= */}
-      <section className="section cta-section">
-        <div className="container">
-          <h2>Ready to Navigate Complexity?</h2>
-          <p>
-            Partner with Rhine Advisory to structure, execute, and deliver
-            high-impact transactions with confidence.
-          </p>
-          <Link to="/contact" className="btn btn-primary">Get in Touch</Link>
-        </div>
-      </section>
+    <section
+  className="section cta-section"
+  style={{
+    background: "linear-gradient(135deg, var(--dark-red), var(--primary-red))",
+    color: "#ffffff",
+    padding: "90px 20px",
+    textAlign: "center"
+  }}
+>
+  <div className="container">
+    <h2
+      style={{
+        fontSize: "2.5rem",
+        fontWeight: "700",
+        marginBottom: "15px"
+      }}
+    >
+      Discuss Your Transaction
+    </h2>
+
+    <p
+      style={{
+        maxWidth: "720px",
+        margin: "0 auto 30px",
+        fontSize: "1.15rem",
+        opacity: "0.95"
+      }}
+    >
+      Engage with Rhine Advisory to evaluate, structure, and execute
+      complex transactions with confidence.
+    </p>
+
+    <a
+      href="/contact"
+      style={{
+        display: "inline-block",
+        background: "#ffffff",
+        color: "var(--primary-red)",
+        padding: "14px 36px",
+        fontSize: "1rem",
+        fontWeight: "600",
+        borderRadius: "50px",
+        textDecoration: "none",
+        transition: "all 0.3s ease"
+      }}
+      onMouseEnter={e => (e.currentTarget.style.transform = "translateY(-2px)")}
+      onMouseLeave={e => (e.currentTarget.style.transform = "translateY(0)")}
+    >
+      Contact Our Team
+    </a>
+  </div>
+</section>
+
+
     </div>
   )
 }

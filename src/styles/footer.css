@@ -1,6 +1,14 @@
+/* ================= ROOT VARIABLES ================= */
+:root {
+  --dark-red: #8b0000;
+  --primary-red: #d32f2f; /* Keep original red for other components */
+  --white: #ffffff;
+  --footer-bg: #A71939; /* New variable for footer background */
+}
+
 /* ================= FOOTER ================= */
 .footer {
-  background: var(--primary-red);
+  background: var(--footer-bg); /* Direct color value for reliability */
   color: var(--white);
   padding: 80px 0 30px;
   margin-top: 40px;
@@ -23,6 +31,7 @@
   font-size: 1.25rem;
   font-weight: 700;
   letter-spacing: 0.5px;
+  color: var(--white);
 }
 
 /* ================= LOGO ================= */

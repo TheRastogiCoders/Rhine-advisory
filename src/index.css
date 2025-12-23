@@ -15,10 +15,3 @@ html {
   scroll-behavior: smooth;
 }
 
-/* REMOVE DEFAULT BROWSER SPACING */
-html, body {
-  margin: 0;
-  padding: 0;
-}
-
-

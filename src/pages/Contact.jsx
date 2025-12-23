@@ -71,7 +71,7 @@ const Contact = () => {
       <section className="page-header">
         <div className="container">
           <h1>CONTACT US</h1>
-          <p className="page-subtitle">
+          <p className="page-subtitle" style={{ color: "var(--primary-red)" }}>
             Engage with Rhine Advisory to evaluate, structure, and execute
             complex transactions with confidence.
           </p>
