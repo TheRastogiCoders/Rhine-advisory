@@ -4,7 +4,6 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
 import Home from './pages/Home'
-import About from './pages/About'
 import WhoWeServe from './pages/WhoWeServe'
 import Services from './pages/Services'
 import RaiseFunds from './pages/RaiseFunds'
@@ -19,7 +18,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
+          <Route path="/about" element={<Home />} />
           <Route path="/who-we-serve" element={<WhoWeServe />} />
           <Route path="/services" element={<Services />} />
           <Route path="/raise-funds" element={<RaiseFunds />} />

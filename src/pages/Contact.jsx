@@ -75,6 +75,13 @@ const Contact = () => {
             Engage with Rhine Advisory to evaluate, structure, and execute
             complex transactions with confidence.
           </p>
+          <div className="page-header-image">
+            <img 
+              src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1200&h=500&fit=crop&q=80" 
+              alt="Business communication and contact" 
+              className="header-hero-image"
+            />
+          </div>
         </div>
       </section>
 
@@ -85,6 +92,13 @@ const Contact = () => {
             
             {/* ================= CONTACT INFO ================= */}
             <div className="contact-info">
+              <div className="contact-info-image">
+                <img 
+                  src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&h=600&fit=crop&q=80" 
+                  alt="Modern office space" 
+                  className="info-image"
+                />
+              </div>
               <div className="info-card">
                 <h3>Connect With Us</h3>
                 <p className="info-description">
@@ -94,8 +108,8 @@ const Contact = () => {
 
                 <div className="info-item">
                   <strong>Email</strong>
-                  <a href="mailto:contact@rhineadvisory.com">
-                    contact@rhineadvisory.com
+                  <a href="mailto:contact@rhineadvisory.ae">
+                  contact@rhineadvisory.ae
                   </a>
                 </div>
 
@@ -107,17 +121,12 @@ const Contact = () => {
                 </div>
 
                 <div className="info-item">
-                  <strong>Office</strong>
-                  <p>Ahmedabad, Gujarat — India</p>
+                  <strong>Delivery Center</strong>
+                  <p>Westgate, 510-511, 5th floor D Block, Near YMCA Club, SG Road, Ahmedabad - 380015 Gujarat, India.</p>
                 </div>
               </div>
 
-              <div className="info-card">
-                <h3>Business Hours</h3>
-                <p>Monday – Friday: 9:00 AM – 6:00 PM (IST)</p>
-                <p>Saturday: By appointment</p>
-                <p>Sunday: Closed</p>
-              </div>
+        
             </div>
 
             {/* ================= CONTACT FORM ================= */}

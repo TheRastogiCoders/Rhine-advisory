@@ -9,6 +9,13 @@ const Resources = () => {
         <div className="container">
           <h1>Resources</h1>
           <p>Insights, research, and tools to help you make informed financial decisions</p>
+          <div className="hero-image-wrapper">
+            <img 
+              src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&h=500&fit=crop&q=80" 
+              alt="Research and data analysis" 
+              className="hero-image"
+            />
+          </div>
         </div>
       </section>
 
@@ -18,11 +25,25 @@ const Resources = () => {
             <h2>Market Insights</h2>
             <div className="resource-grid">
               <div className="resource-card">
+                <div className="resource-card-image">
+                  <img 
+                    src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=300&fit=crop&q=80" 
+                    alt="M&A Report" 
+                    className="resource-img"
+                  />
+                </div>
                 <h3>Quarterly M&A Report</h3>
                 <p>Analysis of current market trends and transactions in the M&A landscape.</p>
                 <a href="#" className="btn-link">Read Report →</a>
               </div>
               <div className="resource-card">
+                <div className="resource-card-image">
+                  <img 
+                    src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=300&fit=crop&q=80" 
+                    alt="Industry analysis" 
+                    className="resource-img"
+                  />
+                </div>
                 <h3>Industry Spotlights</h3>
                 <p>In-depth analysis of specific industries and their investment potential.</p>
                 <a href="#" className="btn-link">Explore Industries →</a>
@@ -34,11 +55,25 @@ const Resources = () => {
             <h2>Guides & Tools</h2>
             <div className="resource-grid">
               <div className="resource-card">
+                <div className="resource-card-image">
+                  <img 
+                    src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=300&fit=crop&q=80" 
+                    alt="Valuation calculator" 
+                    className="resource-img"
+                  />
+                </div>
                 <h3>Valuation Calculator</h3>
                 <p>Estimate your business's worth with our interactive valuation tool.</p>
                 <a href="#" className="btn-link">Calculate Now →</a>
               </div>
               <div className="resource-card">
+                <div className="resource-card-image">
+                  <img 
+                    src="https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=600&h=300&fit=crop&q=80" 
+                    alt="Funding roadmap" 
+                    className="resource-img"
+                  />
+                </div>
                 <h3>Funding Roadmap</h3>
                 <p>Step-by-step guide to securing the right funding for your business.</p>
                 <a href="#" className="btn-link">Download Guide →</a>
@@ -50,11 +85,25 @@ const Resources = () => {
             <h2>Webinars & Events</h2>
             <div className="resource-grid">
               <div className="resource-card">
+                <div className="resource-card-image">
+                  <img 
+                    src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=600&h=300&fit=crop&q=80" 
+                    alt="Webinars" 
+                    className="resource-img"
+                  />
+                </div>
                 <h3>Upcoming Webinars</h3>
                 <p>Join our experts for live discussions on market trends and strategies.</p>
                 <a href="#" className="btn-link">View Schedule →</a>
               </div>
               <div className="resource-card">
+                <div className="resource-card-image">
+                  <img 
+                    src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=300&fit=crop&q=80" 
+                    alt="Past events" 
+                    className="resource-img"
+                  />
+                </div>
                 <h3>Past Events</h3>
                 <p>Access recordings and materials from our previous events.</p>
                 <a href="#" className="btn-link">Watch Now →</a>

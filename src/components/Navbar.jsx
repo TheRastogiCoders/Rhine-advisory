@@ -38,17 +38,8 @@ const Navbar = () => {
         <ul className={`navbar-menu ${isMobileMenuOpen ? 'active' : ''}`}>
           <li>
             <Link 
-              to="/" 
-              className={isActive('/') ? 'active' : ''}
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link 
               to="/about" 
-              className={isActive('/about') ? 'active' : ''}
+              className={isActive('/about') || isActive('/') ? 'active' : ''}
               onClick={() => setIsMobileMenuOpen(false)}
             >
               About Us

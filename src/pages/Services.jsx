@@ -151,6 +151,26 @@ const Services = () => {
           ]
         }
       ]
+    },
+    {
+      title: "Capital Markets Advisory",
+      summary: "Comprehensive capital raising advisory optimizing deal structures across private equity, venture capital, and strategic channels.",
+      description:
+      "Private placement structuring and execution Strategic investor identification and engagement Venture capital and growth equity advisory Debt financing and alternative structures Cross-border capital market access ",
+      subsections: [
+        {
+          title: "Fund Administration and Accounting",
+          items: [
+            "Updating financial records",
+"Distribution Management",
+"Portfolio Valuation",
+"Admin Process",
+"Fund Setup",
+"Preparing Report",
+
+          ]
+        }
+      ]
     }
   ]
 
@@ -161,8 +181,15 @@ const Services = () => {
         <div className="container">
           <h1>OUR SERVICES</h1>
           <p className="page-subtitle" style={{ color: "var(--primary-red)" }}>
-            Independent advisory across transactions, capital events, and investment decisions
+          Advisory Across Transactions, Capital Markets, and Investment Deals 5
           </p>
+          <div className="page-header-image">
+            <img 
+              src="https://images.unsplash.com/photo-1556761175-b41319e35b32?w=1200&h=500&fit=crop&q=80" 
+              alt="Professional advisory services" 
+              className="header-hero-image"
+            />
+          </div>
         </div>
       </section>
 
@@ -209,6 +236,13 @@ const Services = () => {
       <section className="section how-we-work">
         <div className="container">
           <h2 className="section-title">HOW WE WORK</h2>
+          <div className="how-we-work-image">
+            <img 
+              src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=500&fit=crop&q=80" 
+              alt="Team collaboration and execution" 
+              className="section-hero-image"
+            />
+          </div>
           <div className="why-grid">
             <div className="why-item">Senior-led execution with direct partner involvement</div>
             <div className="why-item">Independent advice free from product or financing bias</div>
@@ -218,20 +252,6 @@ const Services = () => {
         </div>
       </section>
 
-      {/* ================= SECTOR COVERAGE ================= */}
-      <section className="section sector-coverage">
-        <div className="container">
-          <h2 className="section-title">SECTOR EXPERIENCE</h2>
-          <div className="serve-grid">
-            <div className="serve-item">Technology & Digital</div>
-            <div className="serve-item">Financial Services</div>
-            <div className="serve-item">Consumer & Retail</div>
-            <div className="serve-item">Healthcare & Life Sciences</div>
-            <div className="serve-item">Industrial & Manufacturing</div>
-            <div className="serve-item">Energy & Infrastructure</div>
-          </div>
-        </div>
-      </section>
 
       {/* ================= CTA ================= */}
       <section

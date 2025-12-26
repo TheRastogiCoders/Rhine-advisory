@@ -21,7 +21,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 70px;
+  height: 85px;
 }
 
 .navbar-logo {
@@ -40,7 +40,7 @@
 }
 
 .navbar-logo img {
-  height: 45px;
+  height: 70px;
   width: auto;
   object-fit: contain;
 }
@@ -102,6 +102,14 @@
 }
 
 @media (max-width: 768px) {
+  .navbar-container {
+    height: 75px;
+  }
+
+  .navbar-logo img {
+    height: 55px;
+  }
+
   .mobile-menu-toggle {
     display: flex;
   }

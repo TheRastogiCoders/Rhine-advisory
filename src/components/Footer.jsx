@@ -10,11 +10,11 @@ const Footer = () => {
         {/* ===== BRAND SECTION ===== */}
         <div className="footer-section">
           <div className="footer-logo">
-            <img src="/logo.png" alt="Rhine Advisory" />
+            <img src="/image.png" alt="Rhine Advisory" />
             <h3>RHINE ADVISORY</h3>
           </div>
           <p className="footer-tagline">
-            Strategic M&A | SPAC Advisory | Transaction Advisory | Investment Solutions
+            Strategic M&A | SPAC Advisory | Transaction Advisory | Investment Solutions | Capital Market & Investment Solutions | Structuring Capital. Executing Transactions.
           </p>
         </div>
 
@@ -22,10 +22,9 @@ const Footer = () => {
         <div className="footer-section">
           <h4>Quick Links</h4>
           <ul>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/about">Our Philosophy</Link></li>
+            <li><Link to="/about">About Us</Link></li>
+            <li><Link to="/who-we-serve">Who We Serve</Link></li>
             <li><Link to="/services">Services</Link></li>
-            <li><Link to="/contact">Contact</Link></li>
           </ul>
         </div>
 
@@ -35,16 +34,16 @@ const Footer = () => {
           <p>
             Email:{' '}
             <a href="mailto:contact@rhineadvisory.com">
-              contact@rhineadvisory.com
+              contact@rhineadvisory.ae
             </a>
           </p>
           <p>
             Phone:{' '}
             <a href="tel:+918140243880">
-              +91-8140243880
+              +91 81402 43880
             </a>
           </p>
-          <p>Ahmedabad, Gujarat - India</p>
+          <p>Westgate, 510-511, 5th floor D Block, Near YMCA Club, SG Road, Ahmedabad - 380015 Gujarat, India.</p>
         </div>
 
       </div>

@@ -40,6 +40,13 @@ const Careers = () => {
         <div className="container">
           <h1>Join Our Team</h1>
           <p>Build your career with Rhine Advisory - Where talent meets opportunity</p>
+          <div className="hero-image-wrapper">
+            <img 
+              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&h=500&fit=crop&q=80" 
+              alt="Professional team collaboration" 
+              className="hero-image"
+            />
+          </div>
         </div>
       </section>
 
@@ -48,21 +55,49 @@ const Careers = () => {
           <h2>Why Join Rhine Advisory?</h2>
           <div className="benefits-grid">
             <div className="benefit-card">
+              <div className="benefit-image">
+                <img 
+                  src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=600&h=300&fit=crop&q=80" 
+                  alt="Professional growth" 
+                  className="benefit-img"
+                />
+              </div>
               <div className="benefit-icon">💼</div>
               <h3>Professional Growth</h3>
               <p>Continuous learning and development opportunities to advance your career.</p>
             </div>
             <div className="benefit-card">
+              <div className="benefit-image">
+                <img 
+                  src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600&h=300&fit=crop&q=80" 
+                  alt="Global exposure" 
+                  className="benefit-img"
+                />
+              </div>
               <div className="benefit-icon">🌍</div>
               <h3>Global Exposure</h3>
               <p>Work on international projects with a diverse team of experts.</p>
             </div>
             <div className="benefit-card">
+              <div className="benefit-image">
+                <img 
+                  src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=600&h=300&fit=crop&q=80" 
+                  alt="Work-life balance" 
+                  className="benefit-img"
+                />
+              </div>
               <div className="benefit-icon">⚖️</div>
               <h3>Work-Life Balance</h3>
               <p>Flexible work arrangements to support your personal and professional life.</p>
             </div>
             <div className="benefit-card">
+              <div className="benefit-image">
+                <img 
+                  src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=300&fit=crop&q=80" 
+                  alt="Impactful work" 
+                  className="benefit-img"
+                />
+              </div>
               <div className="benefit-icon">🚀</div>
               <h3>Impactful Work</h3>
               <p>Contribute to meaningful projects that shape the future of finance.</p>

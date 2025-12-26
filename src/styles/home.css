@@ -13,7 +13,7 @@
 
 /* ================= HOME PAGE ================= */
 .home {
-  margin-top: 70px;
+  margin-top: 85px;
   background: #fafafa;
 }
 /* ================= HERO SECTION (LIGHT RED THEME) ================= */
@@ -263,6 +263,353 @@
 /* ================= ABOUT SNAPSHOT ================= */
 .about-snapshot {
   background: #fafafa;
+}
+
+.about-subtitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  text-align: center;
+  margin-bottom: 35px;
+  line-height: 1.5;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.about-content {
+  max-width: 900px;
+  margin: 0 auto 50px;
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.about-image-wrapper {
+  margin-bottom: 30px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.about-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+.subsection-image-wrapper {
+  margin-bottom: 25px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.subsection-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+.serve-image-wrapper,
+.services-image-wrapper {
+  margin: 30px auto 40px;
+  max-width: 1000px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.section-hero-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+.about-snapshot .section-description {
+  font-size: 1.05rem;
+  color: var(--text-light);
+  line-height: 1.8;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.about-snapshot .section-description.highlight-text {
+  font-weight: 600;
+  color: var(--dark-red);
+  font-style: italic;
+  text-align: center;
+  font-size: 1.15rem;
+  margin: 25px auto;
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+.about-subsection {
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 40px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.about-subsection:first-of-type {
+  margin-top: 40px;
+  padding-top: 40px;
+}
+
+.subsection-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--dark-red);
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+
+.about-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 25px;
+  max-width: 850px;
+}
+
+.about-list li {
+  font-size: 1.05rem;
+  color: var(--text-light);
+  line-height: 1.8;
+  margin-bottom: 12px;
+  padding-left: 25px;
+  position: relative;
+}
+
+.about-list li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--primary-red);
+  font-weight: bold;
+  font-size: 1.3rem;
+  line-height: 1.4;
+}
+
+/* Responsive styles for About section */
+@media (max-width: 768px) {
+  .about-subtitle {
+    font-size: 1.25rem;
+    margin-bottom: 30px;
+    padding: 0 15px;
+  }
+
+  .about-content {
+    margin-bottom: 40px;
+    padding: 30px 20px;
+  }
+
+  .about-snapshot .section-description {
+    font-size: 1rem;
+    margin-bottom: 18px;
+  }
+
+  .about-snapshot .section-description.highlight-text {
+    font-size: 1.05rem;
+    margin: 20px auto;
+    padding: 0 15px;
+  }
+
+  .about-subsection {
+    margin: 40px auto;
+    padding: 30px 20px;
+  }
+
+  .subsection-title {
+    font-size: 1.2rem;
+    margin-bottom: 18px;
+  }
+
+  .about-list {
+    margin: 18px 0 22px;
+  }
+
+  .about-list li {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    padding-left: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+  }
+
+  .about-content {
+    padding: 25px 15px;
+  }
+
+  .about-snapshot .section-description {
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+  }
+
+  .about-snapshot .section-description.highlight-text {
+    font-size: 1rem;
+  }
+
+  .about-subsection {
+    padding: 25px 15px;
+  }
+
+  .subsection-title {
+    font-size: 1.1rem;
+  }
+
+  .about-list li {
+    font-size: 0.95rem;
+  }
+
+  .about-image-wrapper,
+  .subsection-image-wrapper {
+    margin-bottom: 20px;
+  }
+
+  .serve-image-wrapper,
+  .services-image-wrapper {
+    margin: 20px auto 30px;
+  }
+}
+
+/* ================= TEAM SECTION ================= */
+.team-section {
+  background: #fafafa;
+}
+
+.team-intro {
+  font-size: 1.1rem;
+  color: var(--text-light);
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 50px;
+  line-height: 1.8;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 35px;
+  margin-top: 40px;
+}
+
+.team-member {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 14px;
+  text-align: center;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-member:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15);
+}
+
+.team-image-wrapper {
+  width: 180px;
+  height: 180px;
+  margin: 0 auto 25px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid var(--very-light-red);
+  box-shadow: 0 8px 20px rgba(196, 30, 58, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.team-member:hover .team-image-wrapper {
+  transform: scale(1.05);
+  border-color: var(--primary-red);
+}
+
+.team-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.team-name {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--dark-red);
+  margin-bottom: 8px;
+}
+
+.team-role {
+  font-size: 1rem;
+  color: var(--primary-red);
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.team-bio {
+  font-size: 0.95rem;
+  color: var(--text-light);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* Responsive styles for Team section */
+@media (max-width: 768px) {
+  .team-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+  }
+
+  .team-member {
+    padding: 25px;
+  }
+
+  .team-image-wrapper {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 20px;
+  }
+
+  .team-name {
+    font-size: 1.2rem;
+  }
+
+  .team-intro {
+    font-size: 1rem;
+    margin-bottom: 40px;
+    padding: 0 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .team-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .team-image-wrapper {
+    width: 140px;
+    height: 140px;
+  }
+
+  .team-name {
+    font-size: 1.1rem;
+  }
+
+  .team-role {
+    font-size: 0.95rem;
+  }
+
+  .team-bio {
+    font-size: 0.9rem;
+  }
 }
 
 /* ================= WHO WE SERVE ================= */

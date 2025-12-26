@@ -9,6 +9,13 @@ const RaiseFunds = () => {
         <div className="container">
           <h1>Raise Capital with Confidence</h1>
           <p>Strategic funding solutions to fuel your business growth and expansion</p>
+          <div className="hero-image-wrapper">
+            <img 
+              src="https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=1200&h=500&fit=crop&q=80" 
+              alt="Capital raising and investment growth" 
+              className="hero-image"
+            />
+          </div>
         </div>
       </section>
 
@@ -18,6 +25,13 @@ const RaiseFunds = () => {
           
           <div className="funding-cards">
             <div className="funding-card">
+              <div className="funding-card-image">
+                <img 
+                  src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=300&fit=crop&q=80" 
+                  alt="Equity financing" 
+                  className="card-img"
+                />
+              </div>
               <h3>Equity Financing</h3>
               <p>Secure growth capital while maintaining strategic control of your business.</p>
               <ul>
@@ -29,6 +43,13 @@ const RaiseFunds = () => {
             </div>
 
             <div className="funding-card">
+              <div className="funding-card-image">
+                <img 
+                  src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=300&fit=crop&q=80" 
+                  alt="Debt financing" 
+                  className="card-img"
+                />
+              </div>
               <h3>Debt Financing</h3>
               <p>Access capital while retaining full ownership of your business.</p>
               <ul>
@@ -40,6 +61,13 @@ const RaiseFunds = () => {
             </div>
 
             <div className="funding-card">
+              <div className="funding-card-image">
+                <img 
+                  src="https://images.unsplash.com/photo-1556761175-b41319e35b32?w=600&h=300&fit=crop&q=80" 
+                  alt="Alternative financing" 
+                  className="card-img"
+                />
+              </div>
               <h3>Alternative Financing</h3>
               <p>Innovative funding solutions for unique business needs.</p>
               <ul>
