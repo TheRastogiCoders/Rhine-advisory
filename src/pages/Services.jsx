@@ -185,7 +185,7 @@ const Services = () => {
           </p>
           <div className="page-header-image">
             <img 
-              src="https://images.unsplash.com/photo-1556761175-b41319e35b32?w=1200&h=500&fit=crop&q=80" 
+              src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=600&fit=crop&q=80" 
               alt="Professional advisory services" 
               className="header-hero-image"
             />
@@ -238,7 +238,7 @@ const Services = () => {
           <h2 className="section-title">HOW WE WORK</h2>
           <div className="how-we-work-image">
             <img 
-              src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=500&fit=crop&q=80" 
+              src="https://images.unsplash.com/photo-1556761175-b41319e35b32?w=1200&h=500&fit=crop&q=80" 
               alt="Team collaboration and execution" 
               className="section-hero-image"
             />
