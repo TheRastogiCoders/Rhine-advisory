@@ -10,7 +10,7 @@ const Home = () => {
         <div className="hero-content">
           <img src="logo.png" alt="" />
           <p className="hero-subtitle">
-            Strategic M&A | SPAC Advisory | Transaction Advisory | Investment Solutions | Capital Market & Investment Solutions | Structuring Capital. Executing Transactions.
+            Structuring Capital & Executing Transactions
           </p>
           <p className="hero-description">
           Rhine Advisory is an independent transaction and investment advisory firm providing transaction advisory, SPAC and capital markets advisory, and institutional-grade investment research to corporates, investors, sponsors, and founders..
