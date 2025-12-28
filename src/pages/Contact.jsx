@@ -139,7 +139,7 @@ const Contact = () => {
                 <h3>Find Us</h3>
                 <div className="map-container">
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.935!2d72.5714!3d23.0225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e9b8b8b8b8b8b%3A0x8b8b8b8b8b8b8b8b!2sWestgate%2C%20510-511%2C%205th%20floor%20D%20Block%2C%20Near%20YMCA%20Club%2C%20SG%20Road%2C%20Ahmedabad%20-%20380015%2C%20Gujarat%2C%20India!5e0!3m2!1sen!2sin!4v1234567890"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d865.8153813454534!2d72.50062853553113!3d23.003052074405353!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e9b268747c875%3A0xd44523a6cd7ccb19!2sWestgate%20Complex!5e0!3m2!1sen!2sin!4v1766928159351!5m2!1sen!2sin"
                     width="100%"
                     height="300"
                     style={{ border: 0, borderRadius: '12px' }}
