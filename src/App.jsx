@@ -6,7 +6,6 @@ import ScrollToTop from './components/ScrollToTop'
 import Home from './pages/Home'
 import WhoWeServe from './pages/WhoWeServe'
 import Services from './pages/Services'
-import RaiseFunds from './pages/RaiseFunds'
 import Contact from './pages/Contact'
 import './styles/main.css'
 
@@ -21,7 +20,6 @@ function App() {
           <Route path="/about" element={<Home />} />
           <Route path="/who-we-serve" element={<WhoWeServe />} />
           <Route path="/services" element={<Services />} />
-          <Route path="/raise-funds" element={<RaiseFunds />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
         <Footer />

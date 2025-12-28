@@ -9,8 +9,8 @@ const Home = () => {
       <section className="hero">
         <div className="hero-content">
           <img src="logo.png" alt="" />
-          <p className="hero-subtitle">
-            Structuring Capital & Executing Transactions
+          <p className="hero-subtitle" text="italic">
+            <i>"Structuring Capital, Executing Transactions"</i>
           </p>
           <p className="hero-description">
           Rhine Advisory is an independent transaction and investment advisory firm providing transaction advisory, SPAC and capital markets advisory, and institutional-grade investment research to corporates, investors, sponsors, and founders..
@@ -36,7 +36,7 @@ const Home = () => {
           <div className="about-content">
             <div className="about-image-wrapper">
               <img 
-                src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1200&h=600&fit=crop&q=80" 
+                src="https://www.istockphoto.com/photo/businesswoman-and-businessman-shaking-hands-across-the-table-gm1444490817-483180893" 
                 alt="Professional business team meeting" 
                 className="about-image"
               />

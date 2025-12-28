@@ -64,7 +64,7 @@ const WhoWeServe = () => {
                 className="category-img"
               />
             </div>
-            <h2>Entrepreneurs & Startups</h2>
+            <h2>Founders & Startups</h2>
             <p>Guidance for emerging businesses at every stage of growth.</p>
             <ul>
               <li>Seed & Early-stage Funding</li>

@@ -65,15 +65,6 @@ const Navbar = () => {
           </li>
           <li>
             <Link 
-              to="/raise-funds" 
-              className={isActive('/raise-funds') ? 'active' : ''}
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Raise Funds
-            </Link>
-          </li>
-          <li>
-            <Link 
               to="/contact" 
               className={`contact-btn ${isActive('/contact') ? 'active' : ''}`}
               onClick={() => setIsMobileMenuOpen(false)}

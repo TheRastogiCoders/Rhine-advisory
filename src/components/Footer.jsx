@@ -10,11 +10,10 @@ const Footer = () => {
         {/* ===== BRAND SECTION ===== */}
         <div className="footer-section">
           <div className="footer-logo">
-            <img src="/image.png" alt="Rhine Advisory" />
-            <h3>RHINE ADVISORY</h3>
+            <img src="lo.png" alt="Rhine Advisory" />
           </div>
           <p className="footer-tagline">
-            Strategic M&A | SPAC Advisory | Transaction Advisory | Investment Solutions | Capital Market & Investment Solutions | Structuring Capital. Executing Transactions.
+          Strategic M&A, SPAC Advisory, Transaction Advisory, Capital Markets & Investment Solutions, Financial Model & Valuation Analysis.
           </p>
         </div>
 
@@ -43,7 +42,12 @@ const Footer = () => {
               +91 81402 43880
             </a>
           </p>
+          
+          <h4 className="address-heading">Delivery Center Address:</h4>
           <p>Westgate, 510-511, 5th floor D Block, Near YMCA Club, SG Road, Ahmedabad - 380015 Gujarat, India.</p>
+          
+          <h4 className="address-heading">HQ Address:</h4>
+          <p>Serene Centrum, 510, Near Gangotri Exotica, Laxshmipura Road Vadodara, GUJARAT 390021</p>
         </div>
 
       </div>

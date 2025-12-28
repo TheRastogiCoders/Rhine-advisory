@@ -34,6 +34,13 @@
   color: var(--white);
 }
 
+.footer-section h4.address-heading {
+  margin-top: 20px;
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
 /* ================= LOGO ================= */
 .footer-logo {
   display: flex;
@@ -43,7 +50,7 @@
 }
 
 .footer-logo img {
-  height: 48px;
+  height: 150px;
   width: auto;
   object-fit: contain;
 }
