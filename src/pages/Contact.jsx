@@ -3,10 +3,13 @@ import '../styles/contact.css'
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    name: '',
+    firstName: '',
+    lastName: '',
     email: '',
     phone: '',
     company: '',
+    subject: '',
+    serviceInterest: '',
     message: ''
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -18,6 +21,17 @@ const Contact = () => {
       [e.target.name]: e.target.value
     })
   }
+
+  const services = [
+    'Select a service',
+    'Mergers & Acquisitions (M&A) Advisory',
+    'SPAC Advisory Services',
+    'Transaction Advisory Services',
+    'Investment Solutions & Advisory',
+    'Valuation & Financial Modeling',
+    'Capital Markets Advisory',
+    'Fund Administration and Accounting'
+  ]
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -32,12 +46,13 @@ const Contact = () => {
         },
         body: JSON.stringify({
           access_key: 'c227dff2-8df3-43fe-91c4-40353cd715d3',
-          name: formData.name,
+          name: `${formData.firstName} ${formData.lastName}`,
           email: formData.email,
           phone: formData.phone,
           company: formData.company,
+          subject: formData.subject,
+          service_interest: formData.serviceInterest,
           message: formData.message,
-          subject: `New Contact Form Submission from ${formData.name}`,
           from_name: 'Rhine Advisory Contact Form',
           reply_to: formData.email,
         }),
@@ -49,10 +64,13 @@ const Contact = () => {
         setSubmitStatus({ success: true, message: 'Thank you for your message! We will get back to you soon.' })
         // Reset form on successful submission
         setFormData({
-          name: '',
+          firstName: '',
+          lastName: '',
           email: '',
           phone: '',
           company: '',
+          subject: '',
+          serviceInterest: '',
           message: ''
         })
       } else {
@@ -68,20 +86,12 @@ const Contact = () => {
   return (
     <div className="contact">
       {/* ================= PAGE HEADER ================= */}
-      <section className="page-header">
+      <section className="proposal-header">
         <div className="container">
-          <h1>CONTACT US</h1>
-          <p className="page-subtitle" style={{ color: "var(--primary-red)" }}>
-            Engage with Rhine Advisory to evaluate, structure, and execute
-            complex transactions with confidence.
+          <h1 className="proposal-title">Request a Custom Proposal</h1>
+          <p className="proposal-description">
+            Get a professional business valuation from our expert team. We'll provide you with a comprehensive analysis tailored to your specific business needs.
           </p>
-          <div className="page-header-image">
-            <img 
-              src="/iStock-2152298806.jpg" 
-              alt="Business communication and contact" 
-              className="header-hero-image"
-            />
-          </div>
         </div>
       </section>
 
@@ -92,13 +102,6 @@ const Contact = () => {
             
             {/* ================= CONTACT INFO ================= */}
             <div className="contact-info">
-              <div className="contact-info-image">
-                <img 
-                  src="/iStock-2190159060.jpg" 
-                  alt="Modern office space" 
-                  className="info-image"
-                />
-              </div>
               <div className="info-card">
                 <h3>Connect With Us</h3>
                 <p className="info-description">
@@ -109,7 +112,7 @@ const Contact = () => {
                 <div className="info-item">
                   <strong>Email</strong>
                   <a href="mailto:contact@rhineadvisory.ae">
-                  contact@rhineadvisory.ae
+                    contact@rhineadvisory.ae
                   </a>
                 </div>
 
@@ -121,12 +124,32 @@ const Contact = () => {
                 </div>
 
                 <div className="info-item">
-                  <strong>Delivery Center</strong>
+                  <strong>Delivery Center Address:</strong>
                   <p>Westgate, 510-511, 5th floor D Block, Near YMCA Club, SG Road, Ahmedabad - 380015 Gujarat, India.</p>
+                </div>
+
+                <div className="info-item">
+                  <strong>HQ Address:</strong>
+                  <p>Serene Centrum, 510, Near Gangotri Exotica, Laxshmipura Road Vadodara, GUJARAT 390021</p>
                 </div>
               </div>
 
-        
+              {/* ================= MAP SECTION ================= */}
+              <div className="map-section">
+                <h3>Find Us</h3>
+                <div className="map-container">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.935!2d72.5714!3d23.0225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e9b8b8b8b8b8b%3A0x8b8b8b8b8b8b8b8b!2sWestgate%2C%20510-511%2C%205th%20floor%20D%20Block%2C%20Near%20YMCA%20Club%2C%20SG%20Road%2C%20Ahmedabad%20-%20380015%2C%20Gujarat%2C%20India!5e0!3m2!1sen!2sin!4v1234567890"
+                    width="100%"
+                    height="300"
+                    style={{ border: 0, borderRadius: '12px' }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Rhine Advisory Location - Delivery Center"
+                  ></iframe>
+                </div>
+              </div>
             </div>
 
             {/* ================= CONTACT FORM ================= */}
@@ -134,61 +157,102 @@ const Contact = () => {
               <form className="contact-form" onSubmit={handleSubmit}>
                 <h3 className="form-title">Send Us a Message</h3>
                 <p className="form-subtitle">
-                  Tell us about your transaction, investment, or advisory requirement.
+                  Ready to take control of your financial future? Contact our expert advisors for a free consultation and personalized financial guidance.
                 </p>
 
                 <div className="form-row">
                   <div className="form-group">
-                    <label htmlFor="name">Full Name *</label>
+                    <label htmlFor="firstName">First Name *</label>
                     <input
                       type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
+                      id="firstName"
+                      name="firstName"
+                      value={formData.firstName}
                       onChange={handleChange}
-                      placeholder="Your full name"
+                      placeholder="Enter your first name"
                       required
                     />
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="company">Company</label>
+                    <label htmlFor="lastName">Last Name *</label>
                     <input
                       type="text"
-                      id="company"
-                      name="company"
-                      value={formData.company}
+                      id="lastName"
+                      name="lastName"
+                      value={formData.lastName}
                       onChange={handleChange}
-                      placeholder="Company / Organization"
+                      placeholder="Enter your last name"
+                      required
                     />
                   </div>
                 </div>
 
-                <div className="form-row">
-                  <div className="form-group">
-                    <label htmlFor="email">Email Address *</label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      placeholder="name@company.com"
-                      required
-                    />
-                  </div>
+                <div className="form-group">
+                  <label htmlFor="email">Email Address *</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="Enter your email address"
+                    required
+                  />
+                </div>
 
-                  <div className="form-group">
-                    <label htmlFor="phone">Phone</label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      placeholder="+91 XXXXX XXXXX"
-                    />
-                  </div>
+                <div className="form-group">
+                  <label htmlFor="phone">Phone Number</label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    placeholder="Enter your phone number"
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="company">Company (Optional)</label>
+                  <input
+                    type="text"
+                    id="company"
+                    name="company"
+                    value={formData.company}
+                    onChange={handleChange}
+                    placeholder="Enter your company name"
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="subject">Subject *</label>
+                  <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    placeholder="What is this regarding?"
+                    required
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="serviceInterest">Service Interest</label>
+                  <select
+                    id="serviceInterest"
+                    name="serviceInterest"
+                    value={formData.serviceInterest}
+                    onChange={handleChange}
+                    className="form-select"
+                  >
+                    {services.map((service, index) => (
+                      <option key={index} value={service === 'Select a service' ? '' : service}>
+                        {service}
+                      </option>
+                    ))}
+                  </select>
                 </div>
 
                 <div className="form-group">
@@ -199,7 +263,7 @@ const Contact = () => {
                     rows="6"
                     value={formData.message}
                     onChange={handleChange}
-                    placeholder="Briefly describe your requirement or transaction"
+                    placeholder="Tell us about your requirements..."
                     required
                   ></textarea>
                 </div>
@@ -207,10 +271,11 @@ const Contact = () => {
                 <div className="form-actions">
                   <button 
                     type="submit" 
-                    className="btn btn-primary"
+                    className="btn btn-primary send-message-btn"
                     disabled={isSubmitting}
                   >
-                    {isSubmitting ? 'Sending...' : 'Submit Enquiry'}
+                    <span className="btn-icon">✈</span>
+                    {isSubmitting ? 'Sending...' : 'Send Message'}
                   </button>
                   {submitStatus.message && (
                     <div className={`form-message ${submitStatus.success ? 'success' : 'error'}`}>
