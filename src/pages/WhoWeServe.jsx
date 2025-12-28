@@ -10,7 +10,7 @@ const WhoWeServe = () => {
           <p>Dedicated to empowering businesses and investors with strategic financial solutions</p>
           <div className="hero-image-wrapper">
             <img 
-              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&h=500&fit=crop&q=80" 
+              src="/iStock-2177333133.jpg" 
               alt="Diverse business clients" 
               className="hero-image"
             />
@@ -23,7 +23,7 @@ const WhoWeServe = () => {
           <div className="client-category">
             <div className="category-image">
               <img 
-                src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&h=400&fit=crop&q=80" 
+                src="/iStock-2152298806.jpg" 
                 alt="Corporate business" 
                 className="category-img"
               />
@@ -41,7 +41,7 @@ const WhoWeServe = () => {
           <div className="client-category">
             <div className="category-image">
               <img 
-                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop&q=80" 
+                src="/iStock-2190159060.jpg" 
                 alt="Private equity and investment" 
                 className="category-img"
               />
@@ -59,7 +59,7 @@ const WhoWeServe = () => {
           <div className="client-category">
             <div className="category-image">
               <img 
-                src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&h=400&fit=crop&q=80" 
+                src="/iStock-1188211595.jpg" 
                 alt="Entrepreneurs and startups" 
                 className="category-img"
               />

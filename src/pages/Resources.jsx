@@ -11,7 +11,7 @@ const Resources = () => {
           <p>Insights, research, and tools to help you make informed financial decisions</p>
           <div className="hero-image-wrapper">
             <img 
-              src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&h=500&fit=crop&q=80" 
+              src="/image.png" 
               alt="Research and data analysis" 
               className="hero-image"
             />
@@ -27,7 +27,7 @@ const Resources = () => {
               <div className="resource-card">
                 <div className="resource-card-image">
                   <img 
-                    src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=300&fit=crop&q=80" 
+                    src="/iStock-1395448518.jpg" 
                     alt="M&A Report" 
                     className="resource-img"
                   />
@@ -39,7 +39,7 @@ const Resources = () => {
               <div className="resource-card">
                 <div className="resource-card-image">
                   <img 
-                    src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=300&fit=crop&q=80" 
+                    src="/image.png" 
                     alt="Industry analysis" 
                     className="resource-img"
                   />
@@ -57,7 +57,7 @@ const Resources = () => {
               <div className="resource-card">
                 <div className="resource-card-image">
                   <img 
-                    src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=300&fit=crop&q=80" 
+                    src="/iStock-1395448518.jpg" 
                     alt="Valuation calculator" 
                     className="resource-img"
                   />
@@ -69,7 +69,7 @@ const Resources = () => {
               <div className="resource-card">
                 <div className="resource-card-image">
                   <img 
-                    src="https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=600&h=300&fit=crop&q=80" 
+                    src="/iStock-2152298806.jpg" 
                     alt="Funding roadmap" 
                     className="resource-img"
                   />
@@ -87,7 +87,7 @@ const Resources = () => {
               <div className="resource-card">
                 <div className="resource-card-image">
                   <img 
-                    src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=600&h=300&fit=crop&q=80" 
+                    src="/iStock-1444490817.jpg" 
                     alt="Webinars" 
                     className="resource-img"
                   />
@@ -99,7 +99,7 @@ const Resources = () => {
               <div className="resource-card">
                 <div className="resource-card-image">
                   <img 
-                    src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=300&fit=crop&q=80" 
+                    src="/iStock-2190159060.jpg" 
                     alt="Past events" 
                     className="resource-img"
                   />

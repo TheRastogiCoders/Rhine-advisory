@@ -10,7 +10,7 @@ const Footer = () => {
         {/* ===== BRAND SECTION ===== */}
         <div className="footer-section">
           <div className="footer-logo">
-            <img src="lo.png" alt="Rhine Advisory" />
+            <img src="/logo.png" alt="Rhine Advisory" />
           </div>
           <p className="footer-tagline">
           Strategic M&A, SPAC Advisory, Transaction Advisory, Capital Markets & Investment Solutions, Financial Model & Valuation Analysis.

@@ -77,7 +77,7 @@ const Contact = () => {
           </p>
           <div className="page-header-image">
             <img 
-              src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1200&h=500&fit=crop&q=80" 
+              src="/iStock-2152298806.jpg" 
               alt="Business communication and contact" 
               className="header-hero-image"
             />
@@ -94,7 +94,7 @@ const Contact = () => {
             <div className="contact-info">
               <div className="contact-info-image">
                 <img 
-                  src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&h=600&fit=crop&q=80" 
+                  src="/iStock-2190159060.jpg" 
                   alt="Modern office space" 
                   className="info-image"
                 />

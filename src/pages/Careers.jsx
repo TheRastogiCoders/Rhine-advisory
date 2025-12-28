@@ -42,7 +42,7 @@ const Careers = () => {
           <p>Build your career with Rhine Advisory - Where talent meets opportunity</p>
           <div className="hero-image-wrapper">
             <img 
-              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&h=500&fit=crop&q=80" 
+              src="/iStock-1188211595.jpg" 
               alt="Professional team collaboration" 
               className="hero-image"
             />
@@ -57,7 +57,7 @@ const Careers = () => {
             <div className="benefit-card">
               <div className="benefit-image">
                 <img 
-                  src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=600&h=300&fit=crop&q=80" 
+                  src="/iStock-1444490817.jpg" 
                   alt="Professional growth" 
                   className="benefit-img"
                 />
@@ -69,7 +69,7 @@ const Careers = () => {
             <div className="benefit-card">
               <div className="benefit-image">
                 <img 
-                  src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600&h=300&fit=crop&q=80" 
+                  src="/iStock-2152298806.jpg" 
                   alt="Global exposure" 
                   className="benefit-img"
                 />
@@ -81,7 +81,7 @@ const Careers = () => {
             <div className="benefit-card">
               <div className="benefit-image">
                 <img 
-                  src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=600&h=300&fit=crop&q=80" 
+                  src="/iStock-2190159060.jpg" 
                   alt="Work-life balance" 
                   className="benefit-img"
                 />
@@ -93,7 +93,7 @@ const Careers = () => {
             <div className="benefit-card">
               <div className="benefit-image">
                 <img 
-                  src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=300&fit=crop&q=80" 
+                  src="/iStock-1395448518.jpg" 
                   alt="Impactful work" 
                   className="benefit-img"
                 />

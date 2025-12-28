@@ -8,7 +8,7 @@ const Home = () => {
       {/* ================= HERO SECTION ================= */}
       <section className="hero">
         <div className="hero-content">
-          <img src="logo.png" alt="" />
+          <img src="/logo.png" alt="" />
           <p className="hero-subtitle" text="italic">
             <i>"Structuring Capital, Executing Transactions"</i>
           </p>
@@ -36,7 +36,7 @@ const Home = () => {
           <div className="about-content">
             <div className="about-image-wrapper">
               <img 
-                src="https://www.istockphoto.com/photo/businesswoman-and-businessman-shaking-hands-across-the-table-gm1444490817-483180893" 
+                src="/iStock-1444490817.jpg" 
                 alt="Professional business team meeting" 
                 className="about-image"
               />
@@ -61,7 +61,7 @@ const Home = () => {
           <div className="about-subsection">
             <div className="subsection-image-wrapper">
               <img 
-                src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1200&h=600&fit=crop&q=80" 
+                src="/iStock-2152298806.jpg" 
                 alt="Global business network" 
                 className="subsection-image"
               />
@@ -78,7 +78,7 @@ const Home = () => {
           <div className="about-subsection">
             <div className="subsection-image-wrapper">
               <img 
-                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=600&fit=crop&q=80" 
+                src="/iStock-1395448518.jpg" 
                 alt="Financial analysis and data" 
                 className="subsection-image"
               />
@@ -100,7 +100,7 @@ const Home = () => {
           <div className="about-subsection">
             <div className="subsection-image-wrapper">
               <img 
-                src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=600&fit=crop&q=80" 
+                src="/iStock-2190159060.jpg" 
                 alt="Business partnership and collaboration" 
                 className="subsection-image"
               />
@@ -141,7 +141,7 @@ const Home = () => {
           <h2 className="section-title">WHO WE SERVE</h2>
           <div className="serve-image-wrapper">
             <img 
-              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&h=500&fit=crop&q=80" 
+              src="/iStock-1188211595.jpg" 
               alt="Diverse business professionals" 
               className="section-hero-image"
             />
@@ -163,7 +163,7 @@ const Home = () => {
           <h2 className="section-title">CORE ADVISORY SERVICES</h2>
           <div className="services-image-wrapper">
             <img 
-              src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=500&fit=crop&q=80" 
+              src="/image.png" 
               alt="Business strategy and consulting" 
               className="section-hero-image"
             />
