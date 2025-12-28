@@ -185,7 +185,7 @@ const Services = () => {
           </p>
           <div className="page-header-image">
             <img 
-              src="/iStock-1395448518.jpg" 
+              src="/iStock-1170740969 1.jpg" 
               alt="Professional advisory services" 
               className="header-hero-image"
             />
@@ -238,7 +238,7 @@ const Services = () => {
           <h2 className="section-title">HOW WE WORK</h2>
           <div className="how-we-work-image">
             <img 
-              src="/image.png" 
+              src="/iStock-1283279349 1.jpg" 
               alt="Team collaboration and execution" 
               className="section-hero-image"
             />
