@@ -26,6 +26,121 @@ const Home = () => {
         </div>
       </section>
 
+      {/* ================= STATISTICS & REGIONAL PRESENCE ================= */}
+<section
+  style={{
+    padding: "80px 20px"
+  }}
+>
+  <div
+    style={{
+      maxWidth: "1200px",
+      margin: "0 auto",
+      display: "flex",
+      flexDirection: "column",
+      gap: "60px"
+    }}
+  >
+    {/* ===== STATISTICS BOXES ===== */}
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        flexWrap: "wrap",
+        gap: "30px"
+      }}
+    >
+      {[
+        { value: "+20", label: "Expert Consultants" },
+        { value: "+100", label: "Completed Projects" },
+        { value: "+10", label: "Partners" }
+      ].map((item, index) => (
+        <div
+          key={index}
+          style={{
+            flex: "1 1 250px",
+            padding: "40px 25px",
+            borderRadius: "16px",
+            border: "1px solid rgba(0,0,0,0.08)",
+            textAlign: "center",
+            boxShadow: "0 10px 30px rgba(0,0,0,0.05)",
+            transition: "all 0.3s ease"
+          }}
+          onMouseEnter={e => {
+            e.currentTarget.style.transform = "translateY(-6px)"
+            e.currentTarget.style.boxShadow = "0 16px 40px rgba(0,0,0,0.08)"
+          }}
+          onMouseLeave={e => {
+            e.currentTarget.style.transform = "translateY(0)"
+            e.currentTarget.style.boxShadow = "0 10px 30px rgba(0,0,0,0.05)"
+          }}
+        >
+          <h2
+            style={{
+              fontSize: "2.8rem",
+              color: "var(--primary-red)",
+              marginBottom: "10px"
+            }}
+          >
+            {item.value}
+          </h2>
+          <p style={{ fontSize: "1.05rem", fontWeight: "500" }}>
+            {item.label}
+          </p>
+        </div>
+      ))}
+    </div>
+
+    {/* ===== REGIONAL PRESENCE BOX ===== */}
+    <div
+      style={{
+        padding: "45px 30px",
+        borderRadius: "18px",
+        border: "1px solid rgba(0,0,0,0.08)",
+        boxShadow: "0 12px 35px rgba(0,0,0,0.05)",
+        textAlign: "center"
+      }}
+    >
+      <h3
+        style={{
+          fontSize: "1.9rem",
+          fontWeight: "700",
+          marginBottom: "30px"
+        }}
+      >
+        Our Regional Presence
+      </h3>
+
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          flexWrap: "wrap",
+          gap: "18px"
+        }}
+      >
+        {["UAE", "India", "Singapore", "KSA"].map(region => (
+          <span
+            key={region}
+            style={{
+              padding: "14px 28px",
+              borderRadius: "40px",
+              border: "1px solid var(--primary-red)",
+              fontWeight: "600",
+              fontSize: "0.95rem",
+              color: "var(--primary-red)",
+              letterSpacing: "0.5px"
+            }}
+          >
+            {region}
+          </span>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+
       {/* ================= ABOUT RHINE ADVISORY ================= */}
       <section className="section about-snapshot">
         <div className="container">
