@@ -109,15 +109,6 @@ const Navbar = () => {
             </a>
           </li>
           <li>
-            <Link 
-              to="/team" 
-              className={isActive('/team') ? 'active' : ''}
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Team
-            </Link>
-          </li>
-          <li>
             <a 
               href="#contact-section"
               className={activeSection === 'contact-section' ? 'active' : ''}
@@ -125,6 +116,15 @@ const Navbar = () => {
             >
               Contact
             </a>
+          </li>
+          <li>
+            <Link 
+              to="/team" 
+              className={isActive('/team') ? 'active' : ''}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Team
+            </Link>
           </li>
         </ul>
       </div>

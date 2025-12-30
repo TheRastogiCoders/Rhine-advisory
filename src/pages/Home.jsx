@@ -6,6 +6,14 @@ import '../styles/contact.css'
 
 const Home = () => {
   const [expandedService, setExpandedService] = useState(null)
+  const [isBrochureOpen, setIsBrochureOpen] = useState(false)
+  const [brochureForm, setBrochureForm] = useState({
+    name: '',
+    email: '',
+    phone: ''
+  })
+  const [isBrochureSubmitting, setIsBrochureSubmitting] = useState(false)
+  const [brochureStatus, setBrochureStatus] = useState({ success: null, message: '' })
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -262,6 +270,51 @@ const Home = () => {
     }
   }
 
+  const handleBrochureChange = (e) => {
+    setBrochureForm({
+      ...brochureForm,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const handleBrochureSubmit = async (e) => {
+    e.preventDefault()
+    setIsBrochureSubmitting(true)
+    setBrochureStatus({ success: null, message: '' })
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: 'c227dff2-8df3-43fe-91c4-40353cd715d3',
+          name: brochureForm.name,
+          email: brochureForm.email,
+          phone: brochureForm.phone,
+          subject: 'Brochure Download Request',
+          message: 'User requested brochure download from homepage.',
+          from_name: 'Rhine Advisory Brochure Form',
+          reply_to: brochureForm.email,
+        }),
+      })
+
+      const result = await response.json()
+
+      if (result.success) {
+        setBrochureStatus({ success: true, message: 'Thank you. Your brochure download will start now.' })
+        window.open('/broucher.pdf', '_blank')
+      } else {
+        throw new Error(result.message || 'Something went wrong. Please try again.')
+      }
+    } catch (error) {
+      setBrochureStatus({ success: false, message: error.message || 'Failed to submit. Please try again.' })
+    } finally {
+      setIsBrochureSubmitting(false)
+    }
+  }
+
   return (
     <div className="home">
       {/* ================= HERO SECTION ================= */}
@@ -284,6 +337,74 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* ================= BROCHURE MODAL SECTION ================= */}
+      {isBrochureOpen && (
+        <div className="brochure-modal-overlay" onClick={() => setIsBrochureOpen(false)}>
+          <div
+            className="brochure-modal"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className="brochure-close-btn"
+              onClick={() => setIsBrochureOpen(false)}
+              aria-label="Close brochure"
+            >
+              ✕
+            </button>
+            <h2>Rhine Advisory Brochure</h2>
+            <p>
+              Fill in your details to receive instant access to our firm overview brochure.
+            </p>
+            <form className="brochure-form" onSubmit={handleBrochureSubmit}>
+              <div className="brochure-form-group">
+                <label htmlFor="brochureName">Name *</label>
+                <input
+                  type="text"
+                  id="brochureName"
+                  name="name"
+                  value={brochureForm.name}
+                  onChange={handleBrochureChange}
+                  required
+                />
+              </div>
+              <div className="brochure-form-group">
+                <label htmlFor="brochureEmail">Email *</label>
+                <input
+                  type="email"
+                  id="brochureEmail"
+                  name="email"
+                  value={brochureForm.email}
+                  onChange={handleBrochureChange}
+                  required
+                />
+              </div>
+              <div className="brochure-form-group">
+                <label htmlFor="brochurePhone">Phone Number</label>
+                <input
+                  type="tel"
+                  id="brochurePhone"
+                  name="phone"
+                  value={brochureForm.phone}
+                  onChange={handleBrochureChange}
+                />
+              </div>
+              <button
+                type="submit"
+                className="btn btn-primary brochure-download-btn"
+                disabled={isBrochureSubmitting}
+              >
+                {isBrochureSubmitting ? 'Submitting...' : 'Submit & Download'}
+              </button>
+              {brochureStatus.message && (
+                <div className={`brochure-form-message ${brochureStatus.success ? 'success' : 'error'}`}>
+                  {brochureStatus.message}
+                </div>
+              )}
+            </form>
+          </div>
+        </div>
+      )}
 
       {/* ================= STATISTICS & REGIONAL PRESENCE ================= */}
       <section
@@ -359,10 +480,10 @@ const Home = () => {
 
             <div className="regional-grid">
               {[
-                { name: "United Arab Emirates", code: "UAE", flag: "/uae.png" },
-                { name: "India", code: "IND", flag: "/india.avif" },
-                { name: "Singapore", code: "SGP", flag: "/Singapore.svg" },
-                { name: "Saudi Arabia", code: "KSA", flag: "/SaudiArabia.webp" }
+                { name: "United Arab Emirates", code: "UAE", flag: "/flags/uae.png" },
+                { name: "India", code: "IND", flag: "/flags/india.png" },
+                { name: "Singapore", code: "SGP", flag: "/flags/singapore.png" },
+                { name: "Saudi Arabia", code: "KSA", flag: "/flags/ksa.png" }
               ].map((country) => (
                 <div key={country.code} className="regional-country-card">
                   <div className="regional-flag-wrapper">
@@ -488,6 +609,29 @@ const Home = () => {
               <li>Remaining closely aligned with execution realities</li>
               <li>Operating with discretion, accountability, and independence</li>
             </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* ================= BROCHURE CTA (INLINE) ================= */}
+      <section className="section brochure-section">
+        <div className="container">
+          <div className="brochure-card">
+            <div className="brochure-text">
+              <h2>Download Our Firm Brochure</h2>
+              <p>
+                Get a structured overview of Rhine Advisory&apos;s services, sectors, and regional presence
+                in a single, shareable document.
+              </p>
+            </div>
+            <div className="brochure-actions">
+              <button
+                className="btn btn-primary"
+                onClick={() => setIsBrochureOpen(true)}
+              >
+                View Brochure
+              </button>
+            </div>
           </div>
         </div>
       </section>
