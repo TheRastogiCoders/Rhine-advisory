@@ -5,6 +5,7 @@ import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
 import Home from './pages/Home'
 import Team from './pages/Team'
+import FloatingButtons from './components/FloatingButtons'
 import './styles/main.css'
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route path="/team" element={<Team />} />
         </Routes>
         <Footer />
+        <FloatingButtons />
       </div>
     </Router>
   )

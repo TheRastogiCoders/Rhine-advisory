@@ -1,0 +1,85 @@
+.floating-buttons {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 999;
+}
+
+.floating-button {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.floating-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.floating-button:active {
+  transform: translateY(1px);
+}
+
+.floating-button.whatsapp {
+  background-color: #25D366;
+  color: white;
+}
+
+.floating-button.call {
+   background-color: #ce2d2d;
+  color: white;
+}
+
+.icon {
+  font-size: 24px;
+}
+
+/* Tooltip */
+.floating-button::after {
+
+  content: attr(aria-label);
+  position: absolute;
+  right: 70px;
+  background: var(--text-dark);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.floating-button:hover::after {
+  opacity: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .floating-buttons {
+    bottom: 20px;
+    right: 15px;
+  }
+  
+  .floating-button {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .icon {
+    font-size: 20px;
+  }
+}
