@@ -7,6 +7,7 @@ import Home from './pages/Home'
 import WhoWeServe from './pages/WhoWeServe'
 import Services from './pages/Services'
 import Contact from './pages/Contact'
+import Team from './pages/Team'
 import './styles/main.css'
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path="/about" element={<Home />} />
           <Route path="/who-we-serve" element={<WhoWeServe />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/team" element={<Team />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
         <Footer />

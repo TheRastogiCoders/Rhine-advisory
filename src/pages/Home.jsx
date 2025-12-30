@@ -352,18 +352,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ================= OUR TEAM ================= */}
-      <section className="section team-section">
-        <div className="container">
-          <h2 className="section-title">OUR TEAM</h2>
-          <p className="team-intro">
-            Our team brings together decades of combined experience in investment banking, 
-            management consulting, and capital markets. We are committed to delivering 
-            exceptional results for our clients.
-          </p>
-      </div>
-      </section>
-
+      
       {/* ================= CALL TO ACTION ================= */}
     <section
   className="section cta-section"
