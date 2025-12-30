@@ -132,6 +132,11 @@ const Contact = () => {
                   <strong>HQ Address:</strong>
                   <p>Serene Centrum, 510, Near Gangotri Exotica, Laxshmipura Road Vadodara, GUJARAT 390021</p>
                 </div>
+
+                <div className="info-item">
+                  <strong>Sales Office:</strong>
+                  <p>Empire Heights Tower, Marasi Drive, Business Bay, Dubai – UAE</p>
+                </div>
               </div>
 
               {/* ================= MAP SECTION ================= */}

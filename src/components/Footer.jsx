@@ -48,6 +48,9 @@ const Footer = () => {
           
           <h4 className="address-heading">HQ Address:</h4>
           <p>Serene Centrum, 510, Near Gangotri Exotica, Laxshmipura Road Vadodara, GUJARAT 390021</p>
+          
+          <h4 className="address-heading">Sales Office:</h4>
+          <p>Empire Heights Tower, Marasi Drive, Business Bay, Dubai – UAE</p>
         </div>
 
       </div>
