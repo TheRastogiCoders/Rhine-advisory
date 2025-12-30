@@ -181,15 +181,9 @@ const Services = () => {
         <div className="container">
           <h1>OUR SERVICES</h1>
           <p className="page-subtitle" style={{ color: "var(--primary-red)" }}>
-          Advisory Across Transactions, Capital Markets, and Investment Deals 5
+          Advisory Across Transactions, Capital Markets, and Investment Deals 
           </p>
-          <div className="page-header-image">
-            <img 
-              src="/iStock-1170740969 1.jpg" 
-              alt="Professional advisory services" 
-              className="header-hero-image"
-            />
-          </div>
+         
         </div>
       </section>
 

@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import '../styles/navbar.css'
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('home')
   const location = useLocation()
+  const navigate = useNavigate()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,10 +19,44 @@ const Navbar = () => {
 
   const isActive = (path) => location.pathname === path
 
+  const handleNavClick = (e, sectionId) => {
+    e.preventDefault()
+    setIsMobileMenuOpen(false)
+    setActiveSection(sectionId)
+    
+    if (location.pathname !== '/') {
+      // If not on home page, navigate to home first, then scroll
+      navigate('/')
+      setTimeout(() => {
+        const element = document.getElementById(sectionId)
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }
+      }, 100)
+    } else {
+      // If on home page, just scroll
+      const element = document.getElementById(sectionId)
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
+    }
+  }
+
+  const handleHomeClick = (e) => {
+    e.preventDefault()
+    setIsMobileMenuOpen(false)
+    setActiveSection('home')
+    if (location.pathname !== '/') {
+      navigate('/')
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }
+
   return (
     <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
       <div className="navbar-container">
-        <Link to="/" className="navbar-logo">
+        <Link to="/" className="navbar-logo" onClick={handleHomeClick}>
           <img src="/logo.png" alt="Rhine Advisory" />
           <span></span>
         </Link>
@@ -37,31 +73,40 @@ const Navbar = () => {
 
         <ul className={`navbar-menu ${isMobileMenuOpen ? 'active' : ''}`}>
           <li>
-            <Link 
-              to="/about" 
-              className={isActive('/about') || isActive('/') ? 'active' : ''}
-              onClick={() => setIsMobileMenuOpen(false)}
+            <a 
+              href="#"
+              className={location.pathname === '/' && activeSection === 'home' ? 'active' : ''}
+              onClick={handleHomeClick}
             >
-              About Us
-            </Link>
+              Home
+            </a>
           </li>
           <li>
-            <Link 
-              to="/who-we-serve" 
-              className={isActive('/who-we-serve') ? 'active' : ''}
-              onClick={() => setIsMobileMenuOpen(false)}
+            <a 
+              href="#about-section"
+              className={activeSection === 'about-section' ? 'active' : ''}
+              onClick={(e) => handleNavClick(e, 'about-section')}
             >
-              Who We Serve
-            </Link>
+              About
+            </a>
           </li>
           <li>
-            <Link 
-              to="/services" 
-              className={isActive('/services') ? 'active' : ''}
-              onClick={() => setIsMobileMenuOpen(false)}
+            <a 
+              href="#services-section"
+              className={activeSection === 'services-section' ? 'active' : ''}
+              onClick={(e) => handleNavClick(e, 'services-section')}
             >
               Services
-            </Link>
+            </a>
+          </li>
+          <li>
+            <a 
+              href="#who-we-serve-section"
+              className={activeSection === 'who-we-serve-section' ? 'active' : ''}
+              onClick={(e) => handleNavClick(e, 'who-we-serve-section')}
+            >
+              Who We Serve
+            </a>
           </li>
           <li>
             <Link 
@@ -73,13 +118,13 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <Link 
-              to="/contact" 
-              className={`contact-btn ${isActive('/contact') ? 'active' : ''}`}
-              onClick={() => setIsMobileMenuOpen(false)}
+            <a 
+              href="#contact-section"
+              className={activeSection === 'contact-section' ? 'active' : ''}
+              onClick={(e) => handleNavClick(e, 'contact-section')}
             >
-              Contact Us
-            </Link>
+              Contact
+            </a>
           </li>
         </ul>
       </div>

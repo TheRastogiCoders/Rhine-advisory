@@ -223,6 +223,8 @@
   text-align: center;
   letter-spacing: 0.3px;
   transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
 }
 
 /* PRIMARY BUTTON */
@@ -278,7 +280,7 @@
 
 .about-image-wrapper {
   width: 100%;
-  max-width: 1000px;   /* controls image width */
+  max-width: 700px;   /* medium size image */
   margin: 0 auto 30px; /* THIS centers it */
   border-radius: 12px;
   overflow: hidden;
@@ -289,8 +291,8 @@
 
 
 .about-image {
-  width: 90%;
-  height: 120%;
+  width: 100%;
+  height: auto;
   object-fit: cover;
 }
 
@@ -303,6 +305,9 @@
   margin-bottom: 25px;
   border-radius: 8px;
   overflow: hidden;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .subsection-image {
@@ -312,10 +317,15 @@
   border-radius: 8px;
 }
 
+.subsection-image-small {
+  max-height: 200px;
+  object-fit: cover;
+}
+
 .serve-image-wrapper,
 .services-image-wrapper {
   margin: 30px auto 40px;
-  max-width: 1000px;
+  max-width: 700px;
   border-radius: 8px;
   overflow: hidden;
 }
@@ -353,6 +363,20 @@
   background: #ffffff;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.about-subsection-centered {
+  text-align: center;
+}
+
+.about-subsection-centered .subsection-image-wrapper {
+  max-width: 500px;
+}
+
+.about-subsection-centered .section-description {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .about-subsection:first-of-type {
@@ -638,6 +662,79 @@
 .serve-item:hover {
   transform: translateY(-6px);
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* ================= REGIONAL PRESENCE CARDS ================= */
+.regional-presence-card {
+  padding: 45px 30px 50px;
+  border-radius: 18px;
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 12px 35px rgba(0,0,0,0.05);
+  text-align: center;
+  background: #ffffff;
+}
+
+.regional-title {
+  font-size: 1.9rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--dark-red);
+}
+
+.regional-subtitle {
+  font-size: 1rem;
+  color: var(--text-light);
+  max-width: 700px;
+  margin: 0 auto 35px;
+}
+
+.regional-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+}
+
+.regional-country-card {
+  background: #fdfdfd;
+  border-radius: 16px;
+  padding: 24px 20px 22px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.regional-flag-wrapper {
+  width: 70px;
+  height: 48px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 6px;
+}
+
+.regional-flag {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.regional-country-name {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin: 0;
+}
+
+.regional-country-code {
+  font-size: 0.9rem;
+  color: var(--primary-red);
+  margin: 0;
+  font-weight: 500;
 }
 
 /* ================= SERVICES OVERVIEW ================= */

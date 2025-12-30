@@ -14,6 +14,8 @@ const Footer = () => {
           </div>
           <p className="footer-tagline">
           Strategic M&A, SPAC Advisory, Transaction Advisory, Capital Markets & Investment Solutions, Financial Model & Valuation Analysis.
+          The value lies within our name we don't just meet expectations; we go beyond to deliver outcomes that truly serve our clients core needs.
+         
           </p>
         </div>
 

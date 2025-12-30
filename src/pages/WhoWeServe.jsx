@@ -8,13 +8,7 @@ const WhoWeServe = () => {
         <div className="container">
           <h1>Who We Serve</h1>
           <p>Dedicated to empowering businesses and investors with strategic financial solutions</p>
-          <div className="hero-image-wrapper">
-            <img 
-              src="/iStock-2177333133.jpg" 
-              alt="Diverse business clients" 
-              className="hero-image"
-            />
-          </div>
+       
         </div>
       </section>
 
