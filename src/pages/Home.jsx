@@ -41,6 +41,7 @@ const Home = () => {
   const services = [
     'Select a service',
     'Mergers & Acquisitions (M&A) Advisory',
+    'HR M&A Advisory',
     'SPAC Advisory Services',
     'Transaction Advisory Services',
     'Investment Solutions & Advisory',
@@ -82,6 +83,51 @@ const Home = () => {
           ],
           note:
             "We position assets to attract the right buyers at the right valuation — not just the fastest exit."
+        }
+      ]
+    },
+    {
+      title: "HR M&A Advisory",
+      summary: "Aligning people, leadership, and culture to deliver value beyond the deal.",
+      description:
+        "People-focused advisory across the M&A lifecycle to identify risk early, protect value, and support successful integration.",
+      subsections: [
+        {
+          title: "HR Due Diligence",
+          items: [
+            "Workforce analysis",
+            "Leadership and retention risk",
+            "Compensation and benefits review",
+            "Employment liabilities",
+            "Cultural assessment"
+          ]
+        },
+        {
+          title: "Transaction Support",
+          items: [
+            "Input on deal structure",
+            "Management incentives",
+            "Retention plans",
+            "Readiness"
+          ]
+        },
+        {
+          title: "Post-Merger Integration",
+          items: [
+            "Organisation design",
+            "Leadership alignment",
+            "Workforce integration",
+            "Communications",
+            "HR systems harmonisation"
+          ]
+        },
+        {
+          title: "Carve-Outs & Restructuring",
+          items: [
+            "Stand-alone HR model design",
+            "TSA support",
+            "Workforce optimisation"
+          ]
         }
       ]
     },
@@ -480,10 +526,11 @@ const Home = () => {
 
             <div className="regional-grid">
               {[
-                { name: "United Arab Emirates", code: "UAE", flag: "/flags/uae.png" },
-                { name: "India", code: "IND", flag: "/flags/india.png" },
-                { name: "Singapore", code: "SGP", flag: "/flags/singapore.png" },
-                { name: "Saudi Arabia", code: "KSA", flag: "/flags/ksa.png" }
+                { name: "United Arab Emirates", code: "UAE", flag: "/uae.png" },
+                { name: "India", code: "IND", flag: "/india.avif" },
+                { name: "Singapore", code: "SGP", flag: "/Singapore.svg" },
+                { name: "Saudi Arabia", code: "KSA", flag: "/SaudiArabia.webp" },
+                { name: "Europe", code: "EUR", flag: "/europe.png" }
               ].map((country) => (
                 <div key={country.code} className="regional-country-card">
                   <div className="regional-flag-wrapper">
