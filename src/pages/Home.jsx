@@ -359,10 +359,10 @@ const Home = () => {
 
             <div className="regional-grid">
               {[
-                { name: "United Arab Emirates", code: "UAE", flag: "/flags/uae.png" },
-                { name: "India", code: "IND", flag: "/flags/india.png" },
-                { name: "Singapore", code: "SGP", flag: "/flags/singapore.png" },
-                { name: "Saudi Arabia", code: "KSA", flag: "/flags/ksa.png" }
+                { name: "United Arab Emirates", code: "UAE", flag: "/uae.png" },
+                { name: "India", code: "IND", flag: "/india.avif" },
+                { name: "Singapore", code: "SGP", flag: "/Singapore.svg" },
+                { name: "Saudi Arabia", code: "KSA", flag: "/SaudiArabia.webp" }
               ].map((country) => (
                 <div key={country.code} className="regional-country-card">
                   <div className="regional-flag-wrapper">

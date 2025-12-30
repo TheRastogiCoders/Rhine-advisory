@@ -13,9 +13,9 @@ const Footer = () => {
             <img src="/logo.png" alt="Rhine Advisory" />
           </div>
           <p className="footer-tagline">
-          Strategic M&A, SPAC Advisory, Transaction Advisory, Capital Markets & Investment Solutions, Financial Model & Valuation Analysis.
-          The value lies within our name we don't just meet expectations; we go beyond to deliver outcomes that truly serve our clients core needs.
-         
+            Strategic M&A, SPAC Advisory, Transaction Advisory, Capital Markets & Investment Solutions, Financial Model & Valuation Analysis.
+            <br /><br />
+            The value lies within our name — we don’t just meet expectations; we go beyond to deliver outcomes that truly serve our clients’ core needs.
           </p>
         </div>
 
@@ -29,12 +29,49 @@ const Footer = () => {
           </ul>
         </div>
 
+        {/* ===== SERVICES ===== */}
+        <div className="footer-section">
+          <h4>Our Services</h4>
+          <ul>
+            <li>
+              <Link to="/services/ma-advisory">
+                Mergers & Acquisitions (M&A) Advisory
+              </Link>
+            </li>
+            <li>
+              <Link to="/services/spac-advisory">
+                SPAC Advisory Services
+              </Link>
+            </li>
+            <li>
+              <Link to="/services/transaction-advisory">
+                Transaction Advisory Services
+              </Link>
+            </li>
+            <li>
+              <Link to="/services/investment-advisory">
+                Investment Solutions & Advisory
+              </Link>
+            </li>
+            <li>
+              <Link to="/services/valuation-modeling">
+                Valuation & Financial Modeling
+              </Link>
+            </li>
+            <li>
+              <Link to="/services/capital-markets">
+                Capital Markets Advisory
+              </Link>
+            </li>
+          </ul>
+        </div>
+
         {/* ===== CONTACT ===== */}
         <div className="footer-section">
           <h4>Contact</h4>
           <p>
             Email:{' '}
-            <a href="mailto:contact@rhineadvisory.com">
+            <a href="mailto:contact@rhineadvisory.ae">
               contact@rhineadvisory.ae
             </a>
           </p>
@@ -44,15 +81,24 @@ const Footer = () => {
               +91 81402 43880
             </a>
           </p>
-          
+
           <h4 className="address-heading">Delivery Center Address:</h4>
-          <p>Westgate, 510-511, 5th floor D Block, Near YMCA Club, SG Road, Ahmedabad - 380015 Gujarat, India.</p>
-          
+          <p>
+            Westgate, 510-511, 5th Floor, D Block, Near YMCA Club, SG Road,
+            Ahmedabad – 380015, Gujarat, India.
+          </p>
+
           <h4 className="address-heading">HQ Address:</h4>
-          <p>Serene Centrum, 510, Near Gangotri Exotica, Laxshmipura Road Vadodara, GUJARAT 390021</p>
-          
+          <p>
+            Serene Centrum, 510, Near Gangotri Exotica,
+            Laxshmipura Road, Vadodara – 390021, Gujarat, India.
+          </p>
+
           <h4 className="address-heading">Sales Office:</h4>
-          <p>Empire Heights Tower, Marasi Drive, Business Bay, Dubai – UAE</p>
+          <p>
+            Empire Heights Tower, Marasi Drive,
+            Business Bay, Dubai – UAE.
+          </p>
         </div>
 
       </div>
