@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
+import FloatingButtons from './components/FloatingButtons'
 import Home from './pages/Home'
 import Team from './pages/Team'
 import './styles/main.css'
@@ -19,6 +20,7 @@ function App() {
           <Route path="/team" element={<Team />} />
         </Routes>
         <Footer />
+        <FloatingButtons />
       </div>
     </Router>
   )
