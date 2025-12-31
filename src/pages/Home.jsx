@@ -272,7 +272,7 @@ const Home = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          access_key: 'c227dff2-8df3-43fe-91c4-40353cd715d3',
+          access_key: '4c3921bd-cea7-4945-a469-4791bd23c875',
           name: `${formData.firstName} ${formData.lastName}`,
           email: formData.email,
           phone: formData.phone,
@@ -335,7 +335,7 @@ const Home = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          access_key: 'c227dff2-8df3-43fe-91c4-40353cd715d3',
+          access_key: '4c3921bd-cea7-4945-a469-4791bd23c875',
           name: brochureForm.name,
           email: brochureForm.email,
           phone: brochureForm.phone,
@@ -453,69 +453,69 @@ const Home = () => {
       )}
 
       {/* ================= STATISTICS & REGIONAL PRESENCE ================= */}
-      <section
-        style={{
-          padding: "80px 20px"
-        }}
-      >
+<section
+  style={{
+    padding: "80px 20px"
+  }}
+>
+  <div
+    style={{
+      maxWidth: "1200px",
+      margin: "0 auto",
+      display: "flex",
+      flexDirection: "column",
+      gap: "60px"
+    }}
+  >
+    {/* ===== STATISTICS BOXES ===== */}
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        flexWrap: "wrap",
+        gap: "30px"
+      }}
+    >
+      {[
+        { value: "+20", label: "Expert Consultants" },
+        { value: "+100", label: "Completed Projects" },
+        { value: "+10", label: "Partners" }
+      ].map((item, index) => (
         <div
+          key={index}
           style={{
-            maxWidth: "1200px",
-            margin: "0 auto",
-            display: "flex",
-            flexDirection: "column",
-            gap: "60px"
+            flex: "1 1 250px",
+            padding: "40px 25px",
+            borderRadius: "16px",
+            border: "1px solid rgba(0,0,0,0.08)",
+            textAlign: "center",
+            boxShadow: "0 10px 30px rgba(0,0,0,0.05)",
+            transition: "all 0.3s ease"
+          }}
+          onMouseEnter={e => {
+            e.currentTarget.style.transform = "translateY(-6px)"
+            e.currentTarget.style.boxShadow = "0 16px 40px rgba(0,0,0,0.08)"
+          }}
+          onMouseLeave={e => {
+            e.currentTarget.style.transform = "translateY(0)"
+            e.currentTarget.style.boxShadow = "0 10px 30px rgba(0,0,0,0.05)"
           }}
         >
-          {/* ===== STATISTICS BOXES ===== */}
-          <div
+          <h2
             style={{
-              display: "flex",
-              justifyContent: "space-between",
-              flexWrap: "wrap",
-              gap: "30px"
+              fontSize: "2.8rem",
+              color: "var(--primary-red)",
+              marginBottom: "10px"
             }}
           >
-            {[
-              { value: "+20", label: "Expert Consultants" },
-              { value: "+100", label: "Completed Projects" },
-              { value: "+10", label: "Partners" }
-            ].map((item, index) => (
-              <div
-                key={index}
-                style={{
-                  flex: "1 1 250px",
-                  padding: "40px 25px",
-                  borderRadius: "16px",
-                  border: "1px solid rgba(0,0,0,0.08)",
-                  textAlign: "center",
-                  boxShadow: "0 10px 30px rgba(0,0,0,0.05)",
-                  transition: "all 0.3s ease"
-                }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.transform = "translateY(-6px)"
-                  e.currentTarget.style.boxShadow = "0 16px 40px rgba(0,0,0,0.08)"
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.transform = "translateY(0)"
-                  e.currentTarget.style.boxShadow = "0 10px 30px rgba(0,0,0,0.05)"
-                }}
-              >
-                <h2
-                  style={{
-                    fontSize: "2.8rem",
-                    color: "var(--primary-red)",
-                    marginBottom: "10px"
-                  }}
-                >
-                  {item.value}
-                </h2>
-                <p style={{ fontSize: "1.05rem", fontWeight: "500" }}>
-                  {item.label}
-                </p>
-              </div>
-            ))}
-          </div>
+            {item.value}
+          </h2>
+          <p style={{ fontSize: "1.05rem", fontWeight: "500" }}>
+            {item.label}
+          </p>
+        </div>
+      ))}
+    </div>
 
           {/* ===== REGIONAL PRESENCE BOX (WITH COUNTRY CARDS) ===== */}
           <div className="regional-presence-card">
@@ -543,11 +543,11 @@ const Home = () => {
                   <h4 className="regional-country-name">{country.name}</h4>
                   <p className="regional-country-code">{country.code}</p>
                 </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* ================= ABOUT RHINE ADVISORY ================= */}
       <section id="about-section" className="section about-snapshot">
@@ -1054,61 +1054,61 @@ const Home = () => {
           </div>
         </div>
       </section>
-
+      
       {/* ================= CALL TO ACTION ================= */}
-      <section
-        className="section cta-section"
-        style={{
-          background: "linear-gradient(135deg, var(--dark-red), var(--primary-red))",
-          color: "#ffffff",
-          padding: "90px 20px",
-          textAlign: "center"
-        }}
-      >
-        <div className="container">
-          <h2
-            style={{
-              fontSize: "2.5rem",
-              fontWeight: "700",
-              marginBottom: "15px"
-            }}
-          >
-            Discuss Your Transaction
-          </h2>
+    <section
+  className="section cta-section"
+  style={{
+    background: "linear-gradient(135deg, var(--dark-red), var(--primary-red))",
+    color: "#ffffff",
+    padding: "90px 20px",
+    textAlign: "center"
+  }}
+>
+  <div className="container">
+    <h2
+      style={{
+        fontSize: "2.5rem",
+        fontWeight: "700",
+        marginBottom: "15px"
+      }}
+    >
+      Discuss Your Transaction
+    </h2>
 
-          <p
-            style={{
-              maxWidth: "720px",
-              margin: "0 auto 30px",
-              fontSize: "1.15rem",
-              opacity: "0.95"
-            }}
-          >
-            Engage with Rhine Advisory to evaluate, structure, and execute
-            complex transactions with confidence.
-          </p>
+    <p
+      style={{
+        maxWidth: "720px",
+        margin: "0 auto 30px",
+        fontSize: "1.15rem",
+        opacity: "0.95"
+      }}
+    >
+      Engage with Rhine Advisory to evaluate, structure, and execute
+      complex transactions with confidence.
+    </p>
 
           <button
             onClick={() => scrollToSection('contact-section')}
-            style={{
-              display: "inline-block",
-              background: "#ffffff",
-              color: "var(--primary-red)",
-              padding: "14px 36px",
-              fontSize: "1rem",
-              fontWeight: "600",
-              borderRadius: "50px",
+      style={{
+        display: "inline-block",
+        background: "#ffffff",
+        color: "var(--primary-red)",
+        padding: "14px 36px",
+        fontSize: "1rem",
+        fontWeight: "600",
+        borderRadius: "50px",
               border: "none",
               cursor: "pointer",
-              transition: "all 0.3s ease"
-            }}
-            onMouseEnter={e => (e.currentTarget.style.transform = "translateY(-2px)")}
-            onMouseLeave={e => (e.currentTarget.style.transform = "translateY(0)")}
-          >
-            Contact Our Team
+        transition: "all 0.3s ease"
+      }}
+      onMouseEnter={e => (e.currentTarget.style.transform = "translateY(-2px)")}
+      onMouseLeave={e => (e.currentTarget.style.transform = "translateY(0)")}
+    >
+      Contact Our Team
           </button>
-        </div>
-      </section>
+  </div>
+</section>
 
     </div>
   )

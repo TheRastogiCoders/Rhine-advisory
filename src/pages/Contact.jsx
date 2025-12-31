@@ -45,7 +45,7 @@ const Contact = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          access_key: 'c227dff2-8df3-43fe-91c4-40353cd715d3',
+          access_key: '4c3921bd-cea7-4945-a469-4791bd23c875',
           name: `${formData.firstName} ${formData.lastName}`,
           email: formData.email,
           phone: formData.phone,
@@ -279,7 +279,7 @@ const Contact = () => {
                     className="btn btn-primary send-message-btn"
                     disabled={isSubmitting}
                   >
-                    <span className="btn-icon">✈</span>
+                    <span className="btn-icon"></span>
                     {isSubmitting ? 'Sending...' : 'Send Message'}
                   </button>
                   {submitStatus.message && (
