@@ -6,6 +6,7 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('home')
+  const [initiativesOpen, setInitiativesOpen] = useState(false)
   const location = useLocation()
   const navigate = useNavigate()
 
@@ -17,7 +18,26 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (!e.target.closest('.nav-item-initiatives')) {
+        setInitiativesOpen(false)
+      }
+    }
+    if (initiativesOpen) {
+      document.addEventListener('click', handleClickOutside)
+    }
+    return () => document.removeEventListener('click', handleClickOutside)
+  }, [initiativesOpen])
+
   const isActive = (path) => location.pathname === path
+
+  // Use initiative-specific logos on Rhine PR Marketing and Rhine HR pages
+  const logoSrc = location.pathname === '/rhine-pr-marketing'
+    ? '/pr.png'
+    : location.pathname === '/rhine-hr'
+      ? '/hr.png'
+      : '/logo.png'
 
   const handleNavClick = (e, sectionId) => {
     e.preventDefault()
@@ -57,7 +77,7 @@ const Navbar = () => {
     <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
       <div className="navbar-container">
         <Link to="/" className="navbar-logo" onClick={handleHomeClick}>
-          <img src="/logo.png" alt="Rhine Advisory" />
+          <img src={logoSrc} alt="Rhine Advisory" />
           <span></span>
         </Link>
         
@@ -116,6 +136,45 @@ const Navbar = () => {
             >
               Contact
             </a>
+          </li>
+          <li className="nav-item-initiatives">
+            <button
+              type="button"
+              className={`navbar-dropdown-trigger ${initiativesOpen ? 'open' : ''}`}
+              onClick={() => setInitiativesOpen(!initiativesOpen)}
+              aria-expanded={initiativesOpen}
+              aria-haspopup="true"
+            >
+              Rhine Initiatives
+              <span className="dropdown-chevron">▼</span>
+            </button>
+            <ul className={`navbar-dropdown ${initiativesOpen ? 'open' : ''}`}>
+              <li>
+                <Link
+                  to="/rhine-pr-marketing"
+                  onClick={() => { setInitiativesOpen(false); setIsMobileMenuOpen(false); }}
+                >
+                  Rhine PR & Marketing
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/rhine-hr"
+                  onClick={() => { setInitiativesOpen(false); setIsMobileMenuOpen(false); }}
+                >
+                  Rhine HR
+                </Link>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <Link 
+              to="/research-insights" 
+              className={isActive('/research-insights') ? 'active' : ''}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Research & Insights
+            </Link>
           </li>
           <li>
             <Link 

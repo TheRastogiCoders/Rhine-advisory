@@ -15,3 +15,13 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Mobile: prevent zoom on input focus, ensure touch targets */
+@media (max-width: 768px) {
+  body {
+    -webkit-text-size-adjust: 100%;
+  }
+  input, button, select, textarea, a.btn {
+    font-size: 16px;
+  }
+}
+

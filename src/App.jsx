@@ -6,6 +6,9 @@ import ScrollToTop from './components/ScrollToTop'
 import FloatingButtons from './components/FloatingButtons'
 import Home from './pages/Home'
 import Team from './pages/Team'
+import Resources from './pages/Resources'
+import RhinePRMarketing from './pages/RhinePRMarketing'
+import RhineHR from './pages/RhineHR'
 import './styles/main.css'
 
 function App() {
@@ -17,6 +20,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<Home />} />
+          <Route path="/research-insights" element={<Resources />} />
+          <Route path="/rhine-pr-marketing" element={<RhinePRMarketing />} />
+          <Route path="/rhine-hr" element={<RhineHR />} />
           <Route path="/team" element={<Team />} />
         </Routes>
         <Footer />

@@ -1,0 +1,250 @@
+/* ================= RHINE HR PAGE ================= */
+.rhine-hr-page {
+  margin-top: 85px;
+  background: #fafafa;
+}
+
+.rhine-hr-page .page-header {
+  margin-top: 0;
+}
+
+/* ================= TAGLINE SECTION (first) ================= */
+.rhine-hr-tagline {
+  padding: 100px 20px;
+  text-align: center;
+  background: linear-gradient(135deg, var(--very-light-red) 0%, var(--faded-red) 100%);
+}
+
+.rhine-hr-tagline-headline {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--dark-red);
+  margin-bottom: 16px;
+  line-height: 1.25;
+}
+
+.rhine-hr-tagline-sub {
+  font-size: 1.2rem;
+  color: var(--text-dark);
+  max-width: 640px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ================= WHO WE ARE ================= */
+.rhine-hr-who {
+  padding: 80px 20px;
+  background: var(--white);
+}
+
+.rhine-hr-who .section-title {
+  margin-bottom: 32px;
+}
+
+.rhine-hr-who-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.rhine-hr-who-content .section-description {
+  font-size: 1.1rem;
+  color: var(--text-dark);
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+
+.rhine-hr-who-content .section-description:last-child {
+  margin-bottom: 0;
+}
+
+/* ================= OUR EXPERTISE ================= */
+.rhine-hr-expertise {
+  padding: 80px 20px;
+  background: var(--white);
+}
+
+.rhine-hr-expertise-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.rhine-hr-expertise .section-title {
+  margin-bottom: 24px;
+}
+
+.rhine-hr-what-we-do-btn {
+  display: inline-block;
+  padding: 14px 32px;
+  background: var(--dark-red);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.rhine-hr-what-we-do-btn:hover {
+  background: var(--primary-red);
+  transform: translateY(-2px);
+}
+
+.rhine-hr-expertise-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.rhine-hr-expertise-card {
+  background: var(--white);
+  padding: 32px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-left: 4px solid var(--dark-red);
+  transition: box-shadow 0.25s ease;
+}
+
+.rhine-hr-expertise-card:hover {
+  box-shadow: 0 8px 28px rgba(139, 0, 56, 0.12);
+}
+
+.rhine-hr-expertise-card h3 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--dark-red);
+  margin-bottom: 20px;
+  line-height: 1.3;
+}
+
+.rhine-hr-learn-more {
+  display: inline-block;
+  padding: 10px 24px;
+  background: var(--white);
+  color: var(--dark-red);
+  border: 2px solid var(--dark-red);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.rhine-hr-learn-more:hover {
+  background: var(--dark-red);
+  color: var(--white);
+}
+
+/* Learn More popup */
+.rhine-hr-popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.rhine-hr-popup {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 28px 32px 32px;
+  max-width: 520px;
+  width: 100%;
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+}
+
+.rhine-hr-popup-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: var(--very-light-red);
+  color: var(--dark-red);
+  font-size: 1.75rem;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+}
+
+.rhine-hr-popup-close:hover {
+  background: var(--faded-red);
+}
+
+.rhine-hr-popup h3 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--dark-red);
+  margin-bottom: 16px;
+  padding-right: 40px;
+}
+
+.rhine-hr-popup p {
+  font-size: 1rem;
+  color: var(--text-dark);
+  line-height: 1.75;
+  margin: 0;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+  .rhine-hr-page {
+    margin-top: 75px;
+  }
+  .rhine-hr-tagline {
+    padding: 70px 16px;
+  }
+  .rhine-hr-tagline-headline {
+    font-size: 1.85rem;
+  }
+  .rhine-hr-tagline-sub {
+    font-size: 1.05rem;
+  }
+  .rhine-hr-who,
+  .rhine-hr-expertise {
+    padding: 50px 16px;
+  }
+  .rhine-hr-expertise-header {
+    margin-bottom: 36px;
+  }
+  .rhine-hr-expertise-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .rhine-hr-expertise-card {
+    padding: 24px 20px;
+  }
+  .rhine-hr-learn-more {
+    min-height: 44px;
+  }
+  .rhine-hr-popup-overlay {
+    padding: 16px;
+    align-items: flex-start;
+    padding-top: 40px;
+  }
+  .rhine-hr-popup {
+    padding: 24px 20px 28px;
+  }
+  .rhine-hr-popup-close {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+@media (max-width: 480px) {
+  .rhine-hr-tagline-headline {
+    font-size: 1.6rem;
+  }
+}
