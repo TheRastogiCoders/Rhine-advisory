@@ -83,11 +83,13 @@
   overflow-x: auto;
   overflow-y: hidden;
   scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   -webkit-overflow-scrolling: touch;
   padding-bottom: 12px;
   position: relative;
   z-index: 1;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .resources .latest-reports-grid::-webkit-scrollbar {
@@ -116,6 +118,8 @@
   background: var(--white);
   box-shadow: 0 4px 16px rgba(196, 30, 58, 0.08);
   border-left: 4px solid var(--primary-red);
+  transform: translateZ(0);
+  contain: layout style paint;
 }
 
 .resources .latest-report-card.is-coming-soon {
@@ -149,6 +153,7 @@
   height: 100%;
   object-fit: cover;
   vertical-align: middle;
+  transform: translateZ(0);
 }
 
 .resources .latest-report-card-overlay {
@@ -203,7 +208,7 @@
   width: 100%;
 }
 
-/* View button: transparent with red hover */
+/* View button: transparent with red hover (GPU-friendly transitions) */
 .resources .latest-report-action-btn {
   height: 40px;
   min-height: 40px;
@@ -220,7 +225,7 @@
   box-sizing: border-box;
   font-size: 0.9rem;
   font-weight: 600;
-  transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+  transition: background 0.2s ease-out, border-color 0.2s ease-out, color 0.2s ease-out;
 }
 
 .resources .latest-report-action-btn:hover {

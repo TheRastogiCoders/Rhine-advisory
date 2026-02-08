@@ -100,15 +100,31 @@ const Resources = () => {
     const step = el.clientWidth
     const maxScroll = el.scrollWidth - el.clientWidth
     if (maxScroll <= 0) return
+
+    const duration = 400
+    let rafId = null
+
+    function animateScroll(from, to, startTime) {
+      const now = performance.now()
+      const elapsed = now - startTime
+      const t = Math.min(elapsed / duration, 1)
+      const eased = t < 0.5 ? 2 * t * t : 1 - (-2 * t + 2) ** 2 / 2
+      el.scrollLeft = from + (to - from) * eased
+      if (t < 1) rafId = requestAnimationFrame(() => animateScroll(from, to, startTime))
+    }
+
     const interval = setInterval(() => {
-      const next = el.scrollLeft + step
-      if (next >= maxScroll) {
-        el.scrollTo({ left: 0, behavior: 'smooth' })
-      } else {
-        el.scrollTo({ left: next, behavior: 'smooth' })
-      }
+      const from = el.scrollLeft
+      const next = from + step >= maxScroll ? 0 : from + step
+      const startTime = performance.now()
+      if (rafId) cancelAnimationFrame(rafId)
+      rafId = requestAnimationFrame(() => animateScroll(from, next, startTime))
     }, 4000)
-    return () => clearInterval(interval)
+
+    return () => {
+      clearInterval(interval)
+      if (rafId) cancelAnimationFrame(rafId)
+    }
   }, [latestReports.length])
 
   const handleDownloadReportClick = useCallback(() => {
