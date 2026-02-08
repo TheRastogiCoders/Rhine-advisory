@@ -25,7 +25,7 @@ const Contact = () => {
   const services = [
     'Select a service',
     'Mergers & Acquisitions (M&A) Advisory',
-    'SPAC Advisory Services',
+    'SPAC Merger  & Advisory Services',
     'Transaction Advisory Services',
     'Investment Solutions & Advisory',
     'Valuation & Financial Modeling',

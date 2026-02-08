@@ -13,6 +13,36 @@ const expertiseItems = [
     title: 'Central Functions Practice',
     content: 'We support businesses in strengthening their central functions—including Finance, Legal, IT, and Operations—by identifying and evaluating senior talent. Our practice is built on rigour, diversity, and delivery, aligned with your organisation’s strategic goals.',
   },
+  {
+    id: 'search',
+    title: 'Search',
+    content: 'We integrate the best traditional search methods with modern technology and innovative thinking.',
+  },
+  {
+    id: 'interim',
+    title: 'Interim Management',
+    content: 'We provide you with timely solutions for a variety of corporate challenges, including change management programmes.',
+  },
+  {
+    id: 'research',
+    title: 'Research & Insights',
+    content: 'Our research capabilities distinguish us from the competition.',
+  },
+  {
+    id: 'diagnostics',
+    title: 'Diagnostics & Assessment',
+    content: 'Our consultancy services extend beyond vacancy-specific search campaigns.',
+  },
+  {
+    id: 'board',
+    title: 'Board Appointments',
+    content: 'We support the next generation of C-suite professionals.',
+  },
+  {
+    id: 'partnerships',
+    title: 'Industry Partnerships',
+    content: 'We take pride in our industry collaborations and founding communities.',
+  },
 ]
 
 const RhineHR = () => {
@@ -63,12 +93,14 @@ const RhineHR = () => {
         <div className="container">
           <div className="rhine-hr-expertise-header">
             <h2 className="section-title">Our Expertise</h2>
-            <button type="button" className="rhine-hr-what-we-do-btn">What We Do</button>
           </div>
           <div className="rhine-hr-expertise-grid">
             {expertiseItems.map((item) => (
               <div key={item.id} className="rhine-hr-expertise-card">
-                <h3>{item.title}</h3>
+                <h3 className="rhine-hr-expertise-card-title">{item.title}</h3>
+                <p className="rhine-hr-expertise-card-desc">
+                  {item.content.length > 120 ? `${item.content.slice(0, 120).trim()}…` : item.content}
+                </p>
                 <button
                   type="button"
                   className="rhine-hr-learn-more"

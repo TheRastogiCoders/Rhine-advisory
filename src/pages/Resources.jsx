@@ -1,8 +1,57 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import { FaSitemap, FaChartBar, FaChartLine } from 'react-icons/fa'
 import '../styles/resources.css'
 
 const DOWNLOADABLE_MONTHLY_REPORT_INDEX = 0
+
+const latestReports = [
+  { id: 1, title: '2026 IPO Outlook', subtitle: 'IPO trends and outlook for 2026', image: '/iStock-1395448518.jpg', authors: null, comingSoon: false },
+  { id: 2, title: 'Pre IPO Analysis - SPACEX', subtitle: 'Analysis and insights on SPACEX pre-IPO', image: '/iStock-2152298806.jpg', authors: null, comingSoon: false },
+  { id: 3, title: 'M&A Cheat Sheet for HR', subtitle: 'Essential M&A guidance for HR leaders', image: '/iStock-1444490817.jpg', authors: null, comingSoon: false },
+  { id: 4, title: 'Guide to Green Investing with Insurers', subtitle: 'Sustainable investing and insurer perspectives', image: '/iStock-2190159060.jpg', authors: null, comingSoon: false },
+  { id: 5, title: 'GCC Capital Market Outlook - 2026', subtitle: 'Liquidity and valuation trends across GCC markets', image: '/iStock-1170740969 1.jpg', authors: null, comingSoon: true },
+  { id: 6, title: 'Saudi Arabia Macro Economic Strategy', subtitle: 'Saudi Arabia by the numbers - strategy outlook', image: '/iStock-1188211595.jpg', authors: null, comingSoon: true },
+]
+
+const monthlyReports = [
+  { date: '18 January 2026', title: 'MENA Chemicals Monthly - January Issue: 2026 Starts On The Wrong Foot After Weaker-Than-Expected End To Year', authors: 'Yousef Husseini / Malak Rashad' },
+]
+
+const LatestReportCard = React.memo(function LatestReportCard ({ report, onDownloadClick }) {
+  return (
+    <article className={`latest-report-card ${report.comingSoon ? 'is-coming-soon' : ''}`}>
+      {report.comingSoon && (
+        <div className="latest-report-coming-soon">Coming Soon</div>
+      )}
+      <div className="latest-report-card-image">
+        <img src={report.image} alt="" loading="lazy" decoding="async" />
+        <div className="latest-report-card-overlay" />
+      </div>
+      <div className="latest-report-card-content">
+        <h3 className="latest-report-card-title">{report.title}</h3>
+        <p className="latest-report-card-subtitle">{report.subtitle}</p>
+        {report.authors && (
+          <p className="latest-report-card-authors">{report.authors}</p>
+        )}
+        {!report.comingSoon && (
+          <div className="latest-report-card-actions">
+            <button
+              type="button"
+              className="latest-report-action-btn"
+              aria-label="Download"
+              onClick={onDownloadClick}
+            >
+              <span className="action-icon">↓</span>
+            </button>
+            <button type="button" className="latest-report-action-btn" aria-label="View">
+              <span className="action-icon">✓</span>
+            </button>
+          </div>
+        )}
+      </div>
+    </article>
+  )
+})
 
 const Resources = () => {
   const [showSubscribeMonthlyModal, setShowSubscribeMonthlyModal] = useState(false)
@@ -10,9 +59,9 @@ const Resources = () => {
   const [subscribeEmail, setSubscribeEmail] = useState('')
   const [newsletterEmail, setNewsletterEmail] = useState('')
 
-  const handleDownloadReportClick = () => {
+  const handleDownloadReportClick = useCallback(() => {
     setShowSubscribeMonthlyModal(true)
-  }
+  }, [])
 
   const handleSubscribeMonthlySubmit = (e) => {
     e.preventDefault()
@@ -29,44 +78,8 @@ const Resources = () => {
     setShowNewsletterModal(false)
     setNewsletterEmail('')
     setSubscribeEmail('')
-    // Show PDF after newsletter subscribe
     window.open('/broucher.pdf', '_blank')
   }
-
-  const latestReports = [
-    {
-      id: 1,
-      title: 'Saudi Arabia Macro-Strategy',
-      subtitle: 'Saudi Arabia By The Numbers - February 2026',
-      image: '/iStock-1395448518.jpg',
-      authors: null,
-    },
-    {
-      id: 2,
-      title: 'Saudi Arabia Construction Materials',
-      subtitle: 'Maintain Defensive Position Amidst Uncertain Outlook',
-      image: '/iStock-2152298806.jpg',
-      authors: 'Dina Hicham / Yousef Husseini',
-    },
-    {
-      id: 3,
-      title: 'MENA Materials',
-      subtitle: 'Still Constructive On Aluminium Fundamentals, But Spot Prices Like',
-      image: '/iStock-1444490817.jpg',
-      authors: null,
-    },
-    {
-      id: 4,
-      title: 'GCC Capital Markets Outlook',
-      subtitle: 'Q1 2026 - Liquidity and Valuation Trends',
-      image: '/iStock-2190159060.jpg',
-      authors: null,
-    },
-  ]
-
-  const monthlyReports = [
-    { date: '18 January 2026', title: 'MENA Chemicals Monthly - January Issue: 2026 Starts On The Wrong Foot After Weaker-Than-Expected End To Year', authors: 'Yousef Husseini / Malak Rashad' },
-  ]
 
   return (
     <div className="resources">
@@ -83,27 +96,11 @@ const Resources = () => {
           <h2 className="latest-reports-title">LATEST REPORTS</h2>
           <div className="latest-reports-grid">
             {latestReports.map((report) => (
-              <article key={report.id} className="latest-report-card">
-                <div className="latest-report-card-image">
-                  <img src={report.image} alt="" />
-                  <div className="latest-report-card-overlay" />
-                </div>
-                <div className="latest-report-card-content">
-                  <h3 className="latest-report-card-title">{report.title}</h3>
-                  <p className="latest-report-card-subtitle">{report.subtitle}</p>
-                  {report.authors && (
-                    <p className="latest-report-card-authors">{report.authors}</p>
-                  )}
-                  <div className="latest-report-card-actions">
-                    <button type="button" className="latest-report-action-btn" aria-label="Download">
-                      <span className="action-icon">↓</span>
-                    </button>
-                    <button type="button" className="latest-report-action-btn" aria-label="View">
-                      <span className="action-icon">✓</span>
-                    </button>
-                  </div>
-                </div>
-              </article>
+              <LatestReportCard
+                key={report.id}
+                report={report}
+                onDownloadClick={handleDownloadReportClick}
+              />
             ))}
           </div>
         </div>

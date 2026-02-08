@@ -105,13 +105,16 @@ const RhinePRMarketing = () => {
 
       <section className="pr-marketing-about section">
         <div className="container">
-          <h2 className="section-title">Award-Winning PR & Digital Marketing Agency in Dubai</h2>
+          <h2 className="section-title">PR & Digital Marketing Solutions in MENA & Asia</h2>
           <div className="pr-marketing-about-content">
             <p className="section-description">
-              Rhine Marketing & PR is a Dubai-based, full-service public relations, digital marketing, and AI-powered communications agency helping brands grow across the UAE, Saudi Arabia, Qatar, Oman, Bahrain, and Kuwait.
+              Rhine PR & Marketing is a full-service public relations, digital marketing, & AI powered communications agency helping brands grow across the Middle East, Africa & Asia region.
             </p>
             <p className="section-description">
-              Recognised among the best PR agencies in Dubai, we combine strategic storytelling, data-driven marketing, and artificial intelligence to elevate visibility, build reputation, and drive measurable growth. Our team delivers tailored solutions that transform how audiences perceive and engage with your brand — online, in media, and in the market.
+              We combine strategic storytelling, data-driven marketing and artificial intelligence to elevate visibility, build reputation, and drive measurable growth.
+            </p>
+            <p className="section-description">
+              Our team delivers tailored solutions that transform how audiences perceive and engage with your brand — online, in media and in the market.
             </p>
           </div>
         </div>
