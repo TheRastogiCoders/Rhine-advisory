@@ -1,12 +1,10 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import { FaSitemap, FaChartBar, FaChartLine } from 'react-icons/fa'
 import '../styles/resources.css'
 
-const DOWNLOADABLE_MONTHLY_REPORT_INDEX = 0
-
 const latestReports = [
   { id: 1, title: '2026 IPO Outlook', subtitle: 'IPO trends and outlook for 2026', image: '/iStock-1395448518.jpg', authors: null, comingSoon: false },
-  { id: 2, title: 'Pre IPO Analysis - SPACEX', subtitle: 'Analysis and insights on SPACEX pre-IPO', image: '/iStock-2152298806.jpg', authors: null, comingSoon: false },
+  { id: 2, title: 'Pre IPO Analysis - SPACEX', subtitle: 'Analysis and insights on SPACEX pre-IPO', image: '/iStock-2152298806.jpg', authors: null, comingSoon: false, viewOnlyPdfUrl: '/Pre%20IPO%20Analysis%20-%20SPACEX.pdf' },
   { id: 3, title: 'M&A Cheat Sheet for HR', subtitle: 'Essential M&A guidance for HR leaders', image: '/iStock-1444490817.jpg', authors: null, comingSoon: false },
   { id: 4, title: 'Guide to Green Investing with Insurers', subtitle: 'Sustainable investing and insurer perspectives', image: '/iStock-2190159060.jpg', authors: null, comingSoon: false },
   { id: 5, title: 'GCC Capital Market Outlook - 2026', subtitle: 'Liquidity and valuation trends across GCC markets', image: '/iStock-1170740969 1.jpg', authors: null, comingSoon: true },
@@ -14,10 +12,17 @@ const latestReports = [
 ]
 
 const monthlyReports = [
-  { date: '18 January 2026', title: 'MENA Chemicals Monthly - January Issue: 2026 Starts On The Wrong Foot After Weaker-Than-Expected End To Year', authors: 'Yousef Husseini / Malak Rashad' },
+  {
+    date: 'January 2026',
+    title: 'January Newsletter 2026',
+    description: 'Our latest economic outlook and market perspectives for 2026 — key themes, regional insights, and strategic considerations for investors and decision-makers.',
+    authors: 'Rhine Advisory',
+    pdfUrl: '/Economic_Outlook_2026_Newsletter.pdf',
+  },
 ]
 
-const LatestReportCard = React.memo(function LatestReportCard ({ report, onDownloadClick }) {
+const LatestReportCard = React.memo(function LatestReportCard ({ report, onDownloadClick, onViewOnlyClick }) {
+  const isViewOnly = !!report.viewOnlyPdfUrl
   return (
     <article className={`latest-report-card ${report.comingSoon ? 'is-coming-soon' : ''}`}>
       {report.comingSoon && (
@@ -35,17 +40,25 @@ const LatestReportCard = React.memo(function LatestReportCard ({ report, onDownl
         )}
         {!report.comingSoon && (
           <div className="latest-report-card-actions">
-            <button
-              type="button"
-              className="latest-report-action-btn"
-              aria-label="Download"
-              onClick={onDownloadClick}
-            >
-              <span className="action-icon">↓</span>
-            </button>
-            <button type="button" className="latest-report-action-btn" aria-label="View">
-              <span className="action-icon">✓</span>
-            </button>
+            {isViewOnly ? (
+              <button
+                type="button"
+                className="latest-report-action-btn latest-report-view-btn"
+                aria-label="View document"
+                onClick={() => onViewOnlyClick(report)}
+              >
+                <span className="action-icon">✓</span> View
+              </button>
+            ) : (
+              <button
+                type="button"
+                className="latest-report-action-btn latest-report-view-btn"
+                aria-label="View"
+                onClick={onDownloadClick}
+              >
+                <span className="action-icon">✓</span> View
+              </button>
+            )}
           </div>
         )}
       </div>
@@ -58,9 +71,28 @@ const Resources = () => {
   const [showNewsletterModal, setShowNewsletterModal] = useState(false)
   const [subscribeEmail, setSubscribeEmail] = useState('')
   const [newsletterEmail, setNewsletterEmail] = useState('')
+  const [viewOnlyPdfReport, setViewOnlyPdfReport] = useState(null)
+  const [currentMonthlyIndex, setCurrentMonthlyIndex] = useState(0)
+
+  const monthlyDotCount = Math.max(4, monthlyReports.length)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentMonthlyIndex((prev) => (prev + 1) % monthlyDotCount)
+    }, 4000)
+    return () => clearInterval(interval)
+  }, [monthlyDotCount])
 
   const handleDownloadReportClick = useCallback(() => {
     setShowSubscribeMonthlyModal(true)
+  }, [])
+
+  const handleViewOnlyClick = useCallback((report) => {
+    setViewOnlyPdfReport(report)
+  }, [])
+
+  const closeViewOnlyModal = useCallback(() => {
+    setViewOnlyPdfReport(null)
   }, [])
 
   const handleSubscribeMonthlySubmit = (e) => {
@@ -78,7 +110,7 @@ const Resources = () => {
     setShowNewsletterModal(false)
     setNewsletterEmail('')
     setSubscribeEmail('')
-    window.open('/broucher.pdf', '_blank')
+    window.open('/Economic_Outlook_2026_Newsletter.pdf', '_blank')
   }
 
   return (
@@ -100,6 +132,7 @@ const Resources = () => {
                 key={report.id}
                 report={report}
                 onDownloadClick={handleDownloadReportClick}
+                onViewOnlyClick={handleViewOnlyClick}
               />
             ))}
           </div>
@@ -113,28 +146,43 @@ const Resources = () => {
             <h2 className="monthly-reports-title">MONTHLY REPORTS</h2>
           </div>
           <div className="monthly-reports-grid">
-            {monthlyReports.map((report, index) => (
-              <article key={index} className="monthly-report-card">
-                <time className="monthly-report-date">{report.date}</time>
-                <h3 className="monthly-report-title">{report.title}</h3>
-                <p className="monthly-report-authors">{report.authors}</p>
-                {index === DOWNLOADABLE_MONTHLY_REPORT_INDEX && (
-                  <button
-                    type="button"
-                    className="monthly-report-download-btn"
-                    onClick={handleDownloadReportClick}
-                  >
-                    Download
-                  </button>
-                )}
-              </article>
-            ))}
+            {monthlyReports.length > 0 && (() => {
+              const reportIndex = Math.min(currentMonthlyIndex, monthlyReports.length - 1)
+              const report = monthlyReports[reportIndex]
+              if (!report) return null
+              return (
+                <article key={reportIndex} className="monthly-report-card">
+                  <time className="monthly-report-date">{report.date}</time>
+                  <h3 className="monthly-report-title">{report.title}</h3>
+                  {report.description && (
+                    <p className="monthly-report-description">{report.description}</p>
+                  )}
+                  <p className="monthly-report-authors">{report.authors}</p>
+                  {report.pdfUrl && (
+                    <button
+                      type="button"
+                      className="monthly-report-download-btn"
+                      onClick={handleDownloadReportClick}
+                    >
+                      Download
+                    </button>
+                  )}
+                </article>
+              )
+            })()}
           </div>
-          <div className="monthly-reports-pagination">
-            <span className="pagination-dot active" aria-current="true" />
-            <span className="pagination-dot" />
-            <span className="pagination-dot" />
-            <span className="pagination-dot" />
+          <div className="monthly-reports-pagination" role="tablist" aria-label="Monthly reports">
+            {Array.from({ length: monthlyDotCount }, (_, index) => (
+              <button
+                key={index}
+                type="button"
+                role="tab"
+                aria-selected={index === currentMonthlyIndex}
+                aria-label={`Report ${index + 1}`}
+                className={`pagination-dot ${index === currentMonthlyIndex ? 'active' : ''}`}
+                onClick={() => setCurrentMonthlyIndex(index)}
+              />
+            ))}
           </div>
         </div>
       </section>
@@ -230,8 +278,8 @@ const Resources = () => {
         <div className="report-modal-overlay" onClick={() => setShowSubscribeMonthlyModal(false)}>
           <div className="report-modal report-modal-footer-theme" onClick={(e) => e.stopPropagation()}>
             <button type="button" className="report-modal-close" onClick={() => setShowSubscribeMonthlyModal(false)} aria-label="Close">×</button>
-            <h3 className="report-modal-title">Subscribe to Monthly Reports</h3>
-            <p className="report-modal-desc">Enter your email to subscribe and download this report.</p>
+            <h3 className="report-modal-title">Get your report</h3>
+            <p className="report-modal-desc">Enter your email below and we’ll send you the report right away. You’ll also receive our latest research and insights.</p>
             <form onSubmit={handleSubscribeMonthlySubmit} className="report-modal-form">
               <div className="report-modal-field">
                 <label htmlFor="subscribe-monthly-email">Email</label>
@@ -248,8 +296,8 @@ const Resources = () => {
         <div className="report-modal-overlay" onClick={() => setShowNewsletterModal(false)}>
           <div className="report-modal report-modal-footer-theme" onClick={(e) => e.stopPropagation()}>
             <button type="button" className="report-modal-close" onClick={() => setShowNewsletterModal(false)} aria-label="Close">×</button>
-            <h3 className="report-modal-title">Newsletter</h3>
-            <p className="report-modal-desc">Subscribe to our newsletter for the latest insights and updates.</p>
+            <h3 className="report-modal-title">You’re almost there</h3>
+            <p className="report-modal-desc">Confirm your email to join our newsletter and get the latest insights, market updates, and reports delivered to your inbox.</p>
             <form onSubmit={handleNewsletterSubmit} className="report-modal-form">
               <div className="report-modal-field">
                 <label htmlFor="newsletter-email">Email</label>
@@ -265,6 +313,26 @@ const Resources = () => {
               </div>
               <button type="submit" className="btn btn-primary report-modal-submit">Subscribe</button>
             </form>
+          </div>
+        </div>
+      )}
+
+      {/* ================= View-only PDF popup (no download) ================= */}
+      {viewOnlyPdfReport && viewOnlyPdfReport.viewOnlyPdfUrl && (
+        <div className="report-view-only-overlay" onClick={closeViewOnlyModal}>
+          <div className="report-view-only-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="report-view-only-header">
+              <h3 className="report-view-only-title">{viewOnlyPdfReport.title}</h3>
+              <button type="button" className="report-view-only-close" onClick={closeViewOnlyModal} aria-label="Close">×</button>
+            </div>
+            <div className="report-view-only-body">
+              <iframe
+                title={viewOnlyPdfReport.title}
+                src={`${viewOnlyPdfReport.viewOnlyPdfUrl}#toolbar=0`}
+                className="report-view-only-iframe"
+              />
+            </div>
+            <p className="report-view-only-notice">This document is for viewing only. Download is not available.</p>
           </div>
         </div>
       )}
