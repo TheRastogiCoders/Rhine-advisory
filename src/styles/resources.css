@@ -144,7 +144,7 @@
 
 .resources .latest-report-card-image {
   position: relative;
-  height: 420px;
+  height: 560px;
   overflow: hidden;
 }
 
@@ -493,7 +493,7 @@
 
 /* ================= REPORT PROFILE (Stats) ================= */
 .resources .report-profile {
-  padding: 60px 20px;
+  padding: 60px 20px 28px;
   background: var(--white);
 }
 .resources .report-profile .section-title {
@@ -557,14 +557,14 @@
   text-align: center;
   font-size: 1rem;
   color: var(--text-light);
-  margin: 28px 0 0 0;
+  margin: 20px 0 0 0;
   font-style: italic;
 }
 
 /* ================= RESEARCH RESPONSIBILITY SECTION ================= */
 .resources .research-responsibility {
   background: var(--white);
-  padding: 80px 0;
+  padding: 32px 0 80px;
 }
 
 .resources .research-responsibility .section-title {
@@ -1099,7 +1099,7 @@
     min-width: 100%;
   }
   .resources .latest-report-card-image {
-    height: 360px;
+    height: 460px;
   }
 
   .resources .monthly-reports {
@@ -1115,7 +1115,7 @@
   }
 
   .resources .report-profile {
-    padding: 50px 20px;
+    padding: 50px 20px 24px;
   }
 
   .resources .report-profile .section-title {
@@ -1123,7 +1123,7 @@
   }
 
   .resources .research-responsibility {
-    padding: 60px 0;
+    padding: 28px 0 60px;
   }
 
   .resources .research-lead {
