@@ -45,7 +45,7 @@ const Services = () => {
       ]
     },
     {
-      title: "SPAC Advisory Services",
+      title: "SPAC Merger Advisory Services",
       summary: "Independent advisory across SPAC formation, target evaluation, and de-SPAC execution.",
       description:
         "We advise SPAC sponsors, target companies, and PIPE investors across the full SPAC lifecycle, from strategic assessment to public market execution.",

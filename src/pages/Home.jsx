@@ -42,7 +42,7 @@ const Home = () => {
     'Select a service',
     'Mergers & Acquisitions (M&A) Advisory',
     'HR M&A Advisory',
-    'SPAC Advisory Services',
+    'SPAC Merger Advisory Services',
     'Transaction Advisory Services',
     'Investment Solutions & Advisory',
     'Valuation & Financial Modeling',
@@ -132,7 +132,7 @@ const Home = () => {
       ]
     },
     {
-      title: "SPAC Advisory Services",
+      title: "SPAC Merger Advisory Services",
       summary: "Independent advisory across SPAC formation, target evaluation, and de-SPAC execution.",
       description:
         "We advise SPAC sponsors, target companies, and PIPE investors across the full SPAC lifecycle, from strategic assessment to public market execution.",
@@ -371,10 +371,10 @@ const Home = () => {
             <i>"Structuring Capital, Executing Transactions"</i>
           </p>
           <p className="hero-description">
-          Rhine Advisory is an independent transaction and investment advisory firm providing transaction advisory, SPAC and capital markets advisory, and institutional-grade investment research to corporates, investors, sponsors, and founders..
+          Rhine Advisory is an independent transaction and investment advisory firm providing transaction advisory, SPAC merger and capital markets advisory, and institutional-grade investment research to corporates, investors, sponsors, and founders..
           </p>
           <p className="hero-description">
-          We support clients across the entire transaction lifecycle including strategy formulation, opportunity identification, transaction structuring, financial modelling and valuation, capital markets and SPAC - related advisory, execution support, and post - deal value creation across complex transactions and capital events.
+          We support clients across the entire transaction lifecycle including strategy formulation, opportunity identification, transaction structuring, financial modelling and valuation, capital markets and SPAC merger-related advisory, execution support, and post - deal value creation across complex transactions and capital events.
           </p>
 
           <div className="hero-buttons">
@@ -530,7 +530,10 @@ const Home = () => {
                 { name: "India", code: "IND", flag: "/india.avif" },
                 { name: "Singapore", code: "SGP", flag: "/Singapore.svg" },
                 { name: "Saudi Arabia", code: "KSA", flag: "/SaudiArabia.webp" },
-                { name: "Europe", code: "EUR", flag: "/europe.png" }
+                { name: "Europe", code: "EUR", flag: "/europe.png" },
+                { name: "United States", code: "USA", flag: "https://flagcdn.com/w80/us.png" },
+                { name: "Hong Kong", code: "HKG", flag: "https://flagcdn.com/w80/hk.png" },
+                { name: "Japan", code: "JPN", flag: "https://flagcdn.com/w80/jp.png" }
               ].map((country) => (
                 <div key={country.code} className="regional-country-card">
                   <div className="regional-flag-wrapper">
@@ -571,7 +574,7 @@ const Home = () => {
               the most important transactions demand clarity, discipline, and judgment not noise.
             </p>
             <p className="section-description">
-              We are an independent transaction and investment advisory firm providing SPAC, capital markets, and transaction advisory solutions to corporates, investors, sponsors, and founders navigating complex transactions and capital events where the cost of getting it wrong is high.
+              We are an independent transaction and investment advisory firm providing SPAC merger, capital markets, and transaction advisory solutions to corporates, investors, sponsors, and founders navigating complex transactions and capital events where the cost of getting it wrong is high.
             </p>
             <p className="section-description">
               We advise clients across the entire transaction lifecycle from strategy formulation and opportunity identification to transaction structuring, financial modelling and valuation, capital markets execution, and post deal value creation. Our work is grounded in rigorous analysis, execution awareness, and a deep understanding of how capital markets behave under real conditions, not just on paper.
@@ -639,14 +642,14 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="about-subsection">
+          <div className="about-subsection about-subsection-commitment">
             <h3 className="subsection-title">Our Commitment</h3>
             <p className="section-description">
               At Rhine Advisory, we are guided by a simple principle:
             </p>
-            <p className="section-description highlight-text">
+            <blockquote className="about-principle">
               Good transactions are not defined by approval they are defined by execution.
-            </p>
+            </blockquote>
             <p className="section-description">
               We are committed to:
             </p>

@@ -359,10 +359,11 @@
 .about-subsection {
   max-width: 900px;
   margin: 50px auto;
-  padding: 40px;
+  padding: 48px 44px;
   background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04), 0 12px 40px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(196, 30, 58, 0.06);
 }
 
 .about-subsection-centered {
@@ -371,6 +372,8 @@
 
 .about-subsection-centered .subsection-image-wrapper {
   max-width: 500px;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
 }
 
 .about-subsection-centered .section-description {
@@ -379,43 +382,72 @@
   margin-right: auto;
 }
 
+.about-subsection-centered .about-list {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.about-subsection-commitment {
+  border-left: 4px solid var(--primary-red);
+}
+
 .about-subsection:first-of-type {
   margin-top: 40px;
   padding-top: 40px;
 }
 
 .subsection-title {
-  font-size: 1.4rem;
-  font-weight: 600;
+  font-size: 1.5rem;
+  font-weight: 700;
   color: var(--dark-red);
-  margin-bottom: 20px;
-  line-height: 1.4;
+  margin-bottom: 24px;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+.about-principle {
+  margin: 28px 0 32px;
+  padding: 24px 28px 24px 28px;
+  border-left: 4px solid var(--primary-red);
+  background: linear-gradient(90deg, rgba(196, 30, 58, 0.06) 0%, transparent 100%);
+  border-radius: 0 10px 10px 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--dark-red);
+  line-height: 1.6;
+  max-width: 720px;
 }
 
 .about-list {
   list-style: none;
-  padding: 0;
-  margin: 20px 0 25px;
+  padding: 24px 28px 24px 28px;
+  margin: 26px 0 30px;
   max-width: 850px;
+  border-left: 4px solid var(--primary-red);
+  background: linear-gradient(90deg, rgba(196, 30, 58, 0.06) 0%, transparent 100%);
+  border-radius: 0 10px 10px 0;
 }
 
 .about-list li {
-  font-size: 1.05rem;
-  color: var(--text-light);
+  font-size: 1.06rem;
+  color: var(--text-dark);
+  font-style: italic;
   line-height: 1.8;
-  margin-bottom: 12px;
-  padding-left: 25px;
+  margin-bottom: 16px;
+  padding-left: 0;
   position: relative;
 }
 
-.about-list li::before {
-  content: '•';
-  position: absolute;
-  left: 0;
-  color: var(--primary-red);
-  font-weight: bold;
-  font-size: 1.3rem;
-  line-height: 1.4;
+.about-list li:last-child {
+  margin-bottom: 0;
+}
+
+.about-subsection .section-description {
+  font-size: 1.06rem;
+  line-height: 1.8;
+  color: var(--text-dark);
+  margin-bottom: 18px;
 }
 
 /* Responsive styles for About section */
@@ -444,22 +476,33 @@
 
   .about-subsection {
     margin: 40px auto;
-    padding: 30px 20px;
+    padding: 32px 24px;
   }
 
   .subsection-title {
-    font-size: 1.2rem;
-    margin-bottom: 18px;
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+  }
+
+  .about-principle {
+    margin: 22px 0 26px;
+    padding: 20px 22px;
+    font-size: 1.1rem;
   }
 
   .about-list {
-    margin: 18px 0 22px;
+    margin: 22px 0 26px;
+    padding: 20px 22px;
   }
 
   .about-list li {
     font-size: 1rem;
-    margin-bottom: 10px;
-    padding-left: 22px;
+    margin-bottom: 12px;
+  }
+
+  .about-subsection .section-description {
+    font-size: 1rem;
+    margin-bottom: 16px;
   }
 }
 
@@ -483,15 +526,21 @@
   }
 
   .about-subsection {
-    padding: 25px 15px;
+    padding: 28px 18px;
   }
 
   .subsection-title {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
+  }
+
+  .about-principle {
+    padding: 20px 20px;
+    font-size: 1.05rem;
   }
 
   .about-list li {
     font-size: 0.95rem;
+    margin-bottom: 10px;
   }
 
   .about-image-wrapper,

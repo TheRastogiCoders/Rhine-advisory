@@ -1,10 +1,10 @@
-import React, { useState, useCallback, useEffect } from 'react'
+import React, { useState, useCallback, useEffect, useRef } from 'react'
 import { FaSitemap, FaChartBar, FaChartLine } from 'react-icons/fa'
 import '../styles/resources.css'
 
 const latestReports = [
-  { id: 1, title: '2026 IPO Outlook', subtitle: 'IPO trends and outlook for 2026', image: '/iStock-1395448518.jpg', authors: null, comingSoon: false },
-  { id: 2, title: 'Pre IPO Analysis - SPACEX', subtitle: 'Analysis and insights on SPACEX pre-IPO', image: '/iStock-2152298806.jpg', authors: null, comingSoon: false, viewOnlyPdfUrl: '/Pre%20IPO%20Analysis%20-%20SPACEX.pdf' },
+  { id: 1, title: '2026 IPO Outlook', subtitle: 'IPO trends and outlook for 2026', image: '/iStock-1395448518.jpg', authors: null, comingSoon: false, viewOnlyPdfUrl: '/IPO%20Outlook%20Report%20-%20Rhine%20Advisory.pdf' },
+  { id: 2, title: 'Pre IPO Analysis - SPACEX', subtitle: 'Analysis and insights on SPACEX pre-IPO', image: '/iStock-2152298806.jpg', authors: null, comingSoon: false, viewOnlyPdfUrl: '/Pre%20IPO%20Analysis%20-%20SPACEX.pdf', restricted: true },
   { id: 3, title: 'M&A Cheat Sheet for HR', subtitle: 'Essential M&A guidance for HR leaders', image: '/iStock-1444490817.jpg', authors: null, comingSoon: false },
   { id: 4, title: 'Guide to Green Investing with Insurers', subtitle: 'Sustainable investing and insurer perspectives', image: '/iStock-2190159060.jpg', authors: null, comingSoon: false },
   { id: 5, title: 'GCC Capital Market Outlook - 2026', subtitle: 'Liquidity and valuation trends across GCC markets', image: '/iStock-1170740969 1.jpg', authors: null, comingSoon: true },
@@ -18,6 +18,23 @@ const monthlyReports = [
     description: 'Our latest economic outlook and market perspectives for 2026 — key themes, regional insights, and strategic considerations for investors and decision-makers.',
     authors: 'Rhine Advisory',
     pdfUrl: '/Economic_Outlook_2026_Newsletter.pdf',
+    comingSoon: false,
+  },
+  {
+    date: 'February 2026',
+    title: 'February Newsletter 2026',
+    description: 'Coming soon — economic outlook and market perspectives for February 2026.',
+    authors: 'Rhine Advisory',
+    pdfUrl: null,
+    comingSoon: true,
+  },
+  {
+    date: 'March 2026',
+    title: 'March Newsletter 2026',
+    description: 'Coming soon — economic outlook and market perspectives for March 2026.',
+    authors: 'Rhine Advisory',
+    pdfUrl: null,
+    comingSoon: true,
   },
 ]
 
@@ -25,42 +42,42 @@ const LatestReportCard = React.memo(function LatestReportCard ({ report, onDownl
   const isViewOnly = !!report.viewOnlyPdfUrl
   return (
     <article className={`latest-report-card ${report.comingSoon ? 'is-coming-soon' : ''}`}>
-      {report.comingSoon && (
-        <div className="latest-report-coming-soon">Coming Soon</div>
-      )}
       <div className="latest-report-card-image">
         <img src={report.image} alt="" loading="lazy" decoding="async" />
         <div className="latest-report-card-overlay" />
-      </div>
-      <div className="latest-report-card-content">
-        <h3 className="latest-report-card-title">{report.title}</h3>
-        <p className="latest-report-card-subtitle">{report.subtitle}</p>
-        {report.authors && (
-          <p className="latest-report-card-authors">{report.authors}</p>
+        {report.comingSoon && (
+          <div className="latest-report-coming-soon">Coming Soon</div>
         )}
-        {!report.comingSoon && (
-          <div className="latest-report-card-actions">
-            {isViewOnly ? (
-              <button
-                type="button"
-                className="latest-report-action-btn latest-report-view-btn"
-                aria-label="View document"
-                onClick={() => onViewOnlyClick(report)}
-              >
-                <span className="action-icon">✓</span> View
-              </button>
-            ) : (
-              <button
-                type="button"
-                className="latest-report-action-btn latest-report-view-btn"
-                aria-label="View"
-                onClick={onDownloadClick}
-              >
-                <span className="action-icon">✓</span> View
-              </button>
-            )}
-          </div>
-        )}
+        <div className="latest-report-card-content">
+          <h3 className="latest-report-card-title">{report.title}</h3>
+          <p className="latest-report-card-subtitle">{report.subtitle}</p>
+          {report.authors && (
+            <p className="latest-report-card-authors">{report.authors}</p>
+          )}
+          {!report.comingSoon && (
+            <div className="latest-report-card-actions">
+              {isViewOnly ? (
+                <button
+                  type="button"
+                  className="latest-report-action-btn latest-report-view-btn"
+                  aria-label="View document"
+                  onClick={() => onViewOnlyClick(report)}
+                >
+                  <span className="action-icon">✓</span> View
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  className="latest-report-action-btn latest-report-view-btn"
+                  aria-label="View"
+                  onClick={onDownloadClick}
+                >
+                  <span className="action-icon">✓</span> View
+                </button>
+              )}
+            </div>
+          )}
+        </div>
       </div>
     </article>
   )
@@ -72,23 +89,51 @@ const Resources = () => {
   const [subscribeEmail, setSubscribeEmail] = useState('')
   const [newsletterEmail, setNewsletterEmail] = useState('')
   const [viewOnlyPdfReport, setViewOnlyPdfReport] = useState(null)
-  const [currentMonthlyIndex, setCurrentMonthlyIndex] = useState(0)
-
-  const monthlyDotCount = Math.max(4, monthlyReports.length)
+  const [showNoPermissionModal, setShowNoPermissionModal] = useState(false)
+  const [reportPendingDownload, setReportPendingDownload] = useState(null)
+  const [downloadNewsletterPdfOnNewsletterSubmit, setDownloadNewsletterPdfOnNewsletterSubmit] = useState(true)
+  const latestReportsScrollRef = useRef(null)
 
   useEffect(() => {
+    const el = latestReportsScrollRef.current
+    if (!el) return
+    const step = el.clientWidth
+    const maxScroll = el.scrollWidth - el.clientWidth
+    if (maxScroll <= 0) return
     const interval = setInterval(() => {
-      setCurrentMonthlyIndex((prev) => (prev + 1) % monthlyDotCount)
+      const next = el.scrollLeft + step
+      if (next >= maxScroll) {
+        el.scrollTo({ left: 0, behavior: 'smooth' })
+      } else {
+        el.scrollTo({ left: next, behavior: 'smooth' })
+      }
     }, 4000)
     return () => clearInterval(interval)
-  }, [monthlyDotCount])
+  }, [latestReports.length])
 
   const handleDownloadReportClick = useCallback(() => {
+    setDownloadNewsletterPdfOnNewsletterSubmit(true)
+    setReportPendingDownload(null)
     setShowSubscribeMonthlyModal(true)
   }, [])
 
+  const handleGetReportFromViewModal = useCallback(() => {
+    if (viewOnlyPdfReport?.viewOnlyPdfUrl) {
+      setReportPendingDownload(viewOnlyPdfReport)
+      setDownloadNewsletterPdfOnNewsletterSubmit(false)
+      setViewOnlyPdfReport(null)
+      setShowSubscribeMonthlyModal(true)
+    }
+  }, [viewOnlyPdfReport])
+
   const handleViewOnlyClick = useCallback((report) => {
-    setViewOnlyPdfReport(report)
+    if (report.restricted) {
+      setShowNoPermissionModal(true)
+      return
+    }
+    setReportPendingDownload(report)
+    setDownloadNewsletterPdfOnNewsletterSubmit(false)
+    setShowSubscribeMonthlyModal(true)
   }, [])
 
   const closeViewOnlyModal = useCallback(() => {
@@ -99,6 +144,10 @@ const Resources = () => {
     e.preventDefault()
     const email = e.target.email.value
     if (!email?.trim()) return
+    if (reportPendingDownload?.viewOnlyPdfUrl) {
+      window.open(reportPendingDownload.viewOnlyPdfUrl, '_blank')
+      setReportPendingDownload(null)
+    }
     setSubscribeEmail(email)
     setShowSubscribeMonthlyModal(false)
     setShowNewsletterModal(true)
@@ -110,7 +159,10 @@ const Resources = () => {
     setShowNewsletterModal(false)
     setNewsletterEmail('')
     setSubscribeEmail('')
-    window.open('/Economic_Outlook_2026_Newsletter.pdf', '_blank')
+    if (downloadNewsletterPdfOnNewsletterSubmit) {
+      window.open('/Economic_Outlook_2026_Newsletter.pdf', '_blank')
+    }
+    setDownloadNewsletterPdfOnNewsletterSubmit(true)
   }
 
   return (
@@ -126,7 +178,7 @@ const Resources = () => {
       <section className="latest-reports">
         <div className="container">
           <h2 className="latest-reports-title">LATEST REPORTS</h2>
-          <div className="latest-reports-grid">
+          <div className="latest-reports-grid" ref={latestReportsScrollRef}>
             {latestReports.map((report) => (
               <LatestReportCard
                 key={report.id}
@@ -143,45 +195,29 @@ const Resources = () => {
       <section className="monthly-reports">
         <div className="container">
           <div className="monthly-reports-header">
-            <h2 className="monthly-reports-title">MONTHLY REPORTS</h2>
+            <h2 className="monthly-reports-title">MONTHLY NEWSLETTERS</h2>
           </div>
           <div className="monthly-reports-grid">
-            {monthlyReports.length > 0 && (() => {
-              const reportIndex = Math.min(currentMonthlyIndex, monthlyReports.length - 1)
-              const report = monthlyReports[reportIndex]
-              if (!report) return null
-              return (
-                <article key={reportIndex} className="monthly-report-card">
-                  <time className="monthly-report-date">{report.date}</time>
-                  <h3 className="monthly-report-title">{report.title}</h3>
-                  {report.description && (
-                    <p className="monthly-report-description">{report.description}</p>
-                  )}
-                  <p className="monthly-report-authors">{report.authors}</p>
-                  {report.pdfUrl && (
-                    <button
-                      type="button"
-                      className="monthly-report-download-btn"
-                      onClick={handleDownloadReportClick}
-                    >
-                      Download
-                    </button>
-                  )}
-                </article>
-              )
-            })()}
-          </div>
-          <div className="monthly-reports-pagination" role="tablist" aria-label="Monthly reports">
-            {Array.from({ length: monthlyDotCount }, (_, index) => (
-              <button
-                key={index}
-                type="button"
-                role="tab"
-                aria-selected={index === currentMonthlyIndex}
-                aria-label={`Report ${index + 1}`}
-                className={`pagination-dot ${index === currentMonthlyIndex ? 'active' : ''}`}
-                onClick={() => setCurrentMonthlyIndex(index)}
-              />
+            {monthlyReports.map((report, index) => (
+              <article key={index} className={`monthly-report-card ${report.comingSoon ? 'monthly-report-card-coming-soon' : ''}`}>
+                <time className="monthly-report-date">{report.date}</time>
+                <h3 className="monthly-report-title">{report.title}</h3>
+                {report.description && (
+                  <p className="monthly-report-description">{report.description}</p>
+                )}
+                <p className="monthly-report-authors">{report.authors}</p>
+                {report.comingSoon ? (
+                  <span className="monthly-report-coming-soon">Coming Soon</span>
+                ) : report.pdfUrl ? (
+                  <button
+                    type="button"
+                    className="monthly-report-download-btn"
+                    onClick={handleDownloadReportClick}
+                  >
+                    Download
+                  </button>
+                ) : null}
+              </article>
             ))}
           </div>
         </div>
@@ -205,6 +241,7 @@ const Resources = () => {
               <span className="research-stat-label">Industries</span>
             </div>
           </div>
+          <p className="report-profile-more">…and many more to come.</p>
         </div>
       </section>
 
@@ -317,7 +354,7 @@ const Resources = () => {
         </div>
       )}
 
-      {/* ================= View-only PDF popup (no download) ================= */}
+      {/* ================= View-only PDF popup (with Get report for download) ================= */}
       {viewOnlyPdfReport && viewOnlyPdfReport.viewOnlyPdfUrl && (
         <div className="report-view-only-overlay" onClick={closeViewOnlyModal}>
           <div className="report-view-only-modal" onClick={(e) => e.stopPropagation()}>
@@ -332,7 +369,24 @@ const Resources = () => {
                 className="report-view-only-iframe"
               />
             </div>
-            <p className="report-view-only-notice">This document is for viewing only. Download is not available.</p>
+            <div className="report-view-only-footer">
+              <p className="report-view-only-notice">Enter your email in the form to receive a download link for this report.</p>
+              <button type="button" className="report-view-only-get-btn" onClick={handleGetReportFromViewModal}>
+                Get report
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ================= No permission to view report ================= */}
+      {showNoPermissionModal && (
+        <div className="report-modal-overlay" onClick={() => setShowNoPermissionModal(false)}>
+          <div className="report-modal report-modal-footer-theme" onClick={(e) => e.stopPropagation()}>
+            <button type="button" className="report-modal-close" onClick={() => setShowNoPermissionModal(false)} aria-label="Close">×</button>
+            <h3 className="report-modal-title">Access restricted</h3>
+            <p className="report-modal-desc">You do not have permission to view this report.</p>
+            <button type="button" className="btn btn-primary report-modal-submit" onClick={() => setShowNoPermissionModal(false)}>Close</button>
           </div>
         </div>
       )}

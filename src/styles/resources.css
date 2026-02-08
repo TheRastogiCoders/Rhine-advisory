@@ -71,15 +71,46 @@
   position: relative;
 }
 
+.resources .latest-reports .container {
+  overflow: hidden;
+  padding: 0 20px;
+}
+
 .resources .latest-reports-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 12px;
   position: relative;
   z-index: 1;
 }
 
+.resources .latest-reports-grid::-webkit-scrollbar {
+  height: 8px;
+}
+
+.resources .latest-reports-grid::-webkit-scrollbar-track {
+  background: rgba(196, 30, 58, 0.08);
+  border-radius: 4px;
+}
+
+.resources .latest-reports-grid::-webkit-scrollbar-thumb {
+  background: rgba(196, 30, 58, 0.35);
+  border-radius: 4px;
+}
+
 .resources .latest-report-card {
+  flex: 0 0 100%;
+  min-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
   border-radius: 12px;
   overflow: hidden;
   background: var(--white);
@@ -95,7 +126,7 @@
   position: absolute;
   top: 16px;
   right: 16px;
-  z-index: 2;
+  z-index: 3;
   padding: 8px 16px;
   background: var(--dark-red);
   color: var(--white);
@@ -109,7 +140,7 @@
 
 .resources .latest-report-card-image {
   position: relative;
-  height: 200px;
+  height: 420px;
   overflow: hidden;
 }
 
@@ -123,36 +154,44 @@
 .resources .latest-report-card-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.75) 100%);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.85) 100%);
 }
 
 .resources .latest-report-card-content {
-  padding: 24px;
-  position: relative;
-  min-width: 0;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 0;
+  z-index: 2;
+  max-width: 100%;
 }
 
 .resources .latest-report-card-title {
-  font-size: 1.2rem;
+  font-size: 1.35rem;
   font-weight: 700;
-  color: var(--primary-red);
+  color: var(--white);
   margin-bottom: 8px;
   line-height: 1.35;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 .resources .latest-report-card-subtitle {
-  font-size: 0.95rem;
-  color: var(--text-dark);
-  line-height: 1.5;
-  margin-bottom: 12px;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.95);
+  line-height: 1.45;
+  margin-bottom: 16px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
 }
 
 .resources .latest-report-card-authors {
   font-size: 0.85rem;
-  color: var(--text-light);
-  margin-bottom: 16px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--very-light-red);
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 12px;
 }
 
 .resources .latest-report-card-actions {
@@ -164,15 +203,15 @@
   width: 100%;
 }
 
-/* Shared style for all report action buttons (same as Pre IPO View button) */
+/* View button: transparent with red hover */
 .resources .latest-report-action-btn {
   height: 40px;
   min-height: 40px;
   flex: 1 1 0;
   min-width: 0;
   border-radius: 8px;
-  border: 2px solid var(--primary-red);
-  background: var(--primary-red);
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  background: transparent;
   color: var(--white);
   cursor: pointer;
   display: flex;
@@ -181,6 +220,13 @@
   box-sizing: border-box;
   font-size: 0.9rem;
   font-weight: 600;
+  transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+
+.resources .latest-report-action-btn:hover {
+  background: var(--primary-red);
+  border-color: var(--primary-red);
+  color: var(--white);
 }
 
 .resources .latest-report-action-btn .action-icon {
@@ -188,7 +234,6 @@
   font-weight: 700;
 }
 
-/* Pre IPO single View button – same base, fills row */
 .resources .latest-report-view-btn {
   flex: 1 1 auto;
   padding: 0 12px;
@@ -272,14 +317,39 @@
   display: block;
 }
 
-.report-view-only-notice {
-  padding: 12px 20px;
-  font-size: 0.9rem;
-  color: var(--text-light);
+.report-view-only-footer {
+  padding: 16px 20px;
   background: var(--very-light-red);
-  margin: 0;
-  text-align: center;
   border-top: 1px solid rgba(196, 30, 58, 0.15);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.report-view-only-notice {
+  font-size: 0.9rem;
+  color: var(--text-dark);
+  margin: 0;
+  flex: 1 1 200px;
+}
+
+.report-view-only-get-btn {
+  padding: 10px 24px;
+  background: var(--primary-red);
+  color: var(--white);
+  border: 2px solid var(--primary-red);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.report-view-only-get-btn:hover {
+  background: var(--dark-red);
+  border-color: var(--dark-red);
 }
 
 /* ================= MONTHLY REPORTS (footer colour theme) ================= */
@@ -318,19 +388,16 @@
 }
 
 .resources .monthly-reports-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 24px;
-  max-width: 1000px;
+  max-width: 1100px;
   margin: 0 auto;
 }
 
 .resources .monthly-report-card {
-  flex: 0 1 calc(50% - 12px);
-  min-width: 280px;
-  max-width: 488px;
   padding: 28px;
+  min-width: 0;
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 8px;
   background: rgba(0, 0, 0, 0.15);
@@ -368,6 +435,18 @@
   font-size: 0.9rem;
   color: var(--faded-red);
   margin: 0;
+}
+
+@media (max-width: 900px) {
+  .resources .monthly-reports-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .resources .monthly-reports-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .resources .monthly-reports-pagination {
@@ -467,6 +546,14 @@
   font-size: 1.05rem;
   font-weight: 500;
   color: var(--text-dark);
+}
+
+.resources .report-profile-more {
+  text-align: center;
+  font-size: 1rem;
+  color: var(--text-light);
+  margin: 28px 0 0 0;
+  font-style: italic;
 }
 
 /* ================= RESEARCH RESPONSIBILITY SECTION ================= */
@@ -646,6 +733,23 @@
 .resources .monthly-report-download-btn:hover {
   background: rgba(255, 255, 255, 0.3);
   border-color: var(--white);
+}
+
+.resources .monthly-report-coming-soon {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 10px 24px;
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: default;
+}
+
+.resources .monthly-report-card-coming-soon .monthly-report-coming-soon {
+  letter-spacing: 0.5px;
 }
 
 /* ================= REPORT MODALS (Subscribe + Newsletter, footer theme) ================= */
@@ -985,8 +1089,12 @@
     margin-bottom: 28px;
   }
 
-  .resources .latest-reports-grid {
-    grid-template-columns: 1fr;
+  .resources .latest-report-card {
+    flex: 0 0 100%;
+    min-width: 100%;
+  }
+  .resources .latest-report-card-image {
+    height: 360px;
   }
 
   .resources .monthly-reports {
@@ -997,9 +1105,8 @@
     font-size: 1.85rem;
   }
 
-  .resources .monthly-report-card {
-    flex: 1 1 100%;
-    max-width: none;
+  .resources .monthly-reports-grid {
+    grid-template-columns: 1fr;
   }
 
   .resources .report-profile {
