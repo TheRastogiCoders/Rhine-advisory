@@ -9,6 +9,7 @@ import Team from './pages/Team'
 import Resources from './pages/Resources'
 import RhinePRMarketing from './pages/RhinePRMarketing'
 import RhineHR from './pages/RhineHR'
+import Careers from './pages/Careers'
 import './styles/main.css'
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <Route path="/rhine-pr-marketing" element={<RhinePRMarketing />} />
           <Route path="/rhine-hr" element={<RhineHR />} />
           <Route path="/team" element={<Team />} />
+          <Route path="/careers" element={<Careers />} />
         </Routes>
         <Footer />
         <FloatingButtons />

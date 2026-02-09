@@ -185,6 +185,15 @@ const Navbar = () => {
               Team
             </Link>
           </li>
+          <li>
+            <Link 
+              to="/careers" 
+              className={isActive('/careers') ? 'active' : ''}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Careers
+            </Link>
+          </li>
         </ul>
       </div>
     </nav>
