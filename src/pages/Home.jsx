@@ -263,7 +263,7 @@ const Home = () => {
       title: "IT Asset Management",
       summary: "Manage every asset with accuracy, compliance, and confidence across the full lifecycle.",
       description:
-        "IT asset management today goes far beyond spreadsheets — it's about governance, cost control, and performance visibility. We deliver a complete, end-to-end framework for managing IT assets across their entire lifecycle — from verification and tagging to valuation, tracking, and audit readiness. We help enterprises and government entities across the UAE and GCC gain full visibility into their hardware and software portfolios, simplify complex IT environments, and maintain financial and regulatory compliance. By combining field services, software (EAMS), and real-time data, we enable organizations to reduce losses, improve utilization, and make smarter IT investment decisions.",
+        "IT asset management today goes far beyond spreadsheets — it's about governance, cost control, and performance visibility. We deliver a complete, end-to-end framework for managing IT assets across their entire lifecycle — from verification and tagging to valuation, tracking, and audit readiness. We help enterprises and government entities across the UAE and GCC gain full visibility into their hardware and software portfolios, simplify complex IT environments, and maintain financial and regulatory compliance. By combining field services, software (RAMS — Rhine Advisory Asset Management Software), and real-time data, we enable organizations to reduce losses, improve utilization, and make smarter IT investment decisions.",
       subsections: [
         {
           title: "Verification, Tagging & Reconciliation",
@@ -276,7 +276,7 @@ const Home = () => {
           ]
         },
         {
-          title: "EAMS — Asset Management Software",
+          title: "RAMS — Rhine Advisory Asset Management Software",
           description: "Browser-based platform to centralize asset data, track movement and generate audit-ready reports.",
           items: [
             "Browser-based and cloud-accessible",
