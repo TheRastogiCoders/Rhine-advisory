@@ -30,7 +30,8 @@ const Contact = () => {
     'Investment Solutions & Advisory',
     'Valuation & Financial Modeling',
     'Capital Markets Advisory',
-    'Fund Administration and Accounting'
+    'Fund Administration and Accounting',
+    'IT Asset Management'
   ]
 
   const handleSubmit = async (e) => {

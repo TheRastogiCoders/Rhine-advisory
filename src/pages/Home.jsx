@@ -47,7 +47,8 @@ const Home = () => {
     'Investment Solutions & Advisory',
     'Valuation & Financial Modeling',
     'Capital Markets Advisory',
-    'Fund Administration and Accounting'
+    'Fund Administration and Accounting',
+    'IT Asset Management'
   ]
 
   const serviceDetails = [
@@ -254,6 +255,64 @@ const Home = () => {
             "Admin Process",
             "Fund Setup",
             "Preparing Report",
+          ]
+        }
+      ]
+    },
+    {
+      title: "IT Asset Management",
+      summary: "Manage every asset with accuracy, compliance, and confidence across the full lifecycle.",
+      description:
+        "IT asset management today goes far beyond spreadsheets — it's about governance, cost control, and performance visibility. We deliver a complete, end-to-end framework for managing IT assets across their entire lifecycle — from verification and tagging to valuation, tracking, and audit readiness. We help enterprises and government entities across the UAE and GCC gain full visibility into their hardware and software portfolios, simplify complex IT environments, and maintain financial and regulatory compliance. By combining field services, software (EAMS), and real-time data, we enable organizations to reduce losses, improve utilization, and make smarter IT investment decisions.",
+      subsections: [
+        {
+          title: "Verification, Tagging & Reconciliation",
+          description: "Maintain up-to-date asset registers and eliminate discrepancies between physical and financial records.",
+          items: [
+            "Fixed-asset register accuracy across sites",
+            "Industry-standard barcodes and RFID tagging",
+            "Chain of custody and movement history",
+            "Faster audits and fewer write-offs"
+          ]
+        },
+        {
+          title: "EAMS — Asset Management Software",
+          description: "Browser-based platform to centralize asset data, track movement and generate audit-ready reports.",
+          items: [
+            "Browser-based and cloud-accessible",
+            "Customizable interface and workflows",
+            "Asset movement tracking",
+            "Single install to simplify upkeep"
+          ]
+        },
+        {
+          title: "Inventory Audit Services",
+          description: "Independent physical audits that validate the register, document discrepancies and deliver a remediation plan.",
+          items: [
+            "Complete asset visibility — history, status, and location in one verified register",
+            "Improved financial accuracy — balance sheets and inventory values reflect what the business owns",
+            "Faster audits and reporting — month- and year-end closures with ready, verified data",
+            "Stronger compliance and governance — auditable proof of ownership for regulators, investors, and insurers"
+          ]
+        },
+        {
+          title: "Valuation & Cost Allocation",
+          description: "Establish fair values and allocate costs by business unit or use, with clear documentation for finance and audit.",
+          items: [
+            "Realistic capital asset values",
+            "Transparent financial allocation",
+            "Cost allocation by usage, lifecycle, or department",
+            "Smarter investment decisions"
+          ]
+        },
+        {
+          title: "RTLS & GIS Tracking",
+          description: "Real-time visibility of assets through location-based monitoring systems. See high-value assets on a live map.",
+          items: [
+            "Location precision without line-of-sight",
+            "Track asset movement metrics",
+            "Reduce losses and optimize utilization",
+            "Reduce search time for high-value assets"
           ]
         }
       ]
