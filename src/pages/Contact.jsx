@@ -28,7 +28,7 @@ const Contact = () => {
     'SPAC Merger Advisory Services',
     'Transaction Advisory Services',
     'Investment Solutions & Advisory',
-    'Valuation & Financial Modeling',
+    'Comprehensive Business Valuation & Advisory Services',
     'Capital Markets Advisory',
     'Fund Administration and Accounting',
     'Asset Management Valuation'

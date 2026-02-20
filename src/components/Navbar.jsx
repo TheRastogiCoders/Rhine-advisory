@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import '../styles/navbar.css'
 
@@ -29,6 +30,39 @@ const Navbar = () => {
     }
     return () => document.removeEventListener('click', handleClickOutside)
   }, [initiativesOpen])
+
+  // Close Rhine Initiatives dropdown when mobile menu closes
+  useEffect(() => {
+    if (!isMobileMenuOpen) setInitiativesOpen(false)
+  }, [isMobileMenuOpen])
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden'
+      document.documentElement.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+      document.documentElement.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+      document.documentElement.style.overflow = ''
+    }
+  }, [isMobileMenuOpen])
+
+  // Close menu on Escape
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape') {
+        setIsMobileMenuOpen(false)
+      }
+    }
+    if (isMobileMenuOpen) {
+      document.addEventListener('keydown', handleEscape)
+    }
+    return () => document.removeEventListener('keydown', handleEscape)
+  }, [isMobileMenuOpen])
 
   const isActive = (path) => location.pathname === path
 
@@ -73,130 +107,125 @@ const Navbar = () => {
     }
   }
 
-  return (
-    <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
-      <div className="navbar-container">
-        <Link to="/" className="navbar-logo" onClick={handleHomeClick}>
-          <img src={logoSrc} alt="Rhine Advisory" />
-          <span></span>
-        </Link>
-        
-        <button 
-          className="mobile-menu-toggle"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label="Toggle menu"
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-
-        <ul className={`navbar-menu ${isMobileMenuOpen ? 'active' : ''}`}>
+  const mobileMenuContent = (
+    <div className="navbar-mobile-portal">
+      <div
+        className="navbar-backdrop active"
+        onClick={() => setIsMobileMenuOpen(false)}
+        aria-hidden="true"
+      />
+      <div className="navbar-menu-wrapper active">
+        <div className="navbar-drawer-header">
+          <Link to="/" className="navbar-drawer-logo" onClick={handleHomeClick} aria-label="Rhine Advisory home">
+            <img src={logoSrc} alt="" />
+          </Link>
+          <button
+            type="button"
+            className="navbar-drawer-close"
+            onClick={() => setIsMobileMenuOpen(false)}
+            aria-label="Close menu"
+          >
+            ×
+          </button>
+        </div>
+        <ul id="main-nav-menu" className="navbar-menu" role="navigation" aria-label="Main menu">
           <li>
-            <a 
-              href="#"
-              className={location.pathname === '/' && activeSection === 'home' ? 'active' : ''}
-              onClick={handleHomeClick}
-            >
-              Home
-            </a>
+            <a href="#" className={location.pathname === '/' && activeSection === 'home' ? 'active' : ''} onClick={handleHomeClick}>Home</a>
           </li>
           <li>
-            <a 
-              href="#about-section"
-              className={activeSection === 'about-section' ? 'active' : ''}
-              onClick={(e) => handleNavClick(e, 'about-section')}
-            >
-              About
-            </a>
+            <a href="#about-section" className={activeSection === 'about-section' ? 'active' : ''} onClick={(e) => handleNavClick(e, 'about-section')}>About</a>
           </li>
           <li>
-            <a 
-              href="#services-section"
-              className={activeSection === 'services-section' ? 'active' : ''}
-              onClick={(e) => handleNavClick(e, 'services-section')}
-            >
-              Services
-            </a>
+            <a href="#services-section" className={activeSection === 'services-section' ? 'active' : ''} onClick={(e) => handleNavClick(e, 'services-section')}>Services</a>
           </li>
           <li>
-            <a 
-              href="#who-we-serve-section"
-              className={activeSection === 'who-we-serve-section' ? 'active' : ''}
-              onClick={(e) => handleNavClick(e, 'who-we-serve-section')}
-            >
-              Who We Serve
-            </a>
+            <a href="#who-we-serve-section" className={activeSection === 'who-we-serve-section' ? 'active' : ''} onClick={(e) => handleNavClick(e, 'who-we-serve-section')}>Who We Serve</a>
           </li>
           <li>
-            <a 
-              href="#contact-section"
-              className={activeSection === 'contact-section' ? 'active' : ''}
-              onClick={(e) => handleNavClick(e, 'contact-section')}
-            >
-              Contact
-            </a>
+            <a href="#contact-section" className={activeSection === 'contact-section' ? 'active' : ''} onClick={(e) => handleNavClick(e, 'contact-section')}>Contact</a>
           </li>
           <li className="nav-item-initiatives">
             <button
               type="button"
+              id="rhine-initiatives-trigger"
               className={`navbar-dropdown-trigger ${initiativesOpen ? 'open' : ''}`}
               onClick={() => setInitiativesOpen(!initiativesOpen)}
               aria-expanded={initiativesOpen}
               aria-haspopup="true"
+              aria-controls="rhine-initiatives-menu"
+              aria-label={initiativesOpen ? 'Close Rhine Initiatives submenu' : 'Open Rhine Initiatives submenu'}
             >
               Rhine Initiatives
-              <span className="dropdown-chevron">▼</span>
+              <span className="dropdown-chevron" aria-hidden="true">▼</span>
             </button>
-            <ul className={`navbar-dropdown ${initiativesOpen ? 'open' : ''}`}>
-              <li>
-                <Link
-                  to="/rhine-pr-marketing"
-                  onClick={() => { setInitiativesOpen(false); setIsMobileMenuOpen(false); }}
-                >
-                  Rhine PR & Marketing
-                </Link>
+            <ul id="rhine-initiatives-menu" className={`navbar-dropdown ${initiativesOpen ? 'open' : ''}`} role="menu" aria-labelledby="rhine-initiatives-trigger" aria-hidden={!initiativesOpen}>
+              <li role="none">
+                <Link to="/rhine-pr-marketing" role="menuitem" onClick={() => { setInitiativesOpen(false); setIsMobileMenuOpen(false); }}>Rhine PR & Marketing</Link>
               </li>
-              <li>
-                <Link
-                  to="/rhine-hr"
-                  onClick={() => { setInitiativesOpen(false); setIsMobileMenuOpen(false); }}
-                >
-                  Rhine HR
-                </Link>
+              <li role="none">
+                <Link to="/rhine-hr" role="menuitem" onClick={() => { setInitiativesOpen(false); setIsMobileMenuOpen(false); }}>Rhine HR</Link>
               </li>
             </ul>
           </li>
           <li>
-            <Link 
-              to="/research-insights" 
-              className={isActive('/research-insights') ? 'active' : ''}
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Research & Insights
-            </Link>
+            <Link to="/research-insights" className={isActive('/research-insights') ? 'active' : ''} onClick={() => setIsMobileMenuOpen(false)}>Research & Insights</Link>
           </li>
           <li>
-            <Link 
-              to="/team" 
-              className={isActive('/team') ? 'active' : ''}
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Team
-            </Link>
+            <Link to="/team" className={isActive('/team') ? 'active' : ''} onClick={() => setIsMobileMenuOpen(false)}>Team</Link>
           </li>
           <li>
-            <Link 
-              to="/careers" 
-              className={isActive('/careers') ? 'active' : ''}
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Careers
-            </Link>
+            <Link to="/careers" className={isActive('/careers') ? 'active' : ''} onClick={() => setIsMobileMenuOpen(false)}>Careers</Link>
           </li>
         </ul>
       </div>
-    </nav>
+    </div>
+  )
+
+  return (
+    <>
+      {isMobileMenuOpen && typeof document !== 'undefined' && document.body && createPortal(mobileMenuContent, document.body)}
+
+      <nav className={`navbar ${isScrolled ? 'scrolled' : ''} ${isMobileMenuOpen ? 'menu-open' : ''}`}>
+        <div className="navbar-container">
+          <Link to="/" className="navbar-logo" onClick={handleHomeClick}>
+            <img src={logoSrc} alt="Rhine Advisory" />
+            <span></span>
+          </Link>
+          <button
+            type="button"
+            className={`mobile-menu-toggle ${isMobileMenuOpen ? 'active' : ''}`}
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="main-nav-menu"
+          >
+            <span className="hamburger-line" />
+            <span className="hamburger-line" />
+            <span className="hamburger-line" />
+          </button>
+          {/* Desktop: inline menu (hidden on mobile via CSS) */}
+          <div className="navbar-menu-wrapper">
+            <ul className="navbar-menu" role="navigation" aria-label="Main menu">
+              <li><a href="#" className={location.pathname === '/' && activeSection === 'home' ? 'active' : ''} onClick={handleHomeClick}>Home</a></li>
+              <li><a href="#about-section" className={activeSection === 'about-section' ? 'active' : ''} onClick={(e) => handleNavClick(e, 'about-section')}>About</a></li>
+              <li><a href="#services-section" className={activeSection === 'services-section' ? 'active' : ''} onClick={(e) => handleNavClick(e, 'services-section')}>Services</a></li>
+              <li><a href="#who-we-serve-section" className={activeSection === 'who-we-serve-section' ? 'active' : ''} onClick={(e) => handleNavClick(e, 'who-we-serve-section')}>Who We Serve</a></li>
+              <li><a href="#contact-section" className={activeSection === 'contact-section' ? 'active' : ''} onClick={(e) => handleNavClick(e, 'contact-section')}>Contact</a></li>
+              <li className="nav-item-initiatives">
+                <button type="button" id="rhine-initiatives-trigger-desk" className={`navbar-dropdown-trigger ${initiativesOpen ? 'open' : ''}`} onClick={() => setInitiativesOpen(!initiativesOpen)} aria-expanded={initiativesOpen} aria-haspopup="true" aria-controls="rhine-initiatives-menu-desk" aria-label={initiativesOpen ? 'Close Rhine Initiatives submenu' : 'Open Rhine Initiatives submenu'}>Rhine Initiatives <span className="dropdown-chevron" aria-hidden="true">▼</span></button>
+                <ul id="rhine-initiatives-menu-desk" className={`navbar-dropdown ${initiativesOpen ? 'open' : ''}`} role="menu" aria-labelledby="rhine-initiatives-trigger-desk" aria-hidden={!initiativesOpen}>
+                  <li role="none"><Link to="/rhine-pr-marketing" role="menuitem" onClick={() => setInitiativesOpen(false)}>Rhine PR & Marketing</Link></li>
+                  <li role="none"><Link to="/rhine-hr" role="menuitem" onClick={() => setInitiativesOpen(false)}>Rhine HR</Link></li>
+                </ul>
+              </li>
+              <li><Link to="/research-insights" className={isActive('/research-insights') ? 'active' : ''}>Research & Insights</Link></li>
+              <li><Link to="/team" className={isActive('/team') ? 'active' : ''}>Team</Link></li>
+              <li><Link to="/careers" className={isActive('/careers') ? 'active' : ''}>Careers</Link></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </>
   )
 }
 

@@ -1,0 +1,255 @@
+.service-detail-page {
+  min-height: 60vh;
+  padding: 40px 0 80px;
+  background: var(--light-gray, #f8f8f8);
+}
+
+.service-detail-section {
+  padding: 20px 0;
+}
+
+.service-detail-back {
+  display: inline-block;
+  margin-bottom: 24px;
+  color: var(--primary-red);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.service-detail-back:hover {
+  color: var(--dark-red);
+}
+
+.service-detail-back-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
+  text-align: left;
+}
+
+.service-detail-card {
+  background: var(--white);
+  border-radius: 14px;
+  padding: 48px 56px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  margin-bottom: 32px;
+}
+
+.service-detail-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--dark-red);
+  margin: 0 0 12px 0;
+  line-height: 1.3;
+}
+
+.service-detail-summary {
+  font-size: 1.15rem;
+  color: var(--text-light);
+  font-weight: 500;
+  margin: 0 0 24px 0;
+}
+
+.service-detail-description {
+  font-size: 1.1rem;
+  color: var(--text-dark);
+  line-height: 1.8;
+  margin: 0 0 40px 0;
+  padding-bottom: 32px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.service-detail-subsection {
+  margin-bottom: 36px;
+}
+
+.service-detail-subsection:last-child {
+  margin-bottom: 0;
+}
+
+.service-detail-subsection-title {
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--dark-red);
+  margin: 0 0 12px 0;
+}
+
+.service-detail-subsection-desc {
+  font-size: 1rem;
+  color: var(--text-light);
+  margin: 0 0 12px 0;
+  line-height: 1.6;
+}
+
+.service-detail-list {
+  margin: 0 0 8px 0;
+  padding-left: 24px;
+  color: var(--text-dark);
+  line-height: 1.8;
+}
+
+.service-detail-list li {
+  margin-bottom: 6px;
+}
+
+.service-detail-note {
+  margin: 16px 0 0 0;
+  font-style: italic;
+  color: var(--primary-red);
+  font-size: 1rem;
+}
+
+.service-detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+}
+
+.service-detail-actions .btn {
+  text-decoration: none;
+}
+
+/* ================= VALUATION SUB-SERVICES GRID (website colors) ================= */
+.service-detail-grid-wrapper {
+  margin-top: 32px;
+}
+
+.service-detail-grid-heading {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--dark-red);
+  margin: 0 0 20px 0;
+}
+
+.service-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  background: var(--very-light-red);
+  padding: 28px 24px;
+  border-radius: 12px;
+  border: 1px solid var(--faded-red);
+  margin-bottom: 24px;
+}
+
+.service-detail-grid-item {
+  display: block;
+  width: 100%;
+  padding: 14px 18px;
+  text-align: left;
+  background: var(--white);
+  border: 1px solid var(--faded-red);
+  border-radius: 8px;
+  color: var(--text-dark);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.service-detail-grid-item:hover {
+  background: var(--very-light-red);
+  border-color: var(--primary-red);
+  color: var(--dark-red);
+}
+
+/* ================= SUB-SERVICE FULL CONTENT PAGE ================= */
+.service-detail-subservice-card {
+  padding: 40px 56px;
+}
+
+.service-detail-parent-breadcrumb {
+  font-size: 0.95rem;
+  color: var(--primary-red);
+  font-weight: 600;
+  margin: 0 0 12px 0;
+}
+
+.service-detail-full-content {
+  margin-top: 24px;
+}
+
+.service-detail-full-description-block {
+  margin-bottom: 28px;
+}
+
+.service-detail-full-description-block .service-detail-full-description {
+  font-size: 1.1rem;
+  color: var(--text-dark);
+  line-height: 1.85;
+  margin: 0 0 1em 0;
+}
+
+.service-detail-full-description-block .service-detail-full-description:last-child {
+  margin-bottom: 0;
+}
+
+.service-detail-full-items {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.service-detail-full-items-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--dark-red);
+  margin: 0 0 14px 0;
+}
+
+.service-detail-full-list {
+  margin: 0;
+  padding-left: 24px;
+  color: var(--text-dark);
+  line-height: 1.8;
+}
+
+.service-detail-full-list li {
+  margin-bottom: 8px;
+}
+
+@media (max-width: 768px) {
+  .service-detail-page {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .service-detail-section .container {
+    padding-left: 20px;
+    padding-right: 20px;
+    box-sizing: border-box;
+  }
+
+  .service-detail-back,
+  .service-detail-back-btn {
+    display: inline-block;
+    padding: 14px 16px 14px 8px;
+    margin: 0 0 8px 0;
+    min-height: 48px;
+    min-width: 44px;
+    line-height: 1.4;
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+  }
+
+  .service-detail-card {
+    padding: 28px 24px;
+  }
+
+  .service-detail-title {
+    font-size: 1.65rem;
+  }
+
+  .service-detail-grid {
+    grid-template-columns: 1fr;
+    padding: 20px 16px;
+  }
+
+  .service-detail-subservice-card {
+    padding: 28px 24px;
+  }
+}

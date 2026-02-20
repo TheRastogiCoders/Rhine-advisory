@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { servicesList } from '../pages/Services'
 import '../styles/footer.css'
 
 const Footer = () => {
@@ -24,9 +25,28 @@ const Footer = () => {
         <div className="footer-section">
           <h4>Quick Links</h4>
           <ul>
+            <li><Link to="/">Home</Link></li>
             <li><Link to="/about">About Us</Link></li>
-            <li><Link to="/who-we-serve">Who We Serve</Link></li>
             <li><Link to="/services">Services</Link></li>
+            <li><Link to="/#who-we-serve-section">Who We Serve</Link></li>
+            <li><Link to="/#contact-section">Contact</Link></li>
+            <li><Link to="/research-insights">Research & Insights</Link></li>
+            <li><Link to="/rhine-pr-marketing">Rhine PR & Marketing</Link></li>
+            <li><Link to="/rhine-hr">Rhine HR</Link></li>
+            <li><Link to="/team">Team</Link></li>
+            <li><Link to="/careers">Careers</Link></li>
+          </ul>
+        </div>
+
+        {/* ===== OUR SERVICES ===== */}
+        <div className="footer-section footer-services">
+          <h4>Our Services</h4>
+          <ul>
+            {servicesList.map((service, index) => (
+              <li key={index}>
+                <Link to="/service/view" state={{ service }}>{service.title}</Link>
+              </li>
+            ))}
           </ul>
         </div>
 

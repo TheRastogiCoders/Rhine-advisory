@@ -10,6 +10,8 @@ import Resources from './pages/Resources'
 import RhinePRMarketing from './pages/RhinePRMarketing'
 import RhineHR from './pages/RhineHR'
 import Careers from './pages/Careers'
+import Services from './pages/Services'
+import ServiceDetail from './pages/ServiceDetail'
 import './styles/main.css'
 
 function App() {
@@ -26,6 +28,8 @@ function App() {
           <Route path="/rhine-hr" element={<RhineHR />} />
           <Route path="/team" element={<Team />} />
           <Route path="/careers" element={<Careers />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/service/view" element={<ServiceDetail />} />
         </Routes>
         <Footer />
         <FloatingButtons />

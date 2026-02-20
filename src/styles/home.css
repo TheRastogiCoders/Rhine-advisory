@@ -13,7 +13,7 @@
 
 /* ================= HOME PAGE ================= */
 .home {
-  margin-top: 85px;
+  margin-top: 0;
   background: #fafafa;
 }
 /* ================= HERO SECTION (LIGHT RED THEME) ================= */
@@ -25,6 +25,7 @@
     var(--light-red) 100%
   );
   padding: 100px 0 80px;
+  margin-top: 0;
   text-align: center;
   min-height: 100vh;
   display: flex;
