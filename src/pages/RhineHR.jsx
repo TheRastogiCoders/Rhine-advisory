@@ -88,6 +88,37 @@ const RhineHR = () => {
         </div>
       </section>
 
+      {/* ================= OUR TEAM ================= */}
+      <section className="rhine-hr-team section">
+        <div className="container">
+          <h2 className="section-title">Our Team</h2>
+          <div className="rhine-hr-team-card">
+            <div className="rhine-hr-team-photo" aria-hidden="true">
+              <img src="/howlee.png" alt="Heewon Lee" />
+            </div>
+            <div className="rhine-hr-team-body">
+              <h3 className="rhine-hr-team-name">Heewon Lee</h3>
+              <p className="rhine-hr-team-role">
+                Human Resources, Operations
+              </p>
+<p className="rhine-hr-team-dept">Business Development &amp; Operations</p>
+              <p className="rhine-hr-team-meta">Korean National</p>
+              <div className="rhine-hr-team-bio">
+                <p>
+                  Heewon Lee, Business Development &amp; Operations and a Korean National, supports promotions, distribution, and client relationship initiatives, contributing to the coordination of internal processes, workflows, and client-facing engagements that underpin the firm’s transaction advisory and capital markets activities. Her work focuses on operational execution, project coordination, and strategic outreach that help identify opportunities, strengthen client relationships, and support the firm’s growth across complex transaction environments.
+                </p>
+                <p>
+                  She brings experience in market analysis, venture research, and business development across startup, venture, and institutional ecosystems. Her background includes conducting market studies on international expansion strategies, supporting engagement initiatives within global networks, and performing competitive analysis to inform partnership development and client acquisition strategies across the technology and healthcare sectors.
+                </p>
+                <p>
+                  Her work emphasizes cross-functional collaboration and analytical insight, translating market intelligence and operational coordination into actionable strategies that enhance business development and long-term client engagement.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ================= OUR EXPERTISE ================= */}
       <section className="rhine-hr-expertise section">
         <div className="container">

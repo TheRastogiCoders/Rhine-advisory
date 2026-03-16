@@ -63,6 +63,88 @@
   background: var(--white);
 }
 
+/* ================= OUR TEAM ================= */
+.rhine-hr-team {
+  padding: 80px 20px;
+  background: #fafafa;
+}
+
+.rhine-hr-team .section-title {
+  margin-bottom: 32px;
+}
+
+.rhine-hr-team-card {
+  max-width: 1100px;
+  margin: 0 auto;
+  background: var(--white);
+  border-radius: 14px;
+  border: 1px solid rgba(196, 30, 58, 0.12);
+  box-shadow: 0 10px 30px rgba(196, 30, 58, 0.08);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 340px 1fr;
+}
+
+.rhine-hr-team-photo {
+  background: linear-gradient(135deg, var(--very-light-red), rgba(196, 30, 58, 0.06));
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 18px 18px 0;
+}
+
+.rhine-hr-team-photo img {
+  width: min(280px, 100%);
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 18px 25px rgba(0, 0, 0, 0.18));
+}
+
+.rhine-hr-team-body {
+  padding: 28px 30px 30px;
+}
+
+.rhine-hr-team-name {
+  margin: 0 0 8px 0;
+  color: var(--dark-red);
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+}
+
+.rhine-hr-team-role {
+  margin: 0 0 8px 0;
+  color: var(--text-dark);
+  font-weight: 700;
+  font-size: 1.05rem;
+  line-height: 1.45;
+}
+
+.rhine-hr-team-dept {
+  margin: 0 0 10px 0;
+  color: var(--primary-red);
+  font-weight: 700;
+  font-size: 0.98rem;
+}
+
+.rhine-hr-team-meta {
+  margin: 0 0 18px 0;
+  color: var(--text-light);
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.rhine-hr-team-bio p {
+  margin: 0 0 14px 0;
+  color: var(--text-dark);
+  line-height: 1.8;
+  font-size: 1rem;
+}
+
+.rhine-hr-team-bio p:last-child {
+  margin-bottom: 0;
+}
+
 .rhine-hr-expertise-header {
   text-align: center;
   margin-bottom: 48px;
@@ -222,8 +304,28 @@
     font-size: 1.05rem;
   }
   .rhine-hr-who,
+  .rhine-hr-team,
   .rhine-hr-expertise {
     padding: 50px 16px;
+  }
+  .rhine-hr-team-card {
+    grid-template-columns: 1fr;
+  }
+  .rhine-hr-team-photo {
+    padding: 18px 18px 0;
+    align-items: flex-end;
+  }
+  .rhine-hr-team-photo img {
+    width: min(240px, 100%);
+  }
+  .rhine-hr-team-body {
+    padding: 22px 18px 26px;
+  }
+  .rhine-hr-team-name {
+    font-size: 1.45rem;
+  }
+  .rhine-hr-team-role {
+    font-size: 1rem;
   }
   .rhine-hr-expertise-header {
     margin-bottom: 36px;
