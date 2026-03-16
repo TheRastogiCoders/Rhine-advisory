@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import '../styles/careers.css'
 
 const Careers = () => {
+  const navigate = useNavigate()
   const [bannerStates, setBannerStates] = useState({
     learning: 0,
     equal: 1,
@@ -10,6 +11,51 @@ const Careers = () => {
     hybrid: 3,
     impact: 4
   })
+
+  const jobs = [
+    {
+      jobTitle: 'Manager – Investment Research',
+      duration: 'Full-time',
+      qualification: 'MBA/PGDM in Finance or Analytics',
+      ctc: 'Competitive, based on experience',
+      eligibility:
+        'Skilled in LBO and DCF modeling, with strong cash flow and valuation knowledge, advanced Excel and financial modeling proficiency, and excellent analytical and communication skills.',
+      experience: '4-7 years of relevant experience',
+      jobDescription:
+        'The role involves valuations, M&A, and investment due diligence, building advanced financial models (LBO, DCF), conducting forecasting and scenario and risk analysis, preparing CIMs, pitch decks, and strategic materials, and leading teams through cross-functional collaboration to deliver high-quality outcomes.'
+    },
+    {
+      jobTitle: 'Project Leader – Marketing & Business Development',
+      duration: 'Full-time',
+      qualification: 'MBA',
+      ctc: 'Competitive, with performance incentives',
+      eligibility:
+        'Skilled in SEO/SEM, Performance marketing, Sales alignment, and Digital Campaign Management.',
+      experience: '5+ years in B2B Marketing',
+      jobDescription:
+        'The role involves drive digital campaigns, SEO/SEM, and lead content strategy while also conduct market and competitor analysis and also track metrics and optimize for ROI. B2B marketing with global (USA, UK, Europe) BD exposure. Open to international travel when required.'
+    },
+    {
+      jobTitle: 'Summer Interns',
+      duration: '2 Months',
+      qualification: 'MBA Batch 2026',
+      ctc: 'Unpaid (with PPO consideration)',
+      eligibility: 'MBA in Marketing, Finance, and Operations',
+      experience: '0',
+      jobDescription:
+        'The program is fully remote (work-from-home) and lasts for two months. It is open to MBA students from all specializations, with exceptional performers being considered for Pre-Placement Offers (PPOs).'
+    },
+    {
+      jobTitle: 'Summer Interns',
+      duration: '2 Months',
+      qualification: 'MBA Batch 2026',
+      ctc: 'Stipend based on college ranking',
+      eligibility: 'MBA in Marketing, Finance, and Operations',
+      experience: '0',
+      jobDescription:
+        'The program requires a full-time, on-site presence at our Noida, NCR office. Stipends are determined by the ranking of the candidate.'
+    }
+  ]
 
   const banners = [
     '/iStock-1444490817.jpg',
@@ -24,6 +70,15 @@ const Careers = () => {
       ...prev,
       [section]: (prev[section] + direction + banners.length) % banners.length
     }))
+  }
+
+  const handleSubmitResume = (e) => {
+    e.preventDefault()
+    navigate('/')
+    setTimeout(() => {
+      const el = document.getElementById('contact-section')
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }, 100)
   }
 
 
@@ -192,19 +247,33 @@ const Careers = () => {
       <section className="job-openings">
         <div className="container">
           <h2>Current Openings</h2>
-          <div className="coming-soon-container">
-            <div className="coming-soon-card">
-              <div className="coming-soon-icon">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"/>
-                </svg>
-              </div>
-              <h3>Coming Soon</h3>
-              <p>We're currently preparing exciting new opportunities. Check back soon for our latest job openings!</p>
-              <div className="coming-soon-badge">
-                <span>Stay Tuned</span>
-              </div>
-            </div>
+          <div className="jobs-table-wrapper" role="region" aria-label="Current openings table">
+            <table className="jobs-table">
+              <thead>
+                <tr>
+                  <th scope="col">Job Title</th>
+                  <th scope="col">Duration</th>
+                  <th scope="col">Qualification</th>
+                  <th scope="col">Eligibility</th>
+                  <th scope="col">Experience</th>
+                  <th scope="col">Job Description</th>
+                  <th scope="col">CTC</th>
+                </tr>
+              </thead>
+              <tbody>
+                {jobs.map((job, idx) => (
+                  <tr key={`${job.jobTitle}-${idx}`}>
+                    <td data-label="Job Title">{job.jobTitle}</td>
+                    <td data-label="Duration">{job.duration}</td>
+                    <td data-label="Qualification">{job.qualification}</td>
+                    <td data-label="Eligibility">{job.eligibility}</td>
+                    <td data-label="Experience">{job.experience}</td>
+                    <td data-label="Job Description">{job.jobDescription}</td>
+                    <td data-label="CTC">{job.ctc}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </section>
@@ -215,7 +284,7 @@ const Careers = () => {
           <div className="cta-content">
             <h2>Don't See Your Perfect Role?</h2>
             <p>We're always looking for talented individuals. Send us your resume and tell us how you can contribute to our team.</p>
-            <Link to="/contact" className="cta-button">
+            <Link to="/" className="cta-button" onClick={handleSubmitResume}>
               <span>Submit Your Resume</span>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
