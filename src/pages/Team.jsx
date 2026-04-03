@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
+import { Link } from 'react-router-dom'
 import '../styles/team.css'
 
 const Team = () => {
+  const [selectedMember, setSelectedMember] = useState(null)
+
   const teamMembers = [
     {
       id: 1,
@@ -56,53 +59,177 @@ Sonali plays a key role in supporting capital markets-facing activities, includi
     }
   ]
 
+  const teamStats = [
+    { label: 'Senior Advisors', value: '20+' },
+    { label: 'Cross-Border Focus', value: 'EMEA + APAC' },
+    { label: 'Live Deal Exposure', value: 'USD 100M+' }
+  ]
+
+  const selectedMemberParagraphs = useMemo(() => {
+    if (!selectedMember?.roleOverview) return []
+    return selectedMember.roleOverview
+      .split('\n')
+      .map((item) => item.trim())
+      .filter(Boolean)
+  }, [selectedMember])
+
+  const getShortBio = (bio) => {
+    const firstLine = bio.split('\n')[0]?.trim() || ''
+    if (firstLine.length <= 135) return firstLine
+    return `${firstLine.slice(0, 132).trim()}...`
+  }
+
+  useEffect(() => {
+    if (!selectedMember) return undefined
+    const originalOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = originalOverflow
+    }
+  }, [selectedMember])
+
   return (
-    <div className="team-page">
-      {/* Hero Section */}
-      <section className="team-hero">
-        <div className="container">
-          <h1>Our Team</h1>
-          <p>Meet the experienced professionals driving excellence at Rhine Advisory</p>
+    <div className="team-page premium-team-page">
+      <section className="team-hero premium-team-hero">
+        <div className="premium-team-orb premium-team-orb--one" aria-hidden="true" />
+        <div className="premium-team-orb premium-team-orb--two" aria-hidden="true" />
+        <div className="container premium-team-hero-grid">
+          <div className="premium-team-hero-content">
+            <p className="premium-eyebrow">Leadership Team</p>
+            <h1>Experienced advisors for high-stakes strategic decisions.</h1>
+            <p>
+              Rhine Advisory combines transaction, capital markets, and people strategy expertise through a
+              senior-led team focused on disciplined execution, institutional governance, and measurable outcomes.
+            </p>
+            <div className="premium-team-pillars">
+              <span>Independent Judgment</span>
+              <span>Board-Ready Advisory</span>
+              <span>Execution-Led Thinking</span>
+            </div>
+          </div>
+          <div className="premium-team-stats">
+            {teamStats.map((item) => (
+              <article key={item.label} className="premium-team-stat-card">
+                <strong>{item.value}</strong>
+                <span>{item.label}</span>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Team Members Section */}
       <section className="team-members-section">
         <div className="container">
-          {teamMembers.map((member) => (
-            <div key={member.id} className="team-member-card">
-              <div className="team-member-content">
-                <div className="team-member-image-wrapper">
-                  <img 
-                    src={member.image} 
-                    alt={member.name}
-                    className="team-member-image"
-                    onError={(e) => {
-                      // Fallback placeholder if image doesn't exist
-                      e.target.style.display = 'none'
-                      e.target.nextSibling.style.display = 'flex'
-                    }}
-                  />
-                  <div className="team-member-placeholder" style={{ display: 'none' }}>
-                    <span>{member.name.charAt(0)}</span>
+          <div className="team-members-header">
+            <h2>The Rhine Collective</h2>
+            <p>Multidisciplinary experts united by a single vision: compounding excellence.</p>
+          </div>
+          <div className="team-members-grid">
+            {teamMembers.map((member) => (
+              <div key={member.id} className="team-member-card">
+                <div className="team-member-content">
+                  <div className="team-member-image-wrapper">
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="team-member-image"
+                      onError={(e) => {
+                        e.target.style.display = 'none'
+                        e.target.nextSibling.style.display = 'flex'
+                      }}
+                    />
+                    <div className="team-member-placeholder" style={{ display: 'none' }}>
+                      <span>{member.name.charAt(0)}</span>
+                    </div>
                   </div>
-                </div>
-                <div className="team-member-info">
-                  <h2 className="team-member-name">{member.name}</h2>
-                  <h3 className="team-member-title">{member.title}</h3>
-                  <div className="team-member-divider"></div>
-                  <h4 className="role-overview-title">Role Overview</h4>
-                  <div className="team-member-bio">
-                    {member.roleOverview.split('\n\n').map((paragraph, index) => (
-                      <p key={index}>{paragraph}</p>
-                    ))}
+                  <div className="team-member-info">
+                    <h2 className="team-member-name">{member.name}</h2>
+                    <h3 className="team-member-title">{member.title}</h3>
+                    <div className="team-member-bio">
+                      <p>{getShortBio(member.roleOverview)}</p>
+                      <button
+                        type="button"
+                        className="team-read-profile-btn"
+                        onClick={() => setSelectedMember(member)}
+                      >
+                        View Bio
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
+
+      <section className="section premium-info-band">
+        <div className="container">
+          <h2 className="section-title">Our Advisory Philosophy</h2>
+          <div className="premium-info-grid">
+            <article className="premium-info-card">
+              <h3>Client-Aligned Thinking</h3>
+              <p>We align recommendations with client context, governance priorities, and real execution constraints.</p>
+            </article>
+            <article className="premium-info-card">
+              <h3>Independent Judgment</h3>
+              <p>Our work is driven by analytical integrity and objectivity rather than product-led incentives.</p>
+            </article>
+            <article className="premium-info-card">
+              <h3>Institutional Standards</h3>
+              <p>Every engagement follows disciplined frameworks across research, valuation, and decision support.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section className="section team-cta">
+        <div className="container">
+          <h2>Let’s Build Clarity Together</h2>
+          <p>
+            Reach out to our team for independent, senior-led guidance across transaction advisory, capital markets,
+            and investment research.
+          </p>
+          <div className="team-cta-actions">
+            <Link to="/contact" className="btn btn-primary">
+              Get in touch
+            </Link>
+            <Link to="/services" className="btn btn-secondary">
+              Explore services
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {selectedMember && (
+        <div className="team-profile-modal-overlay" onClick={() => setSelectedMember(null)}>
+          <div
+            className="team-profile-modal"
+            onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-label={`${selectedMember.name} profile`}
+          >
+            <button
+              type="button"
+              className="team-profile-modal-close"
+              onClick={() => setSelectedMember(null)}
+              aria-label="Close profile"
+            >
+              ×
+            </button>
+            <div className="team-profile-modal-header">
+              <h3>{selectedMember.name}</h3>
+              <p>{selectedMember.title}</p>
+            </div>
+            <div className="team-profile-modal-body">
+              {selectedMemberParagraphs.map((paragraph, index) => (
+                <p key={`${selectedMember.id}-${index}`}>{paragraph}</p>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

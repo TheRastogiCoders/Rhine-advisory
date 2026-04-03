@@ -1,1310 +1,406 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { servicesList } from './Services'
 import '../styles/home.css'
-import '../styles/services.css'
-import '../styles/contact.css'
+import '../styles/about.css'
+
+const HERO_AUTO_MS = 6500
+
+const heroSlides = [
+  {
+    id: 'advisory',
+    bg: '/iStock-1444490817.jpg',
+    bgPosition: '72% center',
+    eyebrow: 'Transaction & investment advisory',
+    title: 'Advisory-led execution for strategic and capital transactions.',
+    paragraphs: ['M&A, capital, and SPAC mandates—senior-led from framing through close.']
+  },
+  {
+    id: 'ma',
+    bg: '/iStock-2152298806.jpg',
+    bgPosition: 'center center',
+    eyebrow: 'M&A',
+    title: 'Buy-side, sell-side, and complex deals—structured for how you decide.',
+    paragraphs: ['Valuation, diligence, and negotiation support from screening to close.']
+  },
+  {
+    id: 'capital',
+    bg: '/iStock-1283279349 1.jpg',
+    bgPosition: '55% center',
+    eyebrow: 'Capital markets',
+    title: 'SPACs, private capital, and raises—with trade-offs and execution risk in view.',
+    paragraphs: ['Public and private pathways, grounded in disclosure and institutional rigor.']
+  },
+  {
+    id: 'global',
+    bg: '/iStock-2190159060.jpg',
+    bgPosition: '48% center',
+    eyebrow: 'Cross-border',
+    title: 'Local context with consistent standards across markets.',
+    paragraphs: ['UAE to the US and Asia-Pacific—regional insight, board-ready output.']
+  }
+]
 
 const Home = () => {
   const navigate = useNavigate()
-  const [isBrochureOpen, setIsBrochureOpen] = useState(false)
-  const [brochureForm, setBrochureForm] = useState({
-    name: '',
-    email: '',
-    phone: ''
-  })
-  const [isBrochureSubmitting, setIsBrochureSubmitting] = useState(false)
-  const [brochureStatus, setBrochureStatus] = useState({ success: null, message: '' })
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    company: '',
-    subject: '',
-    serviceInterest: '',
-    message: ''
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitStatus, setSubmitStatus] = useState({ success: null, message: '' })
+  const [heroIndex, setHeroIndex] = useState(0)
+  const [heroPaused, setHeroPaused] = useState(false)
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    })
-  }
+  useEffect(() => {
+    const reduce =
+      typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (reduce || heroPaused) {
+      return undefined
+    }
+    const id = window.setInterval(() => {
+      setHeroIndex((i) => (i + 1) % heroSlides.length)
+    }, HERO_AUTO_MS)
+    return () => window.clearInterval(id)
+  }, [heroPaused])
 
-  const services = [
-    'Select a service',
-    'Mergers & Acquisitions (M&A) Advisory',
-    'HR M&A Advisory',
-    'SPAC Merger Advisory Services',
-    'Transaction Advisory Services',
-    'Investment Solutions & Advisory',
-    'Comprehensive Business Valuation & Advisory Services',
-    'Capital Markets Advisory',
-    'Fund Administration and Accounting',
-    'Asset Management Valuation'
-  ]
-
-  const serviceDetails = [
+  const heroPct = 100 / heroSlides.length
+  const edgeReasons = [
     {
-      title: "Mergers & Acquisitions (M&A) Advisory",
-      summary: "End-to-end advisory across buy-side, sell-side, and complex strategic transactions.",
-      description:
-        "Rhine Advisory provides comprehensive M&A advisory services to corporates, sponsors, and investors across industries and geographies, with a strong focus on strategic alignment, valuation discipline, and execution certainty. We support clients from initial strategy and target screening through due diligence, negotiation, and closing, and help them realize value in the critical post-deal phase. Our senior-led teams bring deep sector knowledge and transaction experience to every mandate.",
-      subsections: [
-        {
-          title: "Buy-Side Advisory",
-          description: "We support acquirers through the full investment lifecycle:",
-          items: [
-            "Target identification and proprietary deal sourcing",
-            "Strategic and commercial assessment",
-            "Valuation, synergy analysis, and transaction modeling",
-            "Deal structuring and financing evaluation",
-            "Due diligence coordination",
-            "Negotiation support and closing assistance",
-            "Post-acquisition integration and value realization support",
-            "Fairness and valuation opinions for board and committee approval"
-          ],
-          note:
-            "Our focus extends beyond deal completion to long-term value creation and downside protection."
-        },
-        {
-          title: "Sell-Side Advisory",
-          description: "We help shareholders and promoters maximize value by:",
-          items: [
-            "Preparing businesses for sale and deal readiness",
-            "Developing compelling equity stories and information memoranda",
-            "Identifying and managing strategic and financial buyers",
-            "Running competitive and confidential processes",
-            "Supporting valuation negotiations and transaction execution",
-            "Vendor due diligence and data room management",
-            "Stakeholder communication and management alignment",
-            "Carve-out and separation planning where required"
-          ],
-          note:
-            "We position assets to attract the right buyers at the right valuation — not just the fastest exit."
-        }
-      ]
+      title: 'Independent perspective',
+      text: 'We do not distribute proprietary products — recommendations align with your mandate, not our balance sheet.'
     },
     {
-      title: "HR M&A Advisory",
-      summary: "Aligning people, leadership, and culture to deliver value beyond the deal.",
-      description:
-        "People-focused advisory across the M&A lifecycle to identify risk early, protect value, and support successful integration. We help acquirers and vendors assess workforce, compensation, and culture before signing, and support management through Day One readiness and beyond. Our work aligns organisation design, leadership, and HR systems with deal rationale so that people and culture become enablers of value, not blockers.",
-      subsections: [
-        {
-          title: "HR Due Diligence",
-          description: "Assessing people-related risk and value before and during the deal:",
-          items: [
-            "Workforce analysis and headcount verification",
-            "Leadership and retention risk assessment",
-            "Compensation and benefits review and benchmarking",
-            "Employment liabilities and contract review",
-            "Cultural assessment and compatibility",
-            "Pension and benefit obligation quantification",
-            "Labour law and regulatory compliance review"
-          ]
-        },
-        {
-          title: "Transaction Support",
-          description: "HR input into structure, incentives, and readiness:",
-          items: [
-            "Input on deal structure and employment terms",
-            "Management incentives and retention plans",
-            "Retention plans and key person alignment",
-            "Readiness and Day One planning",
-            "Communication and change management support",
-            "TSA and transition service design",
-            "HR data room and buyer Q&A support"
-          ]
-        },
-        {
-          title: "Post-Merger Integration",
-          description: "Organisation and HR integration after closing:",
-          items: [
-            "Organisation design and structure alignment",
-            "Leadership alignment and team selection",
-            "Workforce integration and redundancy planning",
-            "Communications and change management",
-            "HR systems harmonisation",
-            "Compensation and benefits harmonisation",
-            "Culture and values integration",
-            "Retention and engagement programmes"
-          ]
-        },
-        {
-          title: "Carve-Outs & Restructuring",
-          description: "Stand-alone HR models and workforce optimisation:",
-          items: [
-            "Stand-alone HR model design",
-            "TSA support and exit planning",
-            "Workforce optimisation and right-sizing",
-            "Redundancy and restructuring support",
-            "Employment transfer and TUPE-style support",
-            "HR function build and capability design"
-          ]
-        }
-      ]
+      title: 'Board- and IC-ready rigor',
+      text: 'Analysis, models, and documentation are prepared to survive investor, auditor, and committee scrutiny.'
     },
     {
-      title: "SPAC Merger Advisory Services",
-      summary: "Independent advisory across SPAC formation, target evaluation, and de-SPAC execution.",
-      description:
-        "We advise SPAC sponsors, target companies, and PIPE investors across the full SPAC lifecycle, from strategic assessment to public market execution. Our team supports IPO readiness, target identification and evaluation, business combination structuring, and post-merger integration. We bring valuation discipline, regulatory awareness, and execution experience to help clients navigate the unique challenges of the SPAC pathway to going public.",
-      subsections: [
-        {
-          title: "SPAC Sponsors",
-          description: "End-to-end support for SPAC formation, target identification, and de-SPAC execution:",
-          items: [
-            "Target sourcing and strategic evaluation",
-            "Valuation and transaction structuring",
-            "Financial modeling and investor analysis",
-            "Due diligence coordination",
-            "De-SPAC execution support",
-            "Fairness opinions and board committee support",
-            "PIPE and financing structure advisory",
-            "Regulatory and listing readiness"
-          ]
-        },
-        {
-          title: "Target Companies",
-          description: "Helping private companies assess and execute a SPAC combination:",
-          items: [
-            "SPAC readiness assessment",
-            "Business plan and financial forecast development",
-            "Valuation support and negotiation",
-            "Public market positioning",
-            "Post-transaction transition support",
-            "Proxy and disclosure support",
-            "Negotiation strategy and term sheet review",
-            "Integration planning and Day One readiness"
-          ]
-        }
-      ]
+      title: 'Execution, not slideware',
+      text: 'Advice reflects how deals are negotiated and closed: timelines, confidentiality, and real stakeholder dynamics.'
     },
     {
-      title: "Transaction Advisory Services",
-      summary: "Independent diligence and execution support at critical transaction decision points.",
-      description:
-        "We provide financial and commercial diligence, risk assessment, and execution support to enable informed decision-making in high-stakes environments. Our work helps buyers and sellers understand true earnings, working capital, and risk before signing, and supports vendors through preparation and buyer management. We combine accounting rigor with commercial insight so that deal pricing and terms reflect reality.",
-      subsections: [
-        {
-          title: "Buy-Side Advisory",
-          description: "Diligence and execution support for acquirers:",
-          items: [
-            "Quality of earnings analysis",
-            "Working capital and cash flow assessment",
-            "Commercial diligence",
-            "Synergy validation",
-            "Deal risk identification",
-            "Net debt and working capital true-up analysis",
-            "Management reporting and adjustment schedules",
-            "SPA negotiation support and closing mechanics"
-          ]
-        },
-        {
-          title: "Sell-Side Advisory",
-          description: "Preparation and execution support for vendors:",
-          items: [
-            "Pre-deal financial cleanup",
-            "Earnings normalization",
-            "Deal readiness assessments",
-            "Buyer diligence management",
-            "SPA support",
-            "Vendor due diligence and data room preparation",
-            "Management presentations and Q&A support",
-            "Working capital and completion accounts"
-          ]
-        }
-      ]
-    },
-    {
-      title: "Investment Solutions & Advisory",
-      summary: "Capital allocation, portfolio strategy, and investment evaluation.",
-      description:
-        "We work with investors to design and execute capital allocation strategies aligned with risk, return, and liquidity objectives. Our advisory spans screening and due diligence, portfolio monitoring, and exit planning. We support private equity, venture capital, family offices, and strategic investors with independent analysis, valuation, and execution support so that capital is deployed and managed with discipline.",
-      subsections: [
-        {
-          title: "Private Equity & Venture Capital",
-          description: "Support for fund managers and growth investors:",
-          items: [
-            "Investment screening and evaluation",
-            "Market and competitive analysis",
-            "Portfolio performance assessment",
-            "Exit planning and value maximization",
-            "Due diligence and deal execution support",
-            "Add-on acquisition strategy and screening",
-            "Fairness and valuation opinions",
-            "LP reporting and portfolio valuation support"
-          ]
-        },
-        {
-          title: "Family Offices & Strategic Investors",
-          description: "Tailored advisory for family offices and strategic capital:",
-          items: [
-            "Direct investment evaluation",
-            "Portfolio diversification",
-            "Capital structuring",
-            "Governance frameworks",
-            "Co-investment and club deal support",
-            "Illiquid asset valuation and reporting",
-            "Succession and wealth transfer planning support",
-            "Advisor selection and manager due diligence"
-          ]
-        }
-      ]
-    },
-    {
-      title: "Comprehensive Business Valuation & Advisory Services",
-      summary: "Decision-oriented valuation and modeling.",
-      description:
-        "Our valuation and modeling capabilities support strategic, transaction, and investment decisions across the deal lifecycle.",
-      subServicesGrid: true,
-      subsections: [
-        {
-          title: "409A Valuations Services",
-          description: "Independent, defensible 409A valuations for private companies to support equity compensation and satisfy IRS requirements. We deliver audit-ready reports that align with ASC 718 and help companies price stock options, RSUs, and other equity grants with confidence.\n\nOur team applies rigorous methodologies—including the probability-weighted expected return method (PWERM) and option-pricing models—to support grant dates, exercise prices, and financial statement disclosures. We work with companies at every stage, from early growth to pre-IPO, to maintain compliance and reduce audit and tax risk.",
-          items: ["ASC 718 / 409A-compliant valuations", "Stock options, RSUs, and restricted stock", "Grant date and exercise price support", "Audit-ready documentation and support", "Annual updates and material event reviews"]
-        },
-        {
-          title: "Gift & Estate Tax Valuations",
-          description: "Valuation support for gift and estate tax planning and compliance. We provide defensible fair market value conclusions for closely held interests, family limited partnerships, and other assets to support Form 706 and Form 709 filings and minimize tax controversy risk.\n\nOur work includes discount analyses, blockage and marketability considerations, and coordination with estate and tax counsel. We help families and their advisors structure transfers, document values, and defend positions in the event of IRS examination.",
-          items: ["Closely held business and partnership interests", "Family limited partnerships (FLPs) and LLCs", "Form 706 and Form 709 support", "Discount for lack of marketability (DLOM) and control", "Estate and gift planning coordination"]
-        },
-        {
-          title: "Portfolio Valuation Services",
-          description: "Valuation of illiquid and hard-to-value investments for fund managers, family offices, and institutional investors. We support fair value reporting under ASC 820 and deliver consistent, documented valuations for LP reporting and audited financials.\n\nWe cover private equity, venture capital, debt, and alternative investments. Our process emphasizes transparency, consistency, and auditability so that managers can meet reporting deadlines and satisfy auditor and regulator expectations.",
-          items: ["ASC 820 / fair value measurement", "Private equity and venture capital holdings", "Illiquid debt and structured products", "LP and audited financial reporting", "Valuation policy and process design"]
-        },
-        {
-          title: "Complex Securities Valuation",
-          description: "Valuation of warrants, convertible notes, preferred stock, and other complex instruments. We apply option-pricing and scenario-based methods to support financing rounds, restructurings, and financial reporting with clear documentation and audit trails.\n\nOur analyses incorporate dilution, conversion features, and liquidity and marketability factors. We support cap table modeling, allocation of value across tranches, and disclosure for GAAP and IFRS reporting.",
-          items: ["Warrants, options, and convertible instruments", "Preferred stock and multi-tranche equity", "Option-pricing and scenario-based models", "Cap table and allocation support", "Financial statement and audit support"]
-        },
-        {
-          title: "High Net Worth Individuals",
-          description: "Advisory and valuation services tailored to high net worth individuals and family offices. We support estate and gift planning, philanthropic structuring, and investment valuation for illiquid holdings, art, collectibles, and alternative assets.\n\nOur team works discreetly with families, trustees, and advisors to document values for planning, reporting, and compliance. We combine rigorous valuation practice with an understanding of family dynamics and long-term wealth objectives.",
-          items: ["Estate and gift tax valuations", "Family office and trust reporting", "Illiquid and alternative asset valuation", "Art, collectibles, and unique assets", "Philanthropic and charitable planning support"]
-        },
-        {
-          title: "Divorce Valuation Services",
-          description: "Independent business and asset valuations for matrimonial matters. We provide court-ready, defensible valuations of closely held businesses, professional practices, and marital assets to support settlement negotiations and litigation.\n\nWe work with counsel and clients to deliver clear, well-documented analyses that withstand cross-examination. Our work covers operating companies, professional practices, real estate holdings, and other marital assets, with attention to standards of value and jurisdiction-specific requirements.",
-          items: ["Closely held business valuation", "Professional practice valuation (medical, legal, etc.)", "Marital asset identification and valuation", "Expert testimony and litigation support", "Settlement and mediation support"]
-        },
-        {
-          title: "Startup Valuation Services",
-          description: "Early-stage and growth company valuations for fundraising, 409A compliance, and strategic planning. We combine market-based and scenario analysis to support founders, boards, and investors with credible, well-documented valuations.\n\nWe address pre-revenue and early-revenue companies, accounting for stage, risk, and optionality. Our deliverables support funding rounds, option grants, and strategic decisions while remaining defensible to auditors and the IRS.",
-          items: ["Pre-money and post-money valuation", "409A and ASC 718 compliance", "Fundraising and term sheet support", "Scenario and sensitivity analysis", "Board and investor reporting"]
-        },
-        {
-          title: "Equity Valuation Services",
-          description: "Valuation of common and preferred equity across the capital structure. We support financing events, M&A, restructurings, and financial reporting with rigorous methodologies and clear allocation of enterprise value to each class of security.\n\nOur work includes waterfall analysis, option-pricing and PWERM, and consideration of liquidation preferences, participation rights, and anti-dilution. We help companies, investors, and counsel understand value distribution and support negotiations and disclosures.",
-          items: ["Common and preferred equity valuation", "Waterfall and allocation analysis", "Financing, M&A, and restructuring support", "Fairness and allocation opinions", "Financial and tax reporting support"]
-        },
-        {
-          title: "Machinery and Equipment Valuation",
-          description: "Fair market value and orderly liquidation value appraisals for machinery, equipment, and fixed assets. We support M&A due diligence, lending, insurance, and financial reporting with defensible, third-party valuations.\n\nOur appraisals follow recognized standards and are suitable for secured lending, insurance placement, and purchase price allocation. We cover manufacturing, industrial, and specialized equipment across sectors.",
-          items: ["Fair market value (FMV) and orderly liquidation value (OLV)", "M&A due diligence and purchase price allocation", "Collateral and lending support", "Insurance and risk management", "Financial reporting and tax support"]
-        },
-        {
-          title: "Web3 & Crypto Asset",
-          description: "Valuation and advisory for digital assets, tokens, and Web3 ventures. We support fair value reporting, fundraising, and transaction structuring with methodologies adapted to evolving regulatory and market practice.\n\nWe address tokens, NFTs, and protocol and venture interests where traditional valuation frameworks are extended or adapted. Our work supports financial reporting, fundraising, and M&A while remaining alert to regulatory and market developments.",
-          items: ["Token and digital asset valuation", "NFT and digital collectible valuation", "Protocol and venture valuation", "Fundraising and transaction support", "Fair value and financial reporting"]
-        },
-        {
-          title: "Transaction Opinions",
-          description: "Independent fairness and valuation opinions for boards, special committees, and shareholders. We deliver rigorous, defensible analyses to support M&A, going-private, and other conflicted transactions and help satisfy fiduciary duties.\n\nOur opinions are structured to assist boards in meeting their duty of care and to provide shareholders with transparent, independent analysis. We work closely with counsel and management to tailor scope and deliverables to the transaction and governance context.",
-          items: ["Fairness opinions for M&A and going-private", "Valuation opinions for conflicted transactions", "Special committee and board support", "Shareholder and regulatory communication", "Litigation and dispute support"]
-        },
-        {
-          title: "Fairness Opinions",
-          description: "Board-ready fairness opinions for mergers, acquisitions, divestitures, and related-party transactions. Our opinions are grounded in comparable company, precedent transaction, and DCF analysis and are designed to withstand scrutiny from shareholders and regulators.\n\nWe provide clear, written opinions with supporting analysis and assumptions. Our process is designed to meet timing and governance requirements while maintaining independence and analytical rigor.",
-          items: ["Mergers and acquisitions", "Divestitures and carve-outs", "Related-party and conflicted transactions", "Going-private and minority squeeze-outs", "Board and committee deliverables"]
-        },
-        {
-          title: "M&A Valuation Support",
-          description: "Valuation and analytical support throughout the M&A process. We assist with target screening, offer pricing, negotiation support, and post-deal purchase price allocation and impairment testing.\n\nOur team supports buy-side and sell-side clients with stand-alone valuations, fairness support, and integration of valuation into due diligence and negotiation. We help align price with value and support post-close accounting and reporting.",
-          items: ["Target screening and valuation", "Offer pricing and negotiation support", "Fairness and valuation opinions", "Purchase price allocation (ASC 805)", "Post-acquisition impairment testing"]
-        },
-        {
-          title: "Transaction Advisory",
-          description: "End-to-end valuation and diligence support for buyers and sellers. We help clients assess deal economics, structure transactions, and execute with clarity on value drivers and risk.\n\nOur advisory combines valuation, commercial diligence, and execution awareness. We work with corporates, financial sponsors, and management teams to support informed decision-making from letter of intent through closing and integration.",
-          items: ["Deal economics and value assessment", "Commercial and financial diligence", "Structure and term evaluation", "Negotiation and execution support", "Integration and value realization"]
-        },
-        {
-          title: "Purchase Price Allocation Support",
-          description: "ASC 805 purchase price allocation and intangible asset valuation for M&A and carve-outs. We allocate consideration to tangible and intangible assets and goodwill with audit-ready documentation for financial reporting.\n\nWe identify and value intangible assets such as customer relationships, technology, and trade names, and support management and auditors through the allocation process. Our work is designed to meet GAAP requirements and withstand audit review.",
-          items: ["ASC 805 purchase price allocation", "Tangible and intangible asset valuation", "Customer relationships, technology, and IP", "Goodwill and residual allocation", "Audit-ready documentation and support"]
-        },
-        {
-          title: "Quality of Earnings Analysis",
-          description: "Earnings quality and sustainability analysis for M&A and lending. We assess revenue recognition, working capital, one-time items, and run-rate earnings to support deal pricing and covenant compliance.\n\nOur analysis goes beyond reported numbers to identify adjustments, normalizations, and risks. We help buyers and lenders understand sustainable earnings, working capital requirements, and key drivers so that pricing and covenants are aligned with underlying performance.",
-          items: ["Revenue recognition and sustainability", "Working capital and cash flow assessment", "Adjustments and normalizations", "Run-rate and sustainable earnings", "Lending and covenant support"]
-        },
-        {
-          title: "Goodwill Impairment Testing",
-          description: "ASC 350 goodwill and indefinite-lived intangible impairment testing. We support annual testing and triggering event analyses with defensible fair value measurements and clear documentation for auditors and regulators.\n\nWe perform Step 1 (fair value of reporting unit) and Step 2 (implied fair value of goodwill) analyses as required, using income and market approaches with documented assumptions. Our deliverables are designed to support management and auditors through the testing process.",
-          items: ["ASC 350 goodwill impairment testing", "Reporting unit and CGU fair value", "Triggering event and annual testing", "Indefinite-lived intangible testing", "Audit and disclosure support"]
-        },
-        {
-          title: "Qualified Small Business Stock",
-          description: "Valuation and advisory for QSBS planning and Section 1202 qualification. We help founders and investors understand and document eligibility for federal exclusion and support cap table and exit structuring.\n\nWe work with companies and counsel to assess QSBS eligibility, document fair market value at issuance and at key dates, and support planning for exits. Our analyses are designed to support positions before the IRS and to inform structuring decisions.",
-          items: ["Section 1202 / QSBS eligibility assessment", "Valuation at issuance and key dates", "Cap table and structuring support", "Exit planning and exclusion support", "Documentation for IRS and audit"]
-        },
-        {
-          title: "Tax Valuation & Advisory Services",
-          description: "Valuation support for tax planning, controversy, and compliance. We provide defensible fair market value conclusions for transfer pricing, restructuring, and other tax-driven transactions and work with counsel to support positions before the IRS and courts.\n\nOur team has experience across corporate restructuring, transfer pricing, and tax controversy. We deliver clear, well-documented valuations that align with tax law and regulatory guidance and support counsel in advocacy and dispute resolution.",
-          items: ["Transfer pricing and related-party valuations", "Corporate restructuring and reorganization", "Tax controversy and IRS defense", "Estate, gift, and income tax support", "Expert testimony and dispute resolution"]
-        }
-      ]
-    },
-    {
-      title: "Capital Markets Advisory",
-      summary: "Comprehensive capital raising advisory optimizing deal structures across private equity, venture capital, and strategic channels.",
-      description:
-        "We support corporates, sponsors, and growth companies with capital raising strategy, structuring, and execution. Our advisory covers private placement structuring and execution, strategic investor identification and engagement, venture capital and growth equity advisory, debt financing and alternative structures, and cross-border capital market access. We help clients align structure, pricing, and terms with market conditions and investor expectations.",
-      subsections: [
-        {
-          title: "Fund Administration and Accounting",
-          description: "End-to-end fund administration and financial operations support:",
-          items: [
-            "Updating financial records and books of account",
-            "Distribution management and waterfall calculations",
-            "Portfolio valuation and NAV preparation",
-            "Admin process design and oversight",
-            "Fund setup and legal/regulatory coordination",
-            "Preparing investor and regulatory reports",
-            "Audit coordination and auditor liaison",
-            "Compliance and regulatory filing support"
-          ]
-        },
-        {
-          title: "Capital Raising & Placement",
-          description: "Advisory for equity and debt capital raises:",
-          items: [
-            "Private placement structuring and execution",
-            "Strategic and financial investor identification",
-            "Venture capital and growth equity advisory",
-            "Debt financing and alternative structures",
-            "Cross-border capital market access",
-            "Term sheet and documentation support",
-            "Valuation and fairness support for rounds"
-          ]
-        }
-      ]
-    },
-    {
-      title: "Asset Management Valuation",
-      summary: "Manage every asset with accuracy, compliance, and confidence across the full lifecycle.",
-      description:
-        "Asset management valuation today goes far beyond spreadsheets — it's about governance, cost control, and performance visibility. We deliver a complete, end-to-end framework for managing assets across their entire lifecycle — from verification and tagging to valuation, tracking, and audit readiness. We help enterprises and government entities across the UAE and GCC gain full visibility into their hardware and software portfolios, simplify complex IT environments, and maintain financial and regulatory compliance. By combining field services, software (RAMS — Rhine Advisory Asset Management Software), and real-time data, we enable organizations to reduce losses, improve utilization, and make smarter investment decisions.",
-      subsections: [
-        {
-          title: "Verification, Tagging & Reconciliation",
-          description: "Maintain up-to-date asset registers and eliminate discrepancies between physical and financial records.",
-          items: [
-            "Fixed-asset register accuracy across sites",
-            "Industry-standard barcodes and RFID tagging",
-            "Chain of custody and movement history",
-            "Faster audits and fewer write-offs",
-            "Physical inventory counts and cycle counts",
-            "Reconciliation of physical vs. book and remediation plans",
-            "Multi-site and multi-entity roll-up and reporting"
-          ]
-        },
-        {
-          title: "RAMS — Rhine Advisory Asset Management Software",
-          description: "Browser-based platform to centralize asset data, track movement and generate audit-ready reports.",
-          items: [
-            "Browser-based and cloud-accessible",
-            "Customizable interface and workflows",
-            "Asset movement tracking",
-            "Single install to simplify upkeep",
-            "Dashboard and reporting for management and audit",
-            "Integration with ERP and fixed-asset systems",
-            "Role-based access and audit trails"
-          ]
-        },
-        {
-          title: "Inventory Audit Services",
-          description: "Independent physical audits that validate the register, document discrepancies and deliver a remediation plan.",
-          items: [
-            "Complete asset visibility — history, status, and location in one verified register",
-            "Improved financial accuracy — balance sheets and inventory values reflect what the business owns",
-            "Faster audits and reporting — month- and year-end closures with ready, verified data",
-            "Stronger compliance and governance — auditable proof of ownership for regulators, investors, and insurers",
-            "Sample-based and full-count audit methodologies",
-            "Reconciliation and write-off support",
-            "Auditor liaison and management representation support"
-          ]
-        },
-        {
-          title: "Valuation & Cost Allocation",
-          description: "Establish fair values and allocate costs by business unit or use, with clear documentation for finance and audit.",
-          items: [
-            "Realistic capital asset values",
-            "Transparent financial allocation",
-            "Cost allocation by usage, lifecycle, or department",
-            "Smarter investment decisions",
-            "Depreciation and useful-life review",
-            "Impairment and disposal support",
-            "Business case and ROI support for asset investments"
-          ]
-        },
-        {
-          title: "RTLS & GIS Tracking",
-          description: "Real-time visibility of assets through location-based monitoring systems. See high-value assets on a live map.",
-          items: [
-            "Location precision without line-of-sight",
-            "Track asset movement metrics",
-            "Reduce losses and optimize utilization",
-            "Reduce search time for high-value assets",
-            "Integration with RAMS and ERP systems",
-            "Alerts and exception reporting",
-            "Mobile and field-user support"
-          ]
-        }
-      ]
+      title: 'Cross-border judgment',
+      text: 'We combine market context across Dubai, India, Singapore, the Gulf, the US, Europe, and Asia-Pacific with consistent standards.'
     }
   ]
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    setSubmitStatus({ success: null, message: '' })
-
-    try {
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          access_key: '4c3921bd-cea7-4945-a469-4791bd23c875',
-          name: `${formData.firstName} ${formData.lastName}`,
-          email: formData.email,
-          phone: formData.phone,
-          company: formData.company,
-          subject: formData.subject,
-          service_interest: formData.serviceInterest,
-          message: formData.message,
-          from_name: 'Rhine Advisory Contact Form',
-          reply_to: formData.email,
-        }),
-      });
-
-      const result = await response.json()
-      
-      if (result.success) {
-        setSubmitStatus({ success: true, message: 'Thank you for your message! We will get back to you soon.' })
-        setFormData({
-          firstName: '',
-          lastName: '',
-          email: '',
-          phone: '',
-          company: '',
-          subject: '',
-          serviceInterest: '',
-          message: ''
-        })
-      } else {
-        throw new Error(result.message || 'Something went wrong. Please try again.')
-      }
-    } catch (error) {
-      setSubmitStatus({ success: false, message: error.message || 'Failed to send message. Please try again.' })
-    } finally {
-      setIsSubmitting(false)
+  const processSteps = [
+    {
+      step: '01',
+      title: 'Assess & frame',
+      text: 'Clarify objectives, constraints, and decision forums so the work plan matches how you actually approve risk.'
+    },
+    {
+      step: '02',
+      title: 'Model & test',
+      text: 'Build defensible valuation and scenarios; pressure-test structure, price, and downside before you commit.'
+    },
+    {
+      step: '03',
+      title: 'Execute & support',
+      text: 'Stay engaged through diligence, negotiation, and close — and through early integration or stabilization where needed.'
     }
-  }
+  ]
 
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    }
-  }
+  const sectorTags = [
+    'Technology & software',
+    'Healthcare & life sciences',
+    'Financial services',
+    'Industrials & manufacturing',
+    'Consumer & retail',
+    'Energy & infrastructure',
+    'Real estate & hospitality',
+    'Business & professional services'
+  ]
 
-  const handleBrochureChange = (e) => {
-    setBrochureForm({
-      ...brochureForm,
-      [e.target.name]: e.target.value
-    })
-  }
-
-  const handleBrochureSubmit = async (e) => {
-    e.preventDefault()
-    setIsBrochureSubmitting(true)
-    setBrochureStatus({ success: null, message: '' })
-
-    try {
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          access_key: '4c3921bd-cea7-4945-a469-4791bd23c875',
-          name: brochureForm.name,
-          email: brochureForm.email,
-          phone: brochureForm.phone,
-          subject: 'Brochure Download Request',
-          message: 'User requested brochure download from homepage.',
-          from_name: 'Rhine Advisory Brochure Form',
-          reply_to: brochureForm.email,
-        }),
-      })
-
-      const result = await response.json()
-
-      if (result.success) {
-        setBrochureStatus({ success: true, message: 'Thank you. Your brochure download will start now.' })
-        window.open('/broucher.pdf', '_blank')
-      } else {
-        throw new Error(result.message || 'Something went wrong. Please try again.')
-      }
-    } catch (error) {
-      setBrochureStatus({ success: false, message: error.message || 'Failed to submit. Please try again.' })
-    } finally {
-      setIsBrochureSubmitting(false)
-    }
-  }
+  const regionalPresence = [
+    { name: 'United Arab Emirates', code: 'UAE', flag: '/uae.png' },
+    { name: 'India', code: 'IND', flag: '/india.avif' },
+    { name: 'Singapore', code: 'SGP', flag: '/Singapore.svg' },
+    { name: 'Saudi Arabia', code: 'KSA', flag: '/SaudiArabia.webp' },
+    { name: 'Europe', code: 'EUR', flag: '/europe.png' },
+    { name: 'United States', code: 'USA', flag: '/us.png' },
+    { name: 'Hong Kong', code: 'HKG', flag: '/hong-kong.png' },
+    { name: 'Japan', code: 'JPN', flag: '/japan.png' }
+  ]
 
   return (
-    <div className="home">
-      {/* ================= HERO SECTION ================= */}
-      <section className="hero">
-        <div className="hero-content">
-          <img src="/logo.png" alt="" />
-          <p className="hero-subtitle" text="italic">
-            <i>"Structuring Capital, Executing Transactions"</i>
-          </p>
-          <p className="hero-description">
-          Rhine Advisory is an independent transaction and investment advisory firm providing transaction advisory, SPAC merger and capital markets advisory, and institutional-grade investment research to corporates, investors, sponsors, and founders..
-          </p>
-          <p className="hero-description">
-          We support clients across the entire transaction lifecycle including strategy formulation, opportunity identification, transaction structuring, financial modelling and valuation, capital markets and SPAC merger-related advisory, execution support, and post - deal value creation across complex transactions and capital events.
-          </p>
-
-          <div className="hero-buttons">
-            <button onClick={() => scrollToSection('services-section')} className="btn btn-primary">Explore Our Services</button>
-            <button onClick={() => scrollToSection('contact-section')} className="btn btn-secondary">Contact Us</button>
-          </div>
-        </div>
-      </section>
-
-      {/* ================= BROCHURE MODAL SECTION ================= */}
-      {isBrochureOpen && (
-        <div className="brochure-modal-overlay" onClick={() => setIsBrochureOpen(false)}>
+    <div className="home premium-home">
+      <section
+        className="premium-hero premium-hero--carousel"
+        aria-roledescription="carousel"
+        aria-label="Featured advisory themes"
+        onMouseEnter={() => setHeroPaused(true)}
+        onMouseLeave={() => setHeroPaused(false)}
+      >
+        <div className="premium-hero-viewport">
           <div
-            className="brochure-modal"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              className="brochure-close-btn"
-              onClick={() => setIsBrochureOpen(false)}
-              aria-label="Close brochure"
-            >
-              ✕
-            </button>
-            <h2>Rhine Advisory Brochure</h2>
-            <p>
-              Fill in your details to receive instant access to our firm overview brochure.
-            </p>
-            <form className="brochure-form" onSubmit={handleBrochureSubmit}>
-              <div className="brochure-form-group">
-                <label htmlFor="brochureName">Name *</label>
-                <input
-                  type="text"
-                  id="brochureName"
-                  name="name"
-                  value={brochureForm.name}
-                  onChange={handleBrochureChange}
-                  required
-                />
-              </div>
-              <div className="brochure-form-group">
-                <label htmlFor="brochureEmail">Email *</label>
-                <input
-                  type="email"
-                  id="brochureEmail"
-                  name="email"
-                  value={brochureForm.email}
-                  onChange={handleBrochureChange}
-                  required
-                />
-              </div>
-              <div className="brochure-form-group">
-                <label htmlFor="brochurePhone">Phone Number</label>
-                <input
-                  type="tel"
-                  id="brochurePhone"
-                  name="phone"
-                  value={brochureForm.phone}
-                  onChange={handleBrochureChange}
-                />
-              </div>
-              <button
-                type="submit"
-                className="btn btn-primary brochure-download-btn"
-                disabled={isBrochureSubmitting}
-              >
-                {isBrochureSubmitting ? 'Submitting...' : 'Submit & Download'}
-              </button>
-              {brochureStatus.message && (
-                <div className={`brochure-form-message ${brochureStatus.success ? 'success' : 'error'}`}>
-                  {brochureStatus.message}
-                </div>
-              )}
-            </form>
-          </div>
-        </div>
-      )}
-
-      {/* ================= STATISTICS & REGIONAL PRESENCE ================= */}
-<section
-  style={{
-    padding: "80px 20px"
-  }}
->
-  <div
-    style={{
-      maxWidth: "1200px",
-      margin: "0 auto",
-      display: "flex",
-      flexDirection: "column",
-      gap: "60px"
-    }}
-  >
-    {/* ===== STATISTICS BOXES ===== */}
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        flexWrap: "wrap",
-        gap: "30px"
-      }}
-    >
-      {[
-        { value: "+20", label: "Expert Consultants" },
-        { value: "+100", label: "Completed Projects" },
-        { value: "+10", label: "Partners" }
-      ].map((item, index) => (
-        <div
-          key={index}
-          style={{
-            flex: "1 1 250px",
-            padding: "40px 25px",
-            borderRadius: "16px",
-            border: "1px solid rgba(0,0,0,0.08)",
-            textAlign: "center",
-            boxShadow: "0 10px 30px rgba(0,0,0,0.05)",
-            transition: "all 0.3s ease"
-          }}
-          onMouseEnter={e => {
-            e.currentTarget.style.transform = "translateY(-6px)"
-            e.currentTarget.style.boxShadow = "0 16px 40px rgba(0,0,0,0.08)"
-          }}
-          onMouseLeave={e => {
-            e.currentTarget.style.transform = "translateY(0)"
-            e.currentTarget.style.boxShadow = "0 10px 30px rgba(0,0,0,0.05)"
-          }}
-        >
-          <h2
+            className="premium-hero-track"
             style={{
-              fontSize: "2.8rem",
-              color: "var(--primary-red)",
-              marginBottom: "10px"
+              width: `${heroSlides.length * 100}%`,
+              transform: `translateX(-${heroIndex * heroPct}%)`
             }}
           >
-            {item.value}
-          </h2>
-          <p style={{ fontSize: "1.05rem", fontWeight: "500" }}>
-            {item.label}
-          </p>
-        </div>
-      ))}
-    </div>
-
-          {/* ===== REGIONAL PRESENCE BOX (WITH COUNTRY CARDS) ===== */}
-          <div className="regional-presence-card">
-            <h3 className="regional-title">Our Regional Presence</h3>
-            <p className="regional-subtitle">
-              Serving clients across priority markets with local insight and regional connectivity.
-            </p>
-
-            <div className="regional-grid">
-              {[
-                { name: "United Arab Emirates", code: "UAE", flag: "/uae.png" },
-                { name: "India", code: "IND", flag: "/india.avif" },
-                { name: "Singapore", code: "SGP", flag: "/Singapore.svg" },
-                { name: "Saudi Arabia", code: "KSA", flag: "/SaudiArabia.webp" },
-                { name: "Europe", code: "EUR", flag: "/europe.png" },
-                { name: "United States", code: "USA", flag: "https://flagcdn.com/w80/us.png" },
-                { name: "Hong Kong", code: "HKG", flag: "https://flagcdn.com/w80/hk.png" },
-                { name: "Japan", code: "JPN", flag: "https://flagcdn.com/w80/jp.png" }
-              ].map((country) => (
-                <div key={country.code} className="regional-country-card">
-                  <div className="regional-flag-wrapper">
-                    <img
-                      src={country.flag}
-                      alt={`${country.name} flag`}
-                      className="regional-flag"
-                    />
-                  </div>
-                  <h4 className="regional-country-name">{country.name}</h4>
-                  <p className="regional-country-code">{country.code}</p>
-                </div>
-        ))}
-      </div>
-    </div>
-  </div>
-</section>
-
-      {/* ================= ABOUT RHINE ADVISORY ================= */}
-      <section id="about-section" className="section about-snapshot">
-        <div className="container">
-          <h2 className="section-title">ABOUT RHINE ADVISORY</h2>
-          
-          <h3 className="about-subtitle">Transaction Advisory and Capital Markets Expertise by Seasoned Professionals</h3>
-          
-          <div className="about-content">
-            <div className="about-image-wrapper">
-              <img 
-                src="/iStock-1444490817.jpg" 
-                alt="Professional business team meeting" 
-                className="about-image"
-              />
-            </div>
-            <p className="section-description">
-              Founded by a group of investment bankers, management consultants, and research professionals, Rhine Advisory was built on a simple belief:
-            </p>
-            <p className="section-description highlight-text">
-              the most important transactions demand clarity, discipline, and judgment not noise.
-            </p>
-            <p className="section-description">
-              We are an independent transaction and investment advisory firm providing SPAC merger, capital markets, and transaction advisory solutions to corporates, investors, sponsors, and founders navigating complex transactions and capital events where the cost of getting it wrong is high.
-            </p>
-            <p className="section-description">
-              We advise clients across the entire transaction lifecycle from strategy formulation and opportunity identification to transaction structuring, financial modelling and valuation, capital markets execution, and post deal value creation. Our work is grounded in rigorous analysis, execution awareness, and a deep understanding of how capital markets behave under real conditions, not just on paper.
-            </p>
-            <p className="section-description">
-              We exist to help decision makers move forward with conviction when certainty is scarce and stakes are real.
-            </p>
-          </div>
-
-          <div className="about-subsection">
-            <div className="subsection-image-wrapper">
-              <img 
-                src="/iStock-2152298806.jpg" 
-                alt="Global business network" 
-                className="subsection-image"
-              />
-            </div>
-            <h3 className="subsection-title" style={{ textAlign: "center" }}>
-              Built for Complex, Cross-Border Transactions
-            </h3>
-            <p className="section-description">
-              Rhine Advisory brings a strong cross border perspective, supporting transactions that span jurisdictions, regulatory regimes, and investor bases. Our experience across Asian markets and U.S./European capital markets enables us to help clients structure and execute transactions with clarity, discipline, and regulatory alignment.
-            </p>
-            <p className="section-description">
-              We work closely with management teams, sponsors, and investors to anticipate execution risks early and design transaction structures that hold up under market and regulatory scrutiny.
-            </p>
-          </div>
-
-          <div className="about-subsection about-subsection-centered">
-            <div className="subsection-image-wrapper">
-              <img 
-                src="/iStock-1395448518.jpg" 
-                alt="Financial analysis and data" 
-                className="subsection-image subsection-image-small"
-              />
-            </div>
-            <h3 className="subsection-title">Institutional Insight. Execution Discipline.</h3>
-            <p className="section-description">
-              Our advisory approach combines:
-            </p>
-            <ul className="about-list">
-              <li>Transaction advisory focused on structure, downside risk, and execution feasibility</li>
-              <li>SPAC and capital markets expertise across IPOs, de-SPAC transactions, PIPEs, and capital raises</li>
-              <li>Institutional-grade investment research, financial modelling, and valuation</li>
-            </ul>
-            <p className="section-description">
-              We are not theoretical advisors. We focus on decision ready analysis that supports real execution under real market conditions.
-            </p>
-          </div>
-
-          <div className="about-subsection about-subsection-centered">
-            <div className="subsection-image-wrapper">
-              <img 
-                src="/iStock-2190159060.jpg" 
-                alt="Business partnership and collaboration" 
-                className="subsection-image"
-              />
-            </div>
-            <h3 className="subsection-title">Global Network and Proven Transaction Experience</h3>
-            <p className="section-description">
-              Rhine Advisory maintains strong relationships across the global capital markets ecosystem, including SPAC sponsors, institutional investors, strategic partners, and market participants. This network allows us to support clients not only with analysis, but with practical insight into investor expectations, market dynamics, and transaction timing.
-            </p>
-            <p className="section-description">
-              Our team brings deep transaction experience across multiple sectors and geographies, supporting complex capital markets and strategic transactions where precision and judgment matter most.
-            </p>
-          </div>
-
-          <div className="about-subsection about-subsection-commitment">
-            <h3 className="subsection-title">Our Commitment</h3>
-            <p className="section-description">
-              At Rhine Advisory, we are guided by a simple principle:
-            </p>
-            <blockquote className="about-principle">
-              Good transactions are not defined by approval they are defined by execution.
-            </blockquote>
-            <p className="section-description">
-              We are committed to:
-            </p>
-            <ul className="about-list">
-              <li>Delivering clarity in complex decision environments</li>
-              <li>Applying rigorous, defensible analysis</li>
-              <li>Remaining closely aligned with execution realities</li>
-              <li>Operating with discretion, accountability, and independence</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* ================= BROCHURE CTA (INLINE) ================= */}
-      <section className="section brochure-section">
-        <div className="container">
-          <div className="brochure-card">
-            <div className="brochure-text">
-              <h2>Download Our Firm Brochure</h2>
-              <p>
-                Get a structured overview of Rhine Advisory&apos;s services, sectors, and regional presence
-                in a single, shareable document.
-              </p>
-            </div>
-            <div className="brochure-actions">
-              <button
-                className="btn btn-primary"
-                onClick={() => setIsBrochureOpen(true)}
+            {heroSlides.map((slide, index) => (
+              <div
+                key={slide.id}
+                className="premium-hero-slide"
+                style={{ flex: `0 0 ${heroPct}%`, width: `${heroPct}%` }}
+                aria-hidden={index !== heroIndex}
               >
-                View Brochure
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ================= WHO WE SERVE DETAILED ================= */}
-      <section id="who-we-serve-section" className="section who-we-serve">
-        <div className="container">
-          <h2 className="section-title">WHO WE SERVE</h2>
-         
-          <div className="serve-grid">
-            <div className="serve-item">Private Equity & Venture Capital Funds</div>
-            <div className="serve-item">SPAC Sponsors & Public Market Participants</div>
-            <div className="serve-item">Corporates & Strategic Buyers</div>
-            <div className="serve-item">Founders & Promoters</div>
-            <div className="serve-item">Family Offices & Institutional Investors</div>
-            <div className="serve-item">Investment Banks & Financial Institutions</div>
-          </div>
-
-          {/* Detailed Client Categories */}
-          <div style={{ marginTop: "60px", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "40px" }}>
-            <div className="client-category-card" style={{ background: "#ffffff", padding: "30px", borderRadius: "12px", boxShadow: "0 10px 30px rgba(0,0,0,0.1)" }}>
-              <div className="category-image">
-                <img 
-                  src="/iStock-2152298806.jpg" 
-                  alt="Corporate business" 
-                  className="category-img"
-                  style={{ width: "100%", borderRadius: "8px", marginBottom: "20px" }}
+                <div
+                  className="premium-hero-slide-bg"
+                  style={{
+                    backgroundImage: `url("${slide.bg}")`,
+                    backgroundPosition: slide.bgPosition
+                  }}
+                  aria-hidden="true"
                 />
-              </div>
-              <h2 style={{ color: "var(--dark-red)", marginBottom: "15px" }}>Corporates</h2>
-              <p style={{ marginBottom: "15px", color: "var(--text-light)" }}>Strategic advisory for businesses looking to grow, restructure, or navigate complex financial landscapes.</p>
-              <ul style={{ listStyle: "none", padding: 0 }}>
-                <li style={{ padding: "8px 0", color: "var(--text-light)" }}>• Mergers & Acquisitions</li>
-                <li style={{ padding: "8px 0", color: "var(--text-light)" }}>• Divestitures & Carve-outs</li>
-                <li style={{ padding: "8px 0", color: "var(--text-light)" }}>• Strategic Partnerships</li>
-                <li style={{ padding: "8px 0", color: "var(--text-light)" }}>• Capital Raising</li>
-              </ul>
-            </div>
-
-            <div className="client-category-card" style={{ background: "#ffffff", padding: "30px", borderRadius: "12px", boxShadow: "0 10px 30px rgba(0,0,0,0.1)" }}>
-              <div className="category-image">
-                <img 
-                  src="/iStock-2190159060.jpg" 
-                  alt="Private equity and investment" 
-                  className="category-img"
-                  style={{ width: "100%", borderRadius: "8px", marginBottom: "20px" }}
-                />
-              </div>
-              <h2 style={{ color: "var(--dark-red)", marginBottom: "15px" }}>Private Equity & Investors</h2>
-              <p style={{ marginBottom: "15px", color: "var(--text-light)" }}>Comprehensive support for investment firms and individual investors.</p>
-              <ul style={{ listStyle: "none", padding: 0 }}>
-                <li style={{ padding: "8px 0", color: "var(--text-light)" }}>• Deal Sourcing & Evaluation</li>
-                <li style={{ padding: "8px 0", color: "var(--text-light)" }}>• Due Diligence</li>
-                <li style={{ padding: "8px 0", color: "var(--text-light)" }}>• Portfolio Company Support</li>
-                <li style={{ padding: "8px 0", color: "var(--text-light)" }}>• Exit Strategy Planning</li>
-              </ul>
-            </div>
-
-            <div className="client-category-card" style={{ background: "#ffffff", padding: "30px", borderRadius: "12px", boxShadow: "0 10px 30px rgba(0,0,0,0.1)" }}>
-              <div className="category-image">
-                <img 
-                  src="/iStock-1188211595.jpg" 
-                  alt="Entrepreneurs and startups" 
-                  className="category-img"
-                  style={{ width: "100%", borderRadius: "8px", marginBottom: "20px" }}
-                />
-              </div>
-              <h2 style={{ color: "var(--dark-red)", marginBottom: "15px" }}>Founders & Startups</h2>
-              <p style={{ marginBottom: "15px", color: "var(--text-light)" }}>Guidance for emerging businesses at every stage of growth.</p>
-              <ul style={{ listStyle: "none", padding: 0 }}>
-                <li style={{ padding: "8px 0", color: "var(--text-light)" }}>• Seed & Early-stage Funding</li>
-                <li style={{ padding: "8px 0", color: "var(--text-light)" }}>• Growth Capital</li>
-                <li style={{ padding: "8px 0", color: "var(--text-light)" }}>• Strategic Planning</li>
-                <li style={{ padding: "8px 0", color: "var(--text-light)" }}>• Investor Readiness</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ================= DETAILED SERVICES SECTION ================= */}
-      <section id="services-section" className="section services-section" style={{ background: "#fafafa" }}>
-        <div className="container">
-          <h2 className="section-title">OUR SERVICES</h2>
-          <p className="page-subtitle" style={{ color: "var(--primary-red)", textAlign: "center", marginBottom: "50px" }}>
-            Advisory Across Transactions, Capital Markets, and Investment Deals 
-          </p>
-          
-          {serviceDetails.map((service, index) => (
-            <div key={index} className="service-card">
-              <div className="service-header">
-                <div>
-                  <h2>{service.title}</h2>
-                  <p className="service-summary">{service.summary}</p>
+                <div className="premium-hero-slide-overlay" aria-hidden="true" />
+                <div className="container premium-hero-slide-inner">
+                  <div className="premium-hero-content">
+                    <p className="premium-eyebrow">{slide.eyebrow}</p>
+                    <h1 id={`hero-heading-${slide.id}`}>{slide.title}</h1>
+                    <p>{slide.paragraphs[0]}</p>
+                    <div className="premium-hero-actions">
+                      <Link to="/services" className="btn btn-primary">
+                        Explore services
+                      </Link>
+                      <Link to="/contact" className="btn btn-secondary">
+                        Contact us
+                      </Link>
+                    </div>
+                  </div>
                 </div>
-                <button
-                  type="button"
-                  className="btn btn-primary service-view-more-btn"
-                  onClick={() => navigate('/service/view', { state: { service } })}
-                >
-                  View More
-                </button>
               </div>
-            </div>
+            ))}
+          </div>
+        </div>
+        <div className="premium-hero-dots" role="tablist" aria-label="Hero slides">
+          {heroSlides.map((slide, index) => (
+            <button
+              key={slide.id}
+              type="button"
+              role="tab"
+              className={`premium-hero-dot ${index === heroIndex ? 'is-active' : ''}`}
+              aria-selected={index === heroIndex}
+              aria-controls={`hero-heading-${slide.id}`}
+              tabIndex={index === heroIndex ? 0 : -1}
+              onClick={() => setHeroIndex(index)}
+            >
+              <span className="visually-hidden">Slide {index + 1}: {slide.title}</span>
+            </button>
           ))}
         </div>
       </section>
 
-      {/* ================= HOW WE WORK ================= */}
-      <section className="section how-we-work" style={{ background: "#ffffff" }}>
+      <section className="premium-metrics">
         <div className="container">
-          <h2 className="section-title">HOW WE WORK</h2>
-          <div className="how-we-work-image">
-            <img 
-              src="/iStock-1283279349 1.jpg" 
-              alt="Team collaboration and execution" 
-              className="section-hero-image"
-            />
-          </div>
-          <div className="why-grid">
-            <div className="why-item">Senior-led execution with direct partner involvement</div>
-            <div className="why-item">Independent advice free from product or financing bias</div>
-            <div className="why-item">Disciplined, execution-focused transaction mindset</div>
-            <div className="why-item">Confidential, precise, and outcome-driven approach</div>
-          </div>
-        </div>
-      </section>
-
-      {/* ================= WHY RHINE ADVISORY ================= */}
-      <section className="section why-rhine">
-        <div className="container">
-          <h2 className="section-title">WHY RHINE ADVISORY</h2>
-          <div className="why-grid">
-            <div className="why-item">
-              <h3>Senior-Led Execution</h3>
-              <p>No junior hand-offs every mandate is led by experienced professionals.</p>
+          <p className="premium-metrics-intro">
+            A compact, senior team focused on outcomes — supported by a network of specialist partners where mandates require
+            deep local or technical depth.
+          </p>
+          <div className="premium-metrics-grid">
+            <div className="premium-metric-card">
+              <strong>20+</strong>
+              <span>Expert consultants</span>
             </div>
-            <div className="why-item">
-              <h3>Transaction-Focused Mindset</h3>
-              <p>We focus on outcomes, not theoretical consulting frameworks.</p>
+            <div className="premium-metric-card">
+              <strong>100+</strong>
+              <span>Completed projects</span>
             </div>
-            <div className="why-item">
-              <h3>Independent Advice</h3>
-              <p>Free from product, financing, or distribution bias.</p>
-            </div>
-            <div className="why-item">
-              <h3>Confidential & Precise</h3>
-              <p>High-trust advisory with discretion and execution discipline.</p>
-            </div>
-            <div className="why-item">
-              <h3>Outcome-Driven Approach</h3>
-              <p>Value creation prioritized over reports and presentations.</p>
+            <div className="premium-metric-card">
+              <strong>10+</strong>
+              <span>Global partners</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ================= CONTACT SECTION ================= */}
-      <section id="contact-section" className="section contact-section">
-        <div className="container">
-          <h2 className="section-title">CONTACT US</h2>
-          <div className="contact-wrapper">
-            
-            {/* ================= CONTACT INFO ================= */}
-            <div className="contact-info">
-              <div className="info-card">
-                <h3>Connect With Us</h3>
-                <p className="info-description">
-                  We work with corporates, investors, sponsors, and founders on
-                  high-impact transactions and strategic decisions.
-                </p>
-
-                <div className="info-item">
-                  <strong>Email</strong>
-                  <a href="mailto:contact@rhineadvisory.ae">
-                    contact@rhineadvisory.ae
-                  </a>
-                </div>
-
-                <div className="info-item">
-                  <strong>Phone</strong>
-                  <a href="tel:+918140243880">
-                    +91 81402 43880
-                  </a>
-                </div>
-
-                <div className="info-item">
-                  <strong>Delivery Center Address:</strong>
-                  <p>Westgate, 510-511, 5th floor D Block, Near YMCA Club, SG Road, Ahmedabad - 380015 Gujarat, India.</p>
-                </div>
-
-                <div className="info-item">
-                  <strong>HQ Address:</strong>
-                  <p>Serene Centrum, 510, Near Gangotri Exotica, Laxshmipura Road Vadodara, GUJARAT 390021</p>
-                </div>
-
-                <div className="info-item">
-                  <strong>Sales Office:</strong>
-                  <p>Empire Heights Tower, Marasi Drive, Business Bay, Dubai – UAE</p>
-                </div>
-              </div>
-
-              {/* ================= MAP SECTION ================= */}
-              <div className="map-section">
-                <h3>Find Us</h3>
-                <div className="map-container">
-                  <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d865.8153813454534!2d72.50062853553113!3d23.003052074405353!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e9b268747c875%3A0xd44523a6cd7ccb19!2sWestgate%20Complex!5e0!3m2!1sen!2sin!4v1766928159351!5m2!1sen!2sin"
-                    width="100%"
-                    height="300"
-                    style={{ border: 0, borderRadius: '12px' }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    title="Rhine Advisory Location - Delivery Center"
-                  ></iframe>
-                </div>
-              </div>
-            </div>
-
-            {/* ================= CONTACT FORM ================= */}
-            <div className="contact-form-wrapper">
-              <form className="contact-form" onSubmit={handleSubmit}>
-                <h3 className="form-title">Send Us a Message</h3>
-                <p className="form-subtitle">
-                Get in touch with us to discuss how we can help transform your organization
-                </p>
-
-                <div className="form-row">
-                  <div className="form-group">
-                    <label htmlFor="firstName">First Name *</label>
-                    <input
-                      type="text"
-                      id="firstName"
-                      name="firstName"
-                      value={formData.firstName}
-                      onChange={handleChange}
-                      placeholder="Enter your first name"
-                      required
-                    />
-                  </div>
-
-                  <div className="form-group">
-                    <label htmlFor="lastName">Last Name *</label>
-                    <input
-                      type="text"
-                      id="lastName"
-                      name="lastName"
-                      value={formData.lastName}
-                      onChange={handleChange}
-                      placeholder="Enter your last name"
-                      required
-                    />
-                  </div>
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="email">Email Address *</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="Enter your email address"
-                    required
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="phone">Phone Number</label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    placeholder="Enter your phone number"
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="company">Company (Optional)</label>
-                  <input
-                    type="text"
-                    id="company"
-                    name="company"
-                    value={formData.company}
-                    onChange={handleChange}
-                    placeholder="Enter your company name"
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="subject">Subject *</label>
-                  <input
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    placeholder="What is this regarding?"
-                    required
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="serviceInterest">Service Interest</label>
-                  <select
-                    id="serviceInterest"
-                    name="serviceInterest"
-                    value={formData.serviceInterest}
-                    onChange={handleChange}
-                    className="form-select"
-                  >
-                    {services.map((service, index) => (
-                      <option key={index} value={service === 'Select a service' ? '' : service}>
-                        {service}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="message">Message *</label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows="6"
-                    value={formData.message}
-                    onChange={handleChange}
-                    placeholder="Tell us about your requirements..."
-                    required
-                  ></textarea>
-                </div>
-
-                <div className="form-actions">
-                  <button 
-                    type="submit" 
-                    className="btn btn-primary send-message-btn"
-                    disabled={isSubmitting}
-                  >
-                    <span className="btn-icon">✈</span>
-                    {isSubmitting ? 'Sending...' : 'Send Message'}
-                  </button>
-                  {submitStatus.message && (
-                    <div className={`form-message ${submitStatus.success ? 'success' : 'error'}`}>
-                      {submitStatus.message}
-                    </div>
-                  )}
-                </div>
-              </form>
-            </div>
-
+      <section className="section premium-about">
+        <div className="container premium-about-grid">
+          <div>
+            <h2 className="section-title left">About Rhine Advisory</h2>
+            <p>
+              We provide SPAC merger, capital markets, and transaction advisory solutions to corporates, investors,
+              sponsors, and founders navigating complex transactions where execution risk is real.
+            </p>
+            <p>
+              Our advisory spans strategy formulation, structuring, valuation, transaction execution, and post-deal
+              value creation with a strong cross-border perspective.
+            </p>
+            <p>
+              Clients engage us when stakes are high and ambiguity is not an option — from fairness opinions and
+              conflicted transactions to first-time issuers and complex multi-jurisdiction deals. We tailor scope and
+              pace to your governance cadence and timeline.
+            </p>
+            <Link to="/about" className="btn btn-secondary">Read more about the firm</Link>
+          </div>
+          <div className="premium-about-cards">
+            <article>
+              <h3>Institutional Insight</h3>
+              <p>Rigorous transaction analysis and valuation with board-ready output.</p>
+            </article>
+            <article>
+              <h3>Execution Discipline</h3>
+              <p>Senior-led teams focused on outcome, not presentation-heavy consulting.</p>
+            </article>
+            <article>
+              <h3>Global Network</h3>
+              <p>Connected across investors, sponsors, and capital market stakeholders.</p>
+            </article>
           </div>
         </div>
       </section>
-      
-      {/* ================= CALL TO ACTION ================= */}
-    <section
-  className="section cta-section"
-  style={{
-    background: "linear-gradient(135deg, var(--dark-red), var(--primary-red))",
-    color: "#ffffff",
-    padding: "90px 20px",
-    textAlign: "center"
-  }}
->
-  <div className="container">
-    <h2
-      style={{
-        fontSize: "2.5rem",
-        fontWeight: "700",
-        marginBottom: "15px"
-      }}
-    >
-      Discuss Your Transaction
-    </h2>
 
-    <p
-      style={{
-        maxWidth: "720px",
-        margin: "0 auto 30px",
-        fontSize: "1.15rem",
-        opacity: "0.95"
-      }}
-    >
-      Engage with Rhine Advisory to evaluate, structure, and execute
-      complex transactions with confidence.
-    </p>
+      <section className="section premium-edge">
+        <div className="container">
+          <h2 className="section-title left">Why decision-makers choose Rhine</h2>
+          <p className="premium-edge-intro">
+            Transaction advisory should reduce uncertainty — not add noise. Our model is built for leaders who need
+            crisp recommendations and deliverables they can use in real decision forums.
+          </p>
+          <div className="premium-edge-grid">
+            {edgeReasons.map((item) => (
+              <article key={item.title} className="premium-edge-card">
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
 
-          <button
-            onClick={() => scrollToSection('contact-section')}
-      style={{
-        display: "inline-block",
-        background: "#ffffff",
-        color: "var(--primary-red)",
-        padding: "14px 36px",
-        fontSize: "1rem",
-        fontWeight: "600",
-        borderRadius: "50px",
-              border: "none",
-              cursor: "pointer",
-        transition: "all 0.3s ease"
-      }}
-      onMouseEnter={e => (e.currentTarget.style.transform = "translateY(-2px)")}
-      onMouseLeave={e => (e.currentTarget.style.transform = "translateY(0)")}
-    >
-      Contact Our Team
-          </button>
-  </div>
-</section>
+      <section className="section premium-services-preview">
+        <div className="container">
+          <div className="premium-section-head">
+            <h2 className="section-title left">Our Services</h2>
+            <Link to="/services" className="btn btn-secondary">View All Services</Link>
+          </div>
+          <div className="premium-services-grid">
+            {servicesList.slice(0, 6).map((service) => (
+              <article key={service.title} className="premium-service-card">
+                <h3>{service.title}</h3>
+                <p>{service.summary}</p>
+                <button
+                  type="button"
+                  className="service-link-btn"
+                  onClick={() => navigate('/service/view', { state: { service } })}
+                >
+                  View details
+                </button>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
 
+      <section className="section premium-clients">
+        <div className="container">
+          <div className="premium-section-head">
+            <div>
+              <h2 className="section-title left">Who we serve</h2>
+              <p className="premium-clients-lead">
+                We work with sponsors, founders, boards, and investment teams who need independent judgment on structure,
+                value, and execution — from growth capital to transformative M&amp;A and public-market paths.
+              </p>
+            </div>
+            <Link to="/who-we-serve" className="btn btn-secondary premium-clients-cta">
+              Explore client segments
+            </Link>
+          </div>
+          <div className="premium-client-tags">
+            <span>Private Equity & Venture Capital Funds</span>
+            <span>SPAC Sponsors & Public Market Participants</span>
+            <span>Corporates & Strategic Buyers</span>
+            <span>Founders & Promoters</span>
+            <span>Family Offices & Institutional Investors</span>
+            <span>Investment Banks & Financial Institutions</span>
+          </div>
+        </div>
+      </section>
+
+      <section className="section premium-process">
+        <div className="container">
+          <h2 className="section-title left">How we partner with you</h2>
+          <p className="premium-process-intro">
+            Each mandate is scoped explicitly. We align on deliverables, timeline, and forums for decisions — then adapt
+            as facts change without losing discipline.
+          </p>
+          <div className="premium-process-grid">
+            {processSteps.map((item) => (
+              <article key={item.step} className="premium-process-card">
+                <span className="premium-process-step">{item.step}</span>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section premium-sectors">
+        <div className="container">
+          <h2 className="section-title left">Sectors &amp; situations</h2>
+          <p className="premium-sectors-intro">
+            We support transactions across sectors where complexity, regulation, or capital structure matters. Representative
+            areas include:
+          </p>
+          <div className="premium-sector-tags">
+            {sectorTags.map((label) => (
+              <span key={label}>{label}</span>
+            ))}
+          </div>
+          <p className="premium-sectors-foot">
+            <Link to="/services" className="premium-text-link">
+              View our service areas
+            </Link>
+            <span className="premium-sectors-sep" aria-hidden="true">
+              ·
+            </span>
+            <Link to="/team" className="premium-text-link">
+              Meet the team
+            </Link>
+          </p>
+        </div>
+      </section>
+
+      <section className="section about-surface-alt about-presence-section">
+        <div className="container about-regions-block">
+          <header className="about-presence-header">
+            <h2 className="about-presence-title">Our Regional Presence</h2>
+            <p className="about-presence-subtitle">
+              Serving clients across priority markets with local insight and regional connectivity.
+            </p>
+          </header>
+          <ul className="about-presence-grid" aria-label="Regional markets">
+            {regionalPresence.map((region) => (
+              <li key={region.code} className="about-presence-card">
+                <div className="about-presence-icon">
+                  <img src={region.flag} alt="" />
+                </div>
+                <span className="about-presence-name">{region.name}</span>
+                <span className="about-presence-code">{region.code}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="about-presence-footnote">
+            Cross-border mandates combine local context with a consistent analytical and governance standard.
+          </p>
+          <p className="about-inline-cta">
+            <Link to="/who-we-serve" className="btn btn-secondary">
+              Who we serve
+            </Link>
+          </p>
+        </div>
+      </section>
+
+      <section className="section premium-cta">
+        <div className="container">
+          <h2>Discuss your transaction with our senior advisory team.</h2>
+          <p>
+            We help decision-makers evaluate, structure, and execute high-stakes transactions with clarity and precision.
+          </p>
+          <div className="premium-hero-actions">
+            <Link to="/contact" className="btn btn-primary">Start a Conversation</Link>
+            <Link to="/research-insights" className="btn btn-secondary">Read Insights</Link>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }

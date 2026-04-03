@@ -170,6 +170,26 @@ const RhinePRMarketing = () => {
           </ul>
         </div>
       </section>
+
+      <section className="section premium-info-band">
+        <div className="container">
+          <h2 className="section-title">Our Delivery Model</h2>
+          <div className="premium-info-grid">
+            <article className="premium-info-card">
+              <h3>Strategy First</h3>
+              <p>Every campaign begins with clear positioning, audience strategy, and measurable growth objectives.</p>
+            </article>
+            <article className="premium-info-card">
+              <h3>Integrated Execution</h3>
+              <p>PR, digital performance, content, and events are coordinated into one consistent brand narrative.</p>
+            </article>
+            <article className="premium-info-card">
+              <h3>Performance Intelligence</h3>
+              <p>Continuous reporting and optimization ensure stronger engagement, visibility, and conversion outcomes.</p>
+            </article>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }

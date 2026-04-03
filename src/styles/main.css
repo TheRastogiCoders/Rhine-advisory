@@ -1,32 +1,100 @@
+/* ================= DESIGN SYSTEM (Rhine Advisory — premium UI) ================= */
 :root {
-  --primary-red: #c41e3a;
-  --light-red: #ff6b6b;
-  --faded-red: #ffcccc;
-  --very-light-red: #fff5f5;
-  --dark-red: #8b1538;
-  --footer-bg: #A71939;
-  --text-dark: #2c2c2c;
-  --text-light: #666;
+  /* Brand (aligns with style guide) */
+  --brand-red: #cc1d24;
+  --brand-red-hover: #a91820;
+  --brand-navy: #0f1b33;
+  --brand-charcoal: #1a1a1a;
+  --neutral-700: #333333;
+  --neutral-500: #666666;
+  --neutral-300: #e8e8ea;
+
+  /* Surfaces */
+  --surface-page: #f4f4f6;
+  --surface-elevated: #ffffff;
+  --surface-dark: #0f1b33;
+  --surface-dark-soft: #151d33;
+
+  /* Legacy aliases — keep existing class names working site-wide */
+  --primary-red: var(--brand-red);
+  --light-red: #e85a6d;
+  --faded-red: #f0c9cf;
+  --very-light-red: #fdf2f3;
+  --dark-red: #6b0f22;
+  --footer-bg: var(--brand-navy);
+  --text-dark: var(--brand-charcoal);
+  --text-light: var(--neutral-500);
   --white: #ffffff;
-  --light-gray: #f8f8f8;
+  --light-gray: var(--surface-page);
+
+  /* Typography */
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-body: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-pill: 999px;
+
+  --shadow-sm: 0 2px 8px rgba(15, 27, 51, 0.06);
+  --shadow-md: 0 8px 32px rgba(15, 27, 51, 0.1);
+  --shadow-card: 0 4px 24px rgba(15, 27, 51, 0.08);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.app-root {
+  min-height: 100vh;
+  background: var(--surface-page);
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-dark);
+  background: var(--surface-page);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+.page-header h1,
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 24px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .section {
-  padding: 80px 0;
+  padding: 88px 0;
 }
 
 .section-title {
-  font-size: 2.5rem;
+  font-size: clamp(2rem, 4vw, 2.75rem);
   font-weight: 700;
-  color: var(--dark-red);
+  color: var(--brand-navy);
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 48px;
   position: relative;
   padding-bottom: 20px;
 }
@@ -37,84 +105,121 @@
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 80px;
-  height: 4px;
-  background: linear-gradient(90deg, var(--primary-red), var(--light-red));
+  width: 64px;
+  height: 3px;
+  background: var(--brand-red);
   border-radius: 2px;
 }
 
 .btn {
   display: inline-block;
   padding: 14px 32px;
-  border-radius: 5px;
+  border-radius: var(--radius-pill);
   text-decoration: none;
   font-weight: 600;
-  transition: all 0.3s ease;
-  border: none;
+  font-family: var(--font-body);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, color 0.25s ease,
+    border-color 0.25s ease;
+  border: 2px solid transparent;
   cursor: pointer;
   font-size: 1rem;
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--primary-red), var(--light-red));
+  background: var(--brand-red);
   color: var(--white);
-  box-shadow: 0 4px 15px rgba(196, 30, 58, 0.3);
+  box-shadow: var(--shadow-sm);
 }
 
 .btn-primary:hover {
+  background: var(--brand-red-hover);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(196, 30, 58, 0.4);
+  box-shadow: var(--shadow-md);
 }
 
 .btn-secondary {
   background: transparent;
-  color: var(--primary-red);
-  border: 2px solid var(--primary-red);
+  color: var(--brand-red);
+  border: 2px solid var(--brand-red);
 }
 
 .btn-secondary:hover {
-  background: var(--primary-red);
+  background: var(--brand-red);
   color: var(--white);
 }
 
 .page-header {
-  background: linear-gradient(135deg, var(--very-light-red), var(--faded-red));
-  padding: 100px 0 60px;
+  background: linear-gradient(135deg, var(--surface-page) 0%, rgba(200, 16, 46, 0.06) 100%);
+  padding: 110px 0 64px;
   text-align: center;
   margin-top: 85px;
+  border-bottom: 1px solid rgba(15, 27, 51, 0.06);
 }
 
 .page-header h1 {
-  font-size: 3rem;
+  font-size: clamp(2.25rem, 4vw, 3rem);
   font-weight: 700;
-  color: var(--dark-red);
-  margin-bottom: 15px;
+  color: var(--brand-navy);
+  margin-bottom: 12px;
 }
 
 .header-subtitle {
-  font-size: 1.2rem;
-  color: var(--text-light);
-  max-width: 800px;
+  font-size: 1.15rem;
+  color: var(--neutral-500);
+  max-width: 720px;
   margin: 0 auto;
+  line-height: 1.65;
+}
+
+.premium-info-band {
+  background: #fff;
+}
+
+.premium-info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.premium-info-card {
+  background: #fff;
+  border: 1px solid var(--neutral-300);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  box-shadow: var(--shadow-sm);
+}
+
+.premium-info-card h3 {
+  color: var(--brand-navy);
+  margin-bottom: 8px;
+}
+
+.premium-info-card p {
+  color: var(--neutral-500);
+}
+
+@media (max-width: 900px) {
+  .premium-info-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 768px) {
   .section {
-    padding: 50px 0;
+    padding: 56px 0;
   }
 
   .section-title {
-    font-size: 2rem;
-    margin-bottom: 30px;
+    font-size: 1.85rem;
+    margin-bottom: 32px;
   }
 
   .page-header {
-    padding: 80px 0 40px;
-    margin-top: 60px;
+    padding: 88px 0 48px;
+    margin-top: 64px;
   }
 
   .page-header h1 {
     font-size: 2rem;
   }
 }
-

@@ -112,8 +112,8 @@ const Contact = () => {
 
                 <div className="info-item">
                   <strong>Email</strong>
-                  <a href="mailto:contact@rhineadvisory.ae">
-                    contact@rhineadvisory.ae
+                  <a href="mailto:contact@rhineadvisory.com">
+                    contact@rhineadvisory.com
                   </a>
                 </div>
 
@@ -292,6 +292,26 @@ const Contact = () => {
               </form>
             </div>
 
+          </div>
+        </div>
+      </section>
+
+      <section className="section premium-info-band">
+        <div className="container">
+          <h2 className="section-title">Why Clients Reach Out to Rhine</h2>
+          <div className="premium-info-grid">
+            <article className="premium-info-card">
+              <h3>Complex Deal Evaluation</h3>
+              <p>Independent support for strategic transactions, investment decisions, and high-stakes valuation matters.</p>
+            </article>
+            <article className="premium-info-card">
+              <h3>Execution Readiness</h3>
+              <p>Practical advisory from planning through closing so leadership teams can execute with confidence.</p>
+            </article>
+            <article className="premium-info-card">
+              <h3>Confidential Advisory</h3>
+              <p>Discreet, senior-led guidance for founders, corporates, sponsors, and institutional investors.</p>
+            </article>
           </div>
         </div>
       </section>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import '../styles/services.css'
 
 export const servicesList = [
@@ -365,120 +365,180 @@ export const servicesList = [
     }
   ]
 
+const processPillars = [
+  {
+    title: 'Senior-led',
+    text: 'Direct involvement from experienced advisors through execution — not a handoff to a junior bench.'
+  },
+  {
+    title: 'Independent',
+    text: 'No product, placement, or financing bias — recommendations aligned to your mandate and risk appetite.'
+  },
+  {
+    title: 'Execution discipline',
+    text: 'Structured work plans, board-ready outputs, and advice that respects real transaction timelines.'
+  },
+  {
+    title: 'Confidential',
+    text: 'Discreet processes, precise materials, and an outcome-driven mindset from first conversation to close.'
+  }
+]
+
+const valueProps = [
+  {
+    title: 'Senior-led engagements',
+    body: 'Every mandate is supervised by experienced professionals to ensure strategic alignment and execution quality.'
+  },
+  {
+    title: 'Structured decision support',
+    body: 'Valuation discipline, downside analysis, and transaction structuring for critical board-level decisions.'
+  },
+  {
+    title: 'Cross-border capability',
+    body: 'Support for complex transactions across jurisdictions with practical regulatory and market awareness.'
+  }
+]
+
 const Services = () => {
   const navigate = useNavigate()
 
   return (
-    <div className="services">
-      {/* ================= PAGE HEADER ================= */}
-      <section className="page-header">
-        <div className="container">
-          <h1>OUR SERVICES</h1>
-          <p className="page-subtitle" style={{ color: "var(--primary-red)" }}>
-          Advisory Across Transactions, Capital Markets, and Investment Deals 
-          </p>
-         
-        </div>
-      </section>
-
-      {/* ================= CORE SERVICES ================= */}
-      <section className="section services-section">
-        <div className="container">
-          {servicesList.map((service, index) => (
-            <div key={index} className="service-card">
-              <div className="service-header">
-                <div>
-                  <h2>{service.title}</h2>
-                  <p className="service-summary">{service.summary}</p>
-                </div>
-                <button
-                  type="button"
-                  className="btn btn-primary service-view-more-btn"
-                  onClick={() => navigate('/service/view', { state: { service } })}
-                >
-                  View More
-                </button>
-              </div>
+    <div className="services-page">
+      <section className="services-hero">
+        <div className="services-hero-orb services-hero-orb--one" aria-hidden="true" />
+        <div className="services-hero-orb services-hero-orb--two" aria-hidden="true" />
+        <div className="container services-hero-grid">
+          <div className="services-hero-copy">
+            <p className="services-eyebrow">Transaction & capital advisory</p>
+            <h1>Advisory across transactions, capital markets, and investment mandates.</h1>
+            <p className="services-hero-lead">
+              Independent, senior-led support for M&A, SPAC and public-market paths, valuation, diligence, and capital
+              raising — with institutional rigor and execution awareness.
+            </p>
+            <div className="services-hero-actions">
+              <Link to="/contact" className="btn btn-primary">
+                Discuss a mandate
+              </Link>
+              <Link to="/who-we-serve" className="btn btn-secondary">
+                Who we serve
+              </Link>
             </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ================= HOW WE WORK ================= */}
-      <section className="section how-we-work">
-        <div className="container">
-          <h2 className="section-title">HOW WE WORK</h2>
-          <div className="how-we-work-image">
-            <img 
-              src="/iStock-1283279349 1.jpg" 
-              alt="Team collaboration and execution" 
-              className="section-hero-image"
+            <div className="services-hero-pills" aria-label="Service themes">
+              <span>M&A</span>
+              <span>SPAC</span>
+              <span>Valuation</span>
+              <span>Capital markets</span>
+              <span>Diligence</span>
+            </div>
+          </div>
+          <div className="services-hero-visual">
+            <img
+              src="/iStock-1283279349 1.jpg"
+              alt="Advisory team collaboration and transaction execution"
             />
           </div>
-          <div className="why-grid">
-            <div className="why-item">Senior-led execution with direct partner involvement</div>
-            <div className="why-item">Independent advice free from product or financing bias</div>
-            <div className="why-item">Disciplined, execution-focused transaction mindset</div>
-            <div className="why-item">Confidential, precise, and outcome-driven approach</div>
+        </div>
+      </section>
+
+      <section className="services-stats" aria-label="Firm snapshot">
+        <div className="container services-stats-inner">
+          <div className="services-stat">
+            <strong>{servicesList.length}</strong>
+            <span>Practice areas</span>
+          </div>
+          <div className="services-stat">
+            <strong>Senior-led</strong>
+            <span>Every engagement</span>
+          </div>
+          <div className="services-stat">
+            <strong>Global</strong>
+            <span>Cross-border execution</span>
           </div>
         </div>
       </section>
 
+      <section className="section services-catalog">
+        <div className="container">
+          <header className="services-catalog-head">
+            <h2 className="services-catalog-title">What we deliver</h2>
+            <p className="services-catalog-intro">
+              Explore each practice area for scope, deliverables, and how we support boards, investors, and management
+              teams through complex decisions.
+            </p>
+          </header>
+          <div className="services-premium-grid">
+            {servicesList.map((service, index) => (
+              <article key={service.title} className="services-premium-card">
+                <div className="services-premium-card-accent" aria-hidden="true" />
+                <span className="services-premium-index">{String(index + 1).padStart(2, '0')}</span>
+                <h3 className="services-premium-card-title">{service.title}</h3>
+                <p className="services-premium-card-summary">{service.summary}</p>
+                <button
+                  type="button"
+                  className="services-premium-explore"
+                  onClick={() => navigate('/service/view', { state: { service } })}
+                >
+                  View details
+                  <span className="services-premium-explore-arrow" aria-hidden="true">
+                    →
+                  </span>
+                </button>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
 
-      {/* ================= CTA ================= */}
-      <section
-  className="section cta-section"
-  style={{
-    background: "linear-gradient(135deg, var(--dark-red), var(--primary-red))",
-    color: "#ffffff",
-    padding: "90px 20px",
-    textAlign: "center"
-  }}
->
-  <div className="container">
-    <h2
-      style={{
-        fontSize: "2.5rem",
-        fontWeight: "700",
-        marginBottom: "15px"
-      }}
-    >
-      Discuss Your Transaction
-    </h2>
+      <section className="services-process">
+        <div className="services-process-glow" aria-hidden="true" />
+        <div className="container">
+          <h2 className="services-process-heading">How we work</h2>
+          <p className="services-process-sub">
+            A consistent operating model across mandates — clear scope, institutional outputs, and judgment grounded in
+            live transaction experience.
+          </p>
+          <div className="services-process-grid">
+            {processPillars.map((item) => (
+              <article key={item.title} className="services-process-card">
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
 
-    <p
-      style={{
-        maxWidth: "720px",
-        margin: "0 auto 30px",
-        fontSize: "1.15rem",
-        opacity: "0.95"
-      }}
-    >
-      Engage with Rhine Advisory to evaluate, structure, and execute
-      complex transactions with confidence.
-    </p>
+      <section className="section services-value">
+        <div className="container">
+          <h2 className="services-value-title">How we deliver value</h2>
+          <div className="services-value-grid">
+            {valueProps.map((item) => (
+              <article key={item.title} className="services-value-card">
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
 
-    <a
-      href="/contact"
-      style={{
-        display: "inline-block",
-        background: "#ffffff",
-        color: "var(--primary-red)",
-        padding: "14px 36px",
-        fontSize: "1rem",
-        fontWeight: "600",
-        borderRadius: "50px",
-        textDecoration: "none",
-        transition: "all 0.3s ease"
-      }}
-      onMouseEnter={e => e.currentTarget.style.transform = "translateY(-2px)"}
-      onMouseLeave={e => e.currentTarget.style.transform = "translateY(0)"}
-    >
-      Contact Our Team
-    </a>
-  </div>
-</section>
-
+      <section className="section cta-section services-cta">
+        <div className="container">
+          <h2>Discuss your transaction</h2>
+          <p>
+            Engage with Rhine Advisory to evaluate, structure, and execute complex transactions with clarity and
+            confidence.
+          </p>
+          <div className="services-cta-row">
+            <Link to="/contact" className="services-cta-link">
+              Contact our team
+            </Link>
+            <Link to="/about" className="services-cta-link services-cta-link--ghost">
+              About the firm
+            </Link>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }

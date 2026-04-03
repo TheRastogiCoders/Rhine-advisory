@@ -162,6 +162,26 @@ const RhineHR = () => {
           </div>
         </div>
       )}
+
+      <section className="section premium-info-band">
+        <div className="container">
+          <h2 className="section-title">Rhine HR Framework</h2>
+          <div className="premium-info-grid">
+            <article className="premium-info-card">
+              <h3>Data-Led Search</h3>
+              <p>Decision quality is improved through structured assessment frameworks and research-backed candidate evaluation.</p>
+            </article>
+            <article className="premium-info-card">
+              <h3>Diversity by Design</h3>
+              <p>Leadership pipelines are built with inclusive search parameters aligned to long-term organisation outcomes.</p>
+            </article>
+            <article className="premium-info-card">
+              <h3>Execution with Accountability</h3>
+              <p>From mandate kickoff to placement and transition, delivery milestones are tracked with clear ownership.</p>
+            </article>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }

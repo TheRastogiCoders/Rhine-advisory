@@ -93,39 +93,74 @@ const Resources = () => {
   const [reportPendingDownload, setReportPendingDownload] = useState(null)
   const [downloadNewsletterPdfOnNewsletterSubmit, setDownloadNewsletterPdfOnNewsletterSubmit] = useState(true)
   const latestReportsScrollRef = useRef(null)
+  const loopedLatestReports = [...latestReports, ...latestReports]
 
   useEffect(() => {
     const el = latestReportsScrollRef.current
     if (!el) return
-    const step = el.clientWidth
-    const maxScroll = el.scrollWidth - el.clientWidth
-    if (maxScroll <= 0) return
-
-    const duration = 400
     let rafId = null
+    let lastFrameTime = performance.now()
+    let isPaused = false
+    const pxPerSecond = 62
 
-    function animateScroll(from, to, startTime) {
-      const now = performance.now()
-      const elapsed = now - startTime
-      const t = Math.min(elapsed / duration, 1)
-      const eased = t < 0.5 ? 2 * t * t : 1 - (-2 * t + 2) ** 2 / 2
-      el.scrollLeft = from + (to - from) * eased
-      if (t < 1) rafId = requestAnimationFrame(() => animateScroll(from, to, startTime))
+    const pause = () => {
+      isPaused = true
     }
 
-    const interval = setInterval(() => {
-      const from = el.scrollLeft
-      const next = from + step >= maxScroll ? 0 : from + step
-      const startTime = performance.now()
-      if (rafId) cancelAnimationFrame(rafId)
-      rafId = requestAnimationFrame(() => animateScroll(from, next, startTime))
-    }, 4000)
+    const resume = () => {
+      isPaused = false
+      lastFrameTime = performance.now()
+    }
+
+    const tick = (now) => {
+      const loopWidth = el.scrollWidth / 2
+      if (!isPaused && loopWidth > 0) {
+        const deltaMs = now - lastFrameTime
+        const nextLeft = el.scrollLeft + (pxPerSecond * deltaMs) / 1000
+
+        // Seamless loop by resetting position after first duplicated set.
+        if (nextLeft >= loopWidth) {
+          el.scrollLeft = nextLeft - loopWidth
+        } else {
+          el.scrollLeft = nextLeft
+        }
+      }
+      lastFrameTime = now
+      rafId = requestAnimationFrame(tick)
+    }
+
+    rafId = requestAnimationFrame(tick)
+
+    // Keep autoplay smooth after switching tabs/windows.
+    const onVisibilityChange = () => {
+      lastFrameTime = performance.now()
+    }
+
+    el.addEventListener('mouseenter', pause)
+    el.addEventListener('mouseleave', resume)
+    el.addEventListener('touchstart', pause, { passive: true })
+    el.addEventListener('touchend', resume, { passive: true })
+    document.addEventListener('visibilitychange', onVisibilityChange)
 
     return () => {
-      clearInterval(interval)
       if (rafId) cancelAnimationFrame(rafId)
+      el.removeEventListener('mouseenter', pause)
+      el.removeEventListener('mouseleave', resume)
+      el.removeEventListener('touchstart', pause)
+      el.removeEventListener('touchend', resume)
+      document.removeEventListener('visibilitychange', onVisibilityChange)
     }
-  }, [latestReports.length])
+  }, [])
+
+  const handleLatestReportsScroll = useCallback((direction) => {
+    const el = latestReportsScrollRef.current
+    if (!el) return
+    const scrollAmount = Math.max(320, el.clientWidth * 0.72)
+    el.scrollBy({
+      left: direction === 'next' ? scrollAmount : -scrollAmount,
+      behavior: 'smooth',
+    })
+  }, [])
 
   const handleDownloadReportClick = useCallback(() => {
     setDownloadNewsletterPdfOnNewsletterSubmit(true)
@@ -193,16 +228,39 @@ const Resources = () => {
       {/* ================= 1. LATEST REPORTS ================= */}
       <section className="latest-reports">
         <div className="container">
-          <h2 className="latest-reports-title">LATEST REPORTS</h2>
+          <div className="latest-reports-head">
+            <div>
+              <h2 className="latest-reports-title">Latest Reports</h2>
+              <p className="latest-reports-subtitle">Curated publications on IPOs, strategic transactions, and market intelligence.</p>
+            </div>
+          </div>
           <div className="latest-reports-grid" ref={latestReportsScrollRef}>
-            {latestReports.map((report) => (
+            {loopedLatestReports.map((report, index) => (
               <LatestReportCard
-                key={report.id}
+                key={`${report.id}-${index}`}
                 report={report}
                 onDownloadClick={handleDownloadReportClick}
                 onViewOnlyClick={handleViewOnlyClick}
               />
             ))}
+          </div>
+          <div className="latest-reports-controls latest-reports-controls-bottom" aria-label="Latest reports navigation">
+            <button
+              type="button"
+              className="latest-reports-nav-btn"
+              onClick={() => handleLatestReportsScroll('prev')}
+              aria-label="Scroll reports left"
+            >
+              &#8249;
+            </button>
+            <button
+              type="button"
+              className="latest-reports-nav-btn"
+              onClick={() => handleLatestReportsScroll('next')}
+              aria-label="Scroll reports right"
+            >
+              &#8250;
+            </button>
           </div>
         </div>
       </section>
@@ -416,6 +474,26 @@ const Resources = () => {
             <input type="email" placeholder="Enter your email" required />
             <button type="submit" className="btn btn-primary">Subscribe</button>
           </form>
+        </div>
+      </section>
+
+      <section className="section premium-info-band">
+        <div className="container">
+          <h2 className="section-title">Research Coverage Universe</h2>
+          <div className="premium-info-grid">
+            <article className="premium-info-card">
+              <h3>Transactions & M&A</h3>
+              <p>Deal structures, valuation trends, process benchmarks, and execution signals across major markets.</p>
+            </article>
+            <article className="premium-info-card">
+              <h3>Capital Markets</h3>
+              <p>IPO and financing perspectives with sector-level data and changing investor sentiment insights.</p>
+            </article>
+            <article className="premium-info-card">
+              <h3>Macro & Sector Strategy</h3>
+              <p>Cross-border economic and industry analysis translated into practical implications for decision-makers.</p>
+            </article>
+          </div>
         </div>
       </section>
     </div>

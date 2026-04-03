@@ -28,8 +28,8 @@ const Footer = () => {
             <li><Link to="/">Home</Link></li>
             <li><Link to="/about">About Us</Link></li>
             <li><Link to="/services">Services</Link></li>
-            <li><Link to="/#who-we-serve-section">Who We Serve</Link></li>
-            <li><Link to="/#contact-section">Contact</Link></li>
+            <li><Link to="/who-we-serve">Who We Serve</Link></li>
+            <li><Link to="/contact">Contact</Link></li>
             <li><Link to="/research-insights">Research & Insights</Link></li>
             <li><Link to="/rhine-pr-marketing">Rhine PR & Marketing</Link></li>
             <li><Link to="/rhine-hr">Rhine HR</Link></li>
@@ -56,7 +56,7 @@ const Footer = () => {
           <p>
             Email:{' '}
             <a href="mailto:contact@rhineadvisory.com">
-              contact@rhineadvisory.ae
+              contact@rhineadvisory.com
             </a>
           </p>
           <p>
@@ -78,12 +78,16 @@ const Footer = () => {
 
       </div>
 
-      {/* ===== DIVIDER LINE ===== */}
-      <div className="footer-divider"></div>
+      <div className="footer-divider" />
 
-      {/* ===== COPYRIGHT ===== */}
       <div className="footer-bottom">
-        <p>&copy; 2021 Rhine Advisory. All rights reserved.</p>
+        <div className="footer-bottom-inner">
+          <p>&copy; 2021 Rhine Advisory. All rights reserved.</p>
+          <ul className="footer-legal">
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+          </ul>
+        </div>
       </div>
     </footer>
   )
